@@ -43,6 +43,8 @@ namespace MyManagementApp.ChildForms
                 new Product() { ProductID = tbxProductID.Text, ProductName = tbxProdDescription.Text}
             };
         }
+
+
     }
 }
 
