@@ -13,38 +13,72 @@ namespace MyManagementApp.ChildForms
         {
             InitializeComponent();
 
-            cbxProdStatus.DataSource = Enum.GetValues(typeof(ProductStatusEnum));
-        }
 
+            // 
+            cbxProdStatus.DataSource = Enum.GetValues(typeof(ProductStatusEnum));
+
+
+            btnProdSave.Click += btnProdSave_Click;
+            // SaveProduct("id", "name", "brand", 9, ProductStatusEnum.Active);
+            // ProductGrid.DataSource = _productsList;
+
+
+            ProductGridNew.DataSource = _productsList;
+        }
         private void tbxProductID_Leave(object sender, EventArgs e)
         {
             if (tbxProductID.Text.Length > 0)
             {
-                string prodID = tbxProductID.Text;
+                //string prodID = tbxProductID.Text;
             }
 
 
         }
-
         private void tbxProdDescription_Leave(object sender, EventArgs e)
         {
             if (tbxProdDescription.Text.Length > 0)
             {
-                string prodDescript = tbxProdDescription.Text;
+                //string prodDescript = tbxProdDescription.Text;
+            }
+        }
+        private void btnProdSave_Click(object sender, EventArgs e)
+        {
+
+            // validations
+            if (tbxProductID.Text.Length > 0)
+            {
+                //string prodID = tbxProductID.Text;
             }
 
 
+
+            // save or updade
+            SaveProduct(tbxProdDescription.Text, tbxProdBrand.Text, decimal.Parse(txtProdPrice.Text), 
+                (ProductStatusEnum)Enum.Parse(typeof(ProductStatusEnum), 
+                cbxProdStatus.SelectedItem.ToString()));
+            ProductGridNew.SetDataBinding(_productsList, null, false);
+ 
         }
 
-        private void btnProdSave_Click(object sender, EventArgs e)
+
+
+        // application layer - 
+        private List<Product> _productsList = new List<Product>();
+        private void SaveProduct(string productName, string brand, decimal price, ProductStatusEnum status)
         {
-            var productsList = new List<Product>()
-            {
-                new Product() { ProductID = tbxProductID.Text, ProductName = tbxProdDescription.Text}
+
+            var productID = _productsList.Count + 1;
+
+            var product = new Product() { 
+                ProductID = productID, 
+                ProductName = productName, 
+                Brand = brand, 
+                Price = price,
+                Status = status
             };
+            _productsList.Add(product);
+
         }
-
-
     }
 }
 

@@ -16,6 +16,7 @@ namespace MyManagementApp.ChildForms
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ProductsForm));
             this.ProductPanel = new System.Windows.Forms.Panel();
             this.lbProdStatus = new System.Windows.Forms.Label();
             this.cbxProdStatus = new System.Windows.Forms.ComboBox();
@@ -29,8 +30,12 @@ namespace MyManagementApp.ChildForms
             this.txtProdPrice = new System.Windows.Forms.TextBox();
             this.lbProdPrice = new System.Windows.Forms.Label();
             this.btnProdSave = new System.Windows.Forms.Button();
+            this.ProductGrid = new System.Windows.Forms.DataGridView();
+            this.ProductGridNew = new C1.Win.C1TrueDBGrid.C1TrueDBGrid();
             this.ProductPanel.SuspendLayout();
             this.tbxProdPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ProductGrid)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ProductGridNew)).BeginInit();
             this.SuspendLayout();
             // 
             // ProductPanel
@@ -156,18 +161,46 @@ namespace MyManagementApp.ChildForms
             // 
             // btnProdSave
             // 
-            this.btnProdSave.Location = new System.Drawing.Point(630, 120);
+            this.btnProdSave.Location = new System.Drawing.Point(676, 105);
             this.btnProdSave.Name = "btnProdSave";
             this.btnProdSave.Size = new System.Drawing.Size(75, 23);
             this.btnProdSave.TabIndex = 11;
             this.btnProdSave.Text = "Save";
             this.btnProdSave.UseVisualStyleBackColor = true;
             // 
+            // ProductGrid
+            // 
+            this.ProductGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.ProductGrid.Location = new System.Drawing.Point(12, 133);
+            this.ProductGrid.Name = "ProductGrid";
+            this.ProductGrid.RowHeadersWidth = 51;
+            this.ProductGrid.RowTemplate.Height = 24;
+            this.ProductGrid.Size = new System.Drawing.Size(776, 150);
+            this.ProductGrid.TabIndex = 12;
+            // 
+            // ProductGridNew
+            // 
+            this.ProductGridNew.GroupByCaption = "Drag a column header here to group by that column";
+            this.ProductGridNew.Location = new System.Drawing.Point(12, 289);
+            this.ProductGridNew.Name = "ProductGridNew";
+            this.ProductGridNew.PreviewInfo.Location = new System.Drawing.Point(0, 0);
+            this.ProductGridNew.PreviewInfo.Size = new System.Drawing.Size(0, 0);
+            this.ProductGridNew.PreviewInfo.ZoomFactor = 75D;
+            this.ProductGridNew.PrintInfo.MeasurementDevice = C1.Win.C1TrueDBGrid.PrintInfo.MeasurementDeviceEnum.Screen;
+            this.ProductGridNew.PrintInfo.MeasurementPrinterName = null;
+            this.ProductGridNew.PrintInfo.PageSettings = ((System.Drawing.Printing.PageSettings)(resources.GetObject("c1TrueDBGrid1.PrintInfo.PageSettings")));
+            this.ProductGridNew.PropBag = resources.GetString("ProductGridNew.PropBag");
+            this.ProductGridNew.Size = new System.Drawing.Size(776, 150);
+            this.ProductGridNew.TabIndex = 13;
+            this.ProductGridNew.UseCompatibleTextRendering = false;
+            // 
             // ProductsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.ProductGridNew);
+            this.Controls.Add(this.ProductGrid);
             this.Controls.Add(this.btnProdSave);
             this.Controls.Add(this.lbProdPrice);
             this.Controls.Add(this.txtProdPrice);
@@ -180,6 +213,8 @@ namespace MyManagementApp.ChildForms
             this.ProductPanel.PerformLayout();
             this.tbxProdPanel.ResumeLayout(false);
             this.tbxProdPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ProductGrid)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ProductGridNew)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -200,5 +235,7 @@ namespace MyManagementApp.ChildForms
         private System.Windows.Forms.TextBox txtProdPrice;
         private System.Windows.Forms.Label lbProdPrice;
         private System.Windows.Forms.Button btnProdSave;
+        private System.Windows.Forms.DataGridView ProductGrid;
+        private C1.Win.C1TrueDBGrid.C1TrueDBGrid ProductGridNew;
     }
 }
