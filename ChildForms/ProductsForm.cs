@@ -13,15 +13,10 @@ namespace MyManagementApp.ChildForms
         {
             InitializeComponent();
 
-
-            // 
             cbxProdStatus.DataSource = Enum.GetValues(typeof(ProductStatusEnum));
 
 
             btnProdSave.Click += btnProdSave_Click;
-            // SaveProduct("id", "name", "brand", 9, ProductStatusEnum.Active);
-            // ProductGrid.DataSource = _productsList;
-
 
             ProductGridNew.DataSource = _productsList;
         }
@@ -52,7 +47,7 @@ namespace MyManagementApp.ChildForms
 
 
 
-            // save or updade
+            // save or update
             SaveProduct(tbxProdDescription.Text, tbxProdBrand.Text, decimal.Parse(txtProdPrice.Text), 
                 (ProductStatusEnum)Enum.Parse(typeof(ProductStatusEnum), 
                 cbxProdStatus.SelectedItem.ToString()));

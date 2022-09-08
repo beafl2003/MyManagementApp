@@ -29,16 +29,20 @@ namespace MyManagementApp.ChildForms
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CustomersForm));
             this.txbCustomerPanel = new System.Windows.Forms.TableLayoutPanel();
             this.tbxcustomerID = new System.Windows.Forms.TextBox();
             this.tbxcustomerName = new System.Windows.Forms.TextBox();
             this.CustomerPanel = new System.Windows.Forms.Panel();
-            this.lbCustomerID = new System.Windows.Forms.Label();
-            this.lbCustomerDescription = new System.Windows.Forms.Label();
-            this.cbxCustomerStatus = new System.Windows.Forms.ComboBox();
             this.lbCustomerStatus = new System.Windows.Forms.Label();
+            this.cbxCustomerStatus = new System.Windows.Forms.ComboBox();
+            this.lbCustomerDescription = new System.Windows.Forms.Label();
+            this.lbCustomerID = new System.Windows.Forms.Label();
+            this.btnCustomerSave = new System.Windows.Forms.Button();
+            this.CustomerGridNew = new C1.Win.C1TrueDBGrid.C1TrueDBGrid();
             this.txbCustomerPanel.SuspendLayout();
             this.CustomerPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.CustomerGridNew)).BeginInit();
             this.SuspendLayout();
             // 
             // txbCustomerPanel
@@ -85,22 +89,13 @@ namespace MyManagementApp.ChildForms
             this.CustomerPanel.Size = new System.Drawing.Size(731, 66);
             this.CustomerPanel.TabIndex = 4;
             // 
-            // lbCustomerID
+            // lbCustomerStatus
             // 
-            this.lbCustomerID.AutoSize = true;
-            this.lbCustomerID.Location = new System.Drawing.Point(6, 8);
-            this.lbCustomerID.Name = "lbCustomerID";
-            this.lbCustomerID.Size = new System.Drawing.Size(85, 17);
-            this.lbCustomerID.TabIndex = 7;
-            this.lbCustomerID.Text = "Customer ID";
-            // 
-            // lbCustomerDescription
-            // 
-            this.lbCustomerDescription.Location = new System.Drawing.Point(129, 8);
-            this.lbCustomerDescription.Name = "lbCustomerDescription";
-            this.lbCustomerDescription.Size = new System.Drawing.Size(100, 17);
-            this.lbCustomerDescription.TabIndex = 8;
-            this.lbCustomerDescription.Text = "Full Name";
+            this.lbCustomerStatus.Location = new System.Drawing.Point(606, 9);
+            this.lbCustomerStatus.Name = "lbCustomerStatus";
+            this.lbCustomerStatus.Size = new System.Drawing.Size(100, 17);
+            this.lbCustomerStatus.TabIndex = 10;
+            this.lbCustomerStatus.Text = "Status";
             // 
             // cbxCustomerStatus
             // 
@@ -111,19 +106,56 @@ namespace MyManagementApp.ChildForms
             this.cbxCustomerStatus.Size = new System.Drawing.Size(121, 24);
             this.cbxCustomerStatus.TabIndex = 9;
             // 
-            // lbCustomerStatus
+            // lbCustomerDescription
             // 
-            this.lbCustomerStatus.Location = new System.Drawing.Point(606, 9);
-            this.lbCustomerStatus.Name = "lbCustomerStatus";
-            this.lbCustomerStatus.Size = new System.Drawing.Size(100, 17);
-            this.lbCustomerStatus.TabIndex = 10;
-            this.lbCustomerStatus.Text = "Status";
+            this.lbCustomerDescription.Location = new System.Drawing.Point(129, 8);
+            this.lbCustomerDescription.Name = "lbCustomerDescription";
+            this.lbCustomerDescription.Size = new System.Drawing.Size(100, 17);
+            this.lbCustomerDescription.TabIndex = 8;
+            this.lbCustomerDescription.Text = "Full Name";
+            // 
+            // lbCustomerID
+            // 
+            this.lbCustomerID.AutoSize = true;
+            this.lbCustomerID.Location = new System.Drawing.Point(6, 8);
+            this.lbCustomerID.Name = "lbCustomerID";
+            this.lbCustomerID.Size = new System.Drawing.Size(85, 17);
+            this.lbCustomerID.TabIndex = 7;
+            this.lbCustomerID.Text = "Customer ID";
+            // 
+            // btnCustomerSave
+            // 
+            this.btnCustomerSave.Location = new System.Drawing.Point(656, 100);
+            this.btnCustomerSave.Name = "btnCustomerSave";
+            this.btnCustomerSave.Size = new System.Drawing.Size(75, 23);
+            this.btnCustomerSave.TabIndex = 12;
+            this.btnCustomerSave.Text = "Save";
+            this.btnCustomerSave.UseVisualStyleBackColor = true;
+            this.btnCustomerSave.Click += new System.EventHandler(this.btnCustomerSave_Click);
+            // 
+            // CustomerGridNew
+            // 
+            this.CustomerGridNew.GroupByCaption = "Drag a column header here to group by that column";
+            this.CustomerGridNew.Location = new System.Drawing.Point(12, 144);
+            this.CustomerGridNew.Name = "CustomerGridNew";
+            this.CustomerGridNew.PreviewInfo.Location = new System.Drawing.Point(0, 0);
+            this.CustomerGridNew.PreviewInfo.Size = new System.Drawing.Size(0, 0);
+            this.CustomerGridNew.PreviewInfo.ZoomFactor = 75D;
+            this.CustomerGridNew.PrintInfo.MeasurementDevice = C1.Win.C1TrueDBGrid.PrintInfo.MeasurementDeviceEnum.Screen;
+            this.CustomerGridNew.PrintInfo.MeasurementPrinterName = null;
+            this.CustomerGridNew.PrintInfo.PageSettings = ((System.Drawing.Printing.PageSettings)(resources.GetObject("CustomerGridNew.PrintInfo.PageSettings")));
+            this.CustomerGridNew.PropBag = resources.GetString("CustomerGridNew.PropBag");
+            this.CustomerGridNew.Size = new System.Drawing.Size(776, 277);
+            this.CustomerGridNew.TabIndex = 14;
+            this.CustomerGridNew.UseCompatibleTextRendering = false;
             // 
             // CustomersForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.CustomerGridNew);
+            this.Controls.Add(this.btnCustomerSave);
             this.Controls.Add(this.CustomerPanel);
             this.Name = "CustomersForm";
             this.Text = "Customers";
@@ -131,6 +163,7 @@ namespace MyManagementApp.ChildForms
             this.txbCustomerPanel.PerformLayout();
             this.CustomerPanel.ResumeLayout(false);
             this.CustomerPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.CustomerGridNew)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -145,5 +178,7 @@ namespace MyManagementApp.ChildForms
         private System.Windows.Forms.Label lbCustomerDescription;
         private System.Windows.Forms.ComboBox cbxCustomerStatus;
         private System.Windows.Forms.Label lbCustomerStatus;
+        private System.Windows.Forms.Button btnCustomerSave;
+        private C1.Win.C1TrueDBGrid.C1TrueDBGrid CustomerGridNew;
     }
 }
