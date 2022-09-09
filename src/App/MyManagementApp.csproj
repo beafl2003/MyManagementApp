@@ -103,7 +103,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AppCore\AppCore.csproj">
-      <Project>{604676E1-A6B3-4A5F-B704-4AD153B0E5C0}</Project>
+      <Project>{604676e1-a6b3-4a5f-b704-4ad153b0e5c0}</Project>
       <Name>AppCore</Name>
     </ProjectReference>
   </ItemGroup>

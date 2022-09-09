@@ -131,7 +131,6 @@ namespace MyManagementApp.ChildForms
             this.btnCustomerSave.TabIndex = 12;
             this.btnCustomerSave.Text = "Save";
             this.btnCustomerSave.UseVisualStyleBackColor = true;
-            this.btnCustomerSave.Click += new System.EventHandler(this.btnCustomerSave_Click);
             // 
             // CustomerGridNew
             // 
