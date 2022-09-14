@@ -35,9 +35,18 @@ namespace MyManagementApp.ChildForms
 
         private void btnCustomerSave_Click(object sender, EventArgs e)
         {
-
-            SaveCustomer(tbxcustomerID.Text, tbxcustomerName.Text, (CustomerStatusEnum)Enum.Parse(typeof(CustomerStatusEnum),
-                cbxCustomerStatus.SelectedItem.ToString()));
+            if (tbxcustomerID.Text.Length > 0 && tbxcustomerName.Text.Length >0 && cbxCustomerStatus.SelectedItem != null)
+            {
+                SaveCustomer(tbxcustomerID.Text, tbxcustomerName.Text, (CustomerStatusEnum)Enum.Parse(typeof(CustomerStatusEnum),
+         cbxCustomerStatus.SelectedItem.ToString()));
+            }
+            else
+            {
+                string message = "Some information probably is missing. Verify and try again";
+                string caption = "Warning";
+                DialogResult result;
+                result = MessageBox.Show(message, caption);
+            }
 
             // DataTable == List<Customer>
             LoadData();
@@ -130,7 +139,6 @@ namespace MyManagementApp.ChildForms
             // dataTable
             var table = new DataTable();
             adpter.Fill(table);
-
 
             //// dataSet
             //// conjunto de tabelas + seus relacionamentos + ...

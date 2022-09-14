@@ -13,37 +13,28 @@ namespace MyManagementApp.ChildForms
         {
             InitializeComponent();
 
-            cbxProdStatus.DataSource = Enum.GetValues(typeof(ProductStatusEnum));
-
-
-            btnProdSave.Click += btnProdSave_Click;
-
-            ProductGridNew.DataSource = _productsList;
+            this.cbxProdStatus.DataSource = Enum.GetValues(typeof(ProductStatusEnum));
+            this.Shown += ProductsForm_Shown;
+            this.btnProdSave.Click += btnProdSave_Click;
+     
         }
-        private void tbxProductID_Leave(object sender, EventArgs e)
+
+        private void ProductsForm_Shown(object sender, EventArgs e)
         {
-            if (tbxProductID.Text.Length > 0)
-            {
-                //string prodID = tbxProductID.Text;
-            }
+            // LoadData();
+        }
 
 
-        }
-        private void tbxProdDescription_Leave(object sender, EventArgs e)
-        {
-            if (tbxProdDescription.Text.Length > 0)
-            {
-                //string prodDescript = tbxProdDescription.Text;
-            }
-        }
         private void btnProdSave_Click(object sender, EventArgs e)
         {
 
             // validations
             if (tbxProductID.Text.Length > 0)
             {
-                //string prodID = tbxProductID.Text;
+                //validations 
             }
+
+
 
 
 
