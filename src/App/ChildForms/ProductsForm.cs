@@ -9,6 +9,9 @@ namespace MyManagementApp.ChildForms
 {
     public partial class ProductsForm : Form
     {
+
+        #region Presentation
+
         public ProductsForm()
         {
             InitializeComponent();
@@ -16,7 +19,7 @@ namespace MyManagementApp.ChildForms
             this.cbxProdStatus.DataSource = Enum.GetValues(typeof(ProductStatusEnum));
             this.Shown += ProductsForm_Shown;
             this.btnProdSave.Click += btnProdSave_Click;
-     
+
         }
 
         private void ProductsForm_Shown(object sender, EventArgs e)
@@ -29,42 +32,45 @@ namespace MyManagementApp.ChildForms
         {
 
             // validations
-            if (tbxProductID.Text.Length > 0)
+            if (tbxProductID.Text.Length > 0 && tbxProdDescription.Text.Length > 0 && cbxProdStatus.SelectedItem != null && tbxProdBrand.Text.Length > 0 && txtProdPrice.Text.Length > 0)
             {
-                //validations 
+                SaveProduct(tbxProductID.Text, tbxProdDescription.Text, tbxProdBrand.Text, txtProdPrice.Text, (ProductStatusEnum)Enum.Parse(typeof(ProductStatusEnum),
+                  cbxProdStatus.SelectedItem.ToString()));
+            }
+            else
+            {
+                string message = "Some information probably is missing. Verify and try again";
+                string caption = "Warning";
+                DialogResult result;
+                result = MessageBox.Show(message, caption);
             }
 
 
-
-
-
-            // save or update
-            SaveProduct(tbxProdDescription.Text, tbxProdBrand.Text, decimal.Parse(txtProdPrice.Text), 
-                (ProductStatusEnum)Enum.Parse(typeof(ProductStatusEnum), 
-                cbxProdStatus.SelectedItem.ToString()));
-            ProductGridNew.SetDataBinding(_productsList, null, false);
- 
         }
 
 
+        #endregion
 
-        // application layer - 
+        #region application layer
+
         private List<Product> _productsList = new List<Product>();
-        private void SaveProduct(string productName, string brand, decimal price, ProductStatusEnum status)
+        private void SaveProduct(string productCode, string productName, string brand, string price, ProductStatusEnum status)
         {
 
-            var productID = _productsList.Count + 1;
 
-            var product = new Product() { 
-                ProductID = productID, 
-                ProductName = productName, 
-                Brand = brand, 
+            var product = new Product()
+            {
+
+                ProductCode = productCode,
+                ProductName = productName,
+                Brand = brand,
                 Price = price,
                 Status = status
             };
-            _productsList.Add(product);
+            //  _productsList.Add(product);
 
         }
+
+        #endregion
     }
 }
-

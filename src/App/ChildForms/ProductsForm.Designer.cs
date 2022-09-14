@@ -107,7 +107,6 @@ namespace MyManagementApp.ChildForms
             this.tbxProductID.Size = new System.Drawing.Size(117, 22);
             this.tbxProductID.TabIndex = 0;
             this.tbxProductID.Tag = "";
-           
             // 
             // tbxProdDescription
             // 
@@ -118,7 +117,6 @@ namespace MyManagementApp.ChildForms
             this.tbxProdDescription.Name = "tbxProdDescription";
             this.tbxProdDescription.Size = new System.Drawing.Size(465, 22);
             this.tbxProdDescription.TabIndex = 1;
-           
             // 
             // tbxProdBrand
             // 
