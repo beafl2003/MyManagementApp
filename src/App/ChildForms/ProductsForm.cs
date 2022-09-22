@@ -18,7 +18,7 @@ namespace MyManagementApp.ChildForms
 
         #region Presentation
         private bool _newItem;
-        private Guid _currentId;
+        private Guid _currentId; 
 
         public ProductsForm()
         {
