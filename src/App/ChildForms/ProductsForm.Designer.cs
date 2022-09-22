@@ -31,6 +31,8 @@ namespace MyManagementApp.ChildForms
             this.lbProdPrice = new System.Windows.Forms.Label();
             this.btnProdSave = new System.Windows.Forms.Button();
             this.ProductGridNew = new C1.Win.C1TrueDBGrid.C1TrueDBGrid();
+            this.btnAdd = new System.Windows.Forms.Button();
+            this.btnDelete = new System.Windows.Forms.Button();
             this.ProductPanel.SuspendLayout();
             this.tbxProdPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ProductGridNew)).BeginInit();
@@ -157,7 +159,7 @@ namespace MyManagementApp.ChildForms
             // 
             // btnProdSave
             // 
-            this.btnProdSave.Location = new System.Drawing.Point(676, 105);
+            this.btnProdSave.Location = new System.Drawing.Point(667, 105);
             this.btnProdSave.Name = "btnProdSave";
             this.btnProdSave.Size = new System.Drawing.Size(75, 23);
             this.btnProdSave.TabIndex = 11;
@@ -180,11 +182,33 @@ namespace MyManagementApp.ChildForms
             this.ProductGridNew.TabIndex = 13;
             this.ProductGridNew.UseCompatibleTextRendering = false;
             // 
+            // btnAdd
+            // 
+            this.btnAdd.Location = new System.Drawing.Point(586, 105);
+            this.btnAdd.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(75, 23);
+            this.btnAdd.TabIndex = 16;
+            this.btnAdd.Text = "Add";
+            this.btnAdd.UseVisualStyleBackColor = true;
+            // 
+            // btnDelete
+            // 
+            this.btnDelete.Location = new System.Drawing.Point(505, 105);
+            this.btnDelete.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(75, 23);
+            this.btnDelete.TabIndex = 17;
+            this.btnDelete.Text = "Delete";
+            this.btnDelete.UseVisualStyleBackColor = true;
+            // 
             // ProductsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btnDelete);
+            this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.ProductGridNew);
             this.Controls.Add(this.btnProdSave);
             this.Controls.Add(this.lbProdPrice);
@@ -220,5 +244,7 @@ namespace MyManagementApp.ChildForms
         private System.Windows.Forms.Label lbProdPrice;
         private System.Windows.Forms.Button btnProdSave;
         private C1.Win.C1TrueDBGrid.C1TrueDBGrid ProductGridNew;
+        private System.Windows.Forms.Button btnAdd;
+        private System.Windows.Forms.Button btnDelete;
     }
 }
