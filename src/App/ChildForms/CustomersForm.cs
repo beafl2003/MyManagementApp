@@ -19,11 +19,14 @@ namespace MyManagementApp.ChildForms
     {
 
         #region config
-        private readonly  string _server = @"ANNA-BEATRIZ\SQLEXPRESS";      
-        #endregion 
+        private readonly  string _server = @"ANNA-BEATRIZ\SQLEXPRESS";
+        #endregion
 
         #region presentation
+        private bool _edinting;
         private bool _newItem;
+        private bool _loading;
+        private bool _filling;
         private Guid _currentId;
 
 
@@ -37,26 +40,39 @@ namespace MyManagementApp.ChildForms
             this.btnCustomerSave.Click += btnCustomerSave_Click;
             this.btnAdd.Click += btnCustomerAdd_Click;
             this.btnDelete.Click += btnCustomerDelete_Click;
+            this.btnCancel.Click += BtnCancel_Click;
 
             this.CustomerGridNew.RowColChange += CustomerGridNew_RowColChange;
+
+            // tbxcustomerID
+            // tbxcustomerName
+            // cbxCustomerStatus
+
+            tbxcustomerID.TextChanged += TbxcustomerID_TextChanged;
+            tbxcustomerName.TextChanged += TbxcustomerName_TextChanged;
+            cbxCustomerStatus.TextChanged += CbxCustomerStatus_TextChanged;
+
         }
 
- 
 
         // tools
         private void CustomersForm_Shown(object sender, EventArgs e)
         {
             LoadData();
+            EnabledDisabledBtn();
         }
         private void btnCustomerAdd_Click(object sender, EventArgs e)
         {
-            _newItem = true;
-
+         
             tbxcustomerID.Clear();
             tbxcustomerName.Clear();
             cbxCustomerStatus.SelectedItem = CustomerStatusEnum.Active;
-
             tbxcustomerID.Focus();
+
+            // form status
+            _edinting = true;
+            _newItem = true;
+            EnabledDisabledBtn();
         }
         private void btnCustomerSave_Click(object sender, EventArgs e)
         {
@@ -83,19 +99,50 @@ namespace MyManagementApp.ChildForms
                 DialogResult result;
                 result = MessageBox.Show(message, caption);
             }
-
-            _newItem = false;
-
-
-      
+     
             LoadData();
+
+            // form status
+            _newItem = false;
+            _edinting = false;
+            EnabledDisabledBtn();
         }
         private void btnCustomerDelete_Click(object sender, EventArgs e)
         {
             var id = _currentId;
             DeleteCustomer(id);
-        }
+          
+            LoadData();
 
+            // form status
+            _newItem = false;
+            _edinting = false;
+            EnabledDisabledBtn();
+        }
+        private void BtnCancel_Click(object sender, EventArgs e)
+        {
+            LoadData();
+
+            // form status
+            _newItem = false;
+            _edinting = false;
+            EnabledDisabledBtn();
+        }
+        private void EnabledDisabledBtn()
+        {
+            if(_edinting)
+            {
+                btnAdd.Enabled = false;
+                btnDelete.Enabled = false;
+                btnCancel.Enabled = true;
+            }
+            else
+            {
+                btnAdd.Enabled = true;
+                btnDelete.Enabled = true;
+                btnCancel.Enabled = false;
+            }
+        }
 
 
         // grid
@@ -108,11 +155,55 @@ namespace MyManagementApp.ChildForms
             var row = table.Rows[currentRow];
             FillFields(row);
         }
+        private void ConfigureGrid()
+        {
+            // colunas
+            //foreach (C1.Win.C1TrueDBGrid.C1DataColumn item in CustomerGridNew.Columns)
+            //{
+            //    if (item.DataField == "Id")
+            //    {
+            //        item.Caption = "";
+            //        item.vi
+            //    }
+            //}
+
+            // zebrado
+            CustomerGridNew.AlternatingRows = true;
+            CustomerGridNew.OddRowStyle.BackColor = Color.WhiteSmoke;
+            CustomerGridNew.EvenRowStyle.BackColor = Color.White;
+
+            foreach (C1.Win.C1TrueDBGrid.C1DisplayColumn item in CustomerGridNew.Splits[0].DisplayColumns)
+            {
+
+                // bloquear todos
+                item.Locked = true;
+
+                if (item.DataColumn.DataField.ToLower() == "id".ToLower())
+                {
+                    item.Visible = false;
+                }
+                if (item.DataColumn.DataField.ToLower() == "code".ToLower())
+                {
+                    item.DataColumn.Caption = "Code";
+                }
+                if (item.DataColumn.DataField.ToLower() == "name".ToLower())
+                {
+                    item.DataColumn.Caption = "Name";
+                    item.Width = 300;
+                }
+                if (item.DataColumn.DataField.ToLower() == "active".ToLower())
+                {
+                    item.DataColumn.Caption = "Active";
+                }
+
+            }
+        }
 
 
         // fill control
         private void FillFields(DataRow row)
         {
+            _filling = true;
 
             _currentId = row.Field<Guid>("id");
 
@@ -125,17 +216,52 @@ namespace MyManagementApp.ChildForms
             tbxcustomerName.Text = customerName;
             cbxCustomerStatus.SelectedItem = active ? CustomerStatusEnum.Active : CustomerStatusEnum.Inactive;
 
+
+            _filling = false;
         }
+
 
         // load
         private void LoadData()
         {
+            _loading = true;
+
             // CustomerGridNew.SetDataBinding(_customersList, null, false);
             _customersTable = LoadFromDatabase();
             CustomerGridNew.SetDataBinding(_customersTable, null, false);
+            ConfigureGrid();
+
+            _loading = false;
         }
 
 
+        // control events
+        private void CbxCustomerStatus_TextChanged(object sender, EventArgs e)
+        {
+            if (_filling)
+                return;
+
+            _edinting = true;
+            EnabledDisabledBtn();
+        }
+
+        private void TbxcustomerName_TextChanged(object sender, EventArgs e)
+        {
+            if (_filling)
+                return;
+
+            _edinting = true;
+            EnabledDisabledBtn();
+        }
+
+        private void TbxcustomerID_TextChanged(object sender, EventArgs e)
+        {
+            if (_filling)
+                return;
+
+            _edinting = true;
+            EnabledDisabledBtn();
+        }
 
         #endregion
 
@@ -152,9 +278,9 @@ namespace MyManagementApp.ChildForms
                 Id = Guid.NewGuid(),
                 CustomerCode = customerCode,
                 CustomerName = customerName,
-                CustomerStatus = CustomerStatusEnum.Active
+                Active = customerStatus == CustomerStatusEnum.Active
 
-        };
+            };
             //_customersList.Add(customer);
 
             InsertDatabase(customer);

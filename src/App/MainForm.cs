@@ -36,6 +36,7 @@ namespace MyManagmentApp
             var prodForm = new MyManagementApp.ChildForms.ProductsForm();
             prodForm.MdiParent = this;
             prodForm.StartPosition = FormStartPosition.CenterScreen;
+           
 
             prodForm.Show();
 

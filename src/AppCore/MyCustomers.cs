@@ -15,7 +15,7 @@ namespace MyCustomers
         public Guid Id { get; set; }
         public string CustomerCode { get; set; }
         public string CustomerName { get; set; }
-        public CustomerStatusEnum CustomerStatus { get; set; }
+        //public CustomerStatusEnum CustomerStatus { get; set; }
         public bool Active { get; set; }
     }
 }
