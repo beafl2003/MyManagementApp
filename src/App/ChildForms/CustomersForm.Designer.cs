@@ -31,12 +31,12 @@ namespace MyManagementApp.ChildForms
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CustomersForm));
             this.txbCustomerPanel = new System.Windows.Forms.TableLayoutPanel();
-            this.tbxcustomerID = new System.Windows.Forms.TextBox();
-            this.tbxcustomerName = new System.Windows.Forms.TextBox();
-            this.lbCustomerStatus = new System.Windows.Forms.Label();
             this.cbxCustomerStatus = new System.Windows.Forms.ComboBox();
+            this.lbCustomerStatus = new System.Windows.Forms.Label();
             this.lbCustomerDescription = new System.Windows.Forms.Label();
+            this.tbxcustomerID = new System.Windows.Forms.TextBox();
             this.lbCustomerID = new System.Windows.Forms.Label();
+            this.tbxcustomerName = new System.Windows.Forms.TextBox();
             this.btnCustomerSave = new System.Windows.Forms.Button();
             this.CustomerGridNew = new C1.Win.C1TrueDBGrid.C1TrueDBGrid();
             this.btnAdd = new System.Windows.Forms.Button();
@@ -54,23 +54,51 @@ namespace MyManagementApp.ChildForms
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txbCustomerPanel.ColumnCount = 3;
             this.tableLayoutPanel1.SetColumnSpan(this.txbCustomerPanel, 5);
-            this.txbCustomerPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.txbCustomerPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 60F));
-            this.txbCustomerPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.txbCustomerPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
+            this.txbCustomerPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.txbCustomerPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
             this.txbCustomerPanel.Controls.Add(this.cbxCustomerStatus, 2, 1);
             this.txbCustomerPanel.Controls.Add(this.lbCustomerStatus, 2, 0);
             this.txbCustomerPanel.Controls.Add(this.lbCustomerDescription, 1, 0);
             this.txbCustomerPanel.Controls.Add(this.tbxcustomerID, 0, 1);
             this.txbCustomerPanel.Controls.Add(this.lbCustomerID, 0, 0);
             this.txbCustomerPanel.Controls.Add(this.tbxcustomerName, 1, 1);
-            this.txbCustomerPanel.Location = new System.Drawing.Point(3, 2);
-            this.txbCustomerPanel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txbCustomerPanel.Location = new System.Drawing.Point(0, 3);
+            this.txbCustomerPanel.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
             this.txbCustomerPanel.Name = "txbCustomerPanel";
             this.txbCustomerPanel.RowCount = 2;
             this.txbCustomerPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.txbCustomerPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.txbCustomerPanel.Size = new System.Drawing.Size(794, 52);
+            this.txbCustomerPanel.Size = new System.Drawing.Size(800, 52);
             this.txbCustomerPanel.TabIndex = 3;
+            // 
+            // cbxCustomerStatus
+            // 
+            this.cbxCustomerStatus.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbxCustomerStatus.BackColor = System.Drawing.SystemColors.Info;
+            this.cbxCustomerStatus.FormattingEnabled = true;
+            this.cbxCustomerStatus.Location = new System.Drawing.Point(703, 22);
+            this.cbxCustomerStatus.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cbxCustomerStatus.Name = "cbxCustomerStatus";
+            this.cbxCustomerStatus.Size = new System.Drawing.Size(94, 24);
+            this.cbxCustomerStatus.TabIndex = 9;
+            // 
+            // lbCustomerStatus
+            // 
+            this.lbCustomerStatus.Location = new System.Drawing.Point(703, 0);
+            this.lbCustomerStatus.Name = "lbCustomerStatus";
+            this.lbCustomerStatus.Size = new System.Drawing.Size(94, 17);
+            this.lbCustomerStatus.TabIndex = 10;
+            this.lbCustomerStatus.Text = "Status";
+            // 
+            // lbCustomerDescription
+            // 
+            this.lbCustomerDescription.Location = new System.Drawing.Point(103, 0);
+            this.lbCustomerDescription.Name = "lbCustomerDescription";
+            this.lbCustomerDescription.Size = new System.Drawing.Size(100, 17);
+            this.lbCustomerDescription.TabIndex = 8;
+            this.lbCustomerDescription.Text = "Full Name";
             // 
             // tbxcustomerID
             // 
@@ -79,46 +107,8 @@ namespace MyManagementApp.ChildForms
             this.tbxcustomerID.Location = new System.Drawing.Point(3, 22);
             this.tbxcustomerID.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tbxcustomerID.Name = "tbxcustomerID";
-            this.tbxcustomerID.Size = new System.Drawing.Size(152, 22);
+            this.tbxcustomerID.Size = new System.Drawing.Size(94, 22);
             this.tbxcustomerID.TabIndex = 0;
-            // 
-            // tbxcustomerName
-            // 
-            this.tbxcustomerName.BackColor = System.Drawing.SystemColors.Info;
-            this.tbxcustomerName.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tbxcustomerName.Location = new System.Drawing.Point(161, 22);
-            this.tbxcustomerName.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tbxcustomerName.Name = "tbxcustomerName";
-            this.tbxcustomerName.Size = new System.Drawing.Size(470, 22);
-            this.tbxcustomerName.TabIndex = 1;
-            // 
-            // lbCustomerStatus
-            // 
-            this.lbCustomerStatus.Location = new System.Drawing.Point(637, 0);
-            this.lbCustomerStatus.Name = "lbCustomerStatus";
-            this.lbCustomerStatus.Size = new System.Drawing.Size(100, 17);
-            this.lbCustomerStatus.TabIndex = 10;
-            this.lbCustomerStatus.Text = "Status";
-            // 
-            // cbxCustomerStatus
-            // 
-            this.cbxCustomerStatus.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.cbxCustomerStatus.BackColor = System.Drawing.SystemColors.Info;
-            this.cbxCustomerStatus.FormattingEnabled = true;
-            this.cbxCustomerStatus.Location = new System.Drawing.Point(637, 22);
-            this.cbxCustomerStatus.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.cbxCustomerStatus.Name = "cbxCustomerStatus";
-            this.cbxCustomerStatus.Size = new System.Drawing.Size(154, 24);
-            this.cbxCustomerStatus.TabIndex = 9;
-            // 
-            // lbCustomerDescription
-            // 
-            this.lbCustomerDescription.Location = new System.Drawing.Point(161, 0);
-            this.lbCustomerDescription.Name = "lbCustomerDescription";
-            this.lbCustomerDescription.Size = new System.Drawing.Size(100, 17);
-            this.lbCustomerDescription.TabIndex = 8;
-            this.lbCustomerDescription.Text = "Full Name";
             // 
             // lbCustomerID
             // 
@@ -129,11 +119,21 @@ namespace MyManagementApp.ChildForms
             this.lbCustomerID.TabIndex = 7;
             this.lbCustomerID.Text = "Customer ID";
             // 
+            // tbxcustomerName
+            // 
+            this.tbxcustomerName.BackColor = System.Drawing.SystemColors.Info;
+            this.tbxcustomerName.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tbxcustomerName.Location = new System.Drawing.Point(103, 22);
+            this.tbxcustomerName.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tbxcustomerName.Name = "tbxcustomerName";
+            this.tbxcustomerName.Size = new System.Drawing.Size(594, 22);
+            this.tbxcustomerName.TabIndex = 1;
+            // 
             // btnCustomerSave
             // 
             this.btnCustomerSave.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCustomerSave.Location = new System.Drawing.Point(603, 58);
+            this.btnCustomerSave.Location = new System.Drawing.Point(603, 60);
             this.btnCustomerSave.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnCustomerSave.Name = "btnCustomerSave";
             this.btnCustomerSave.Size = new System.Drawing.Size(94, 23);
@@ -148,7 +148,7 @@ namespace MyManagementApp.ChildForms
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tableLayoutPanel1.SetColumnSpan(this.CustomerGridNew, 5);
             this.CustomerGridNew.GroupByCaption = "Drag a column header here to group by that column";
-            this.CustomerGridNew.Location = new System.Drawing.Point(3, 85);
+            this.CustomerGridNew.Location = new System.Drawing.Point(3, 87);
             this.CustomerGridNew.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.CustomerGridNew.Name = "CustomerGridNew";
             this.CustomerGridNew.PreviewInfo.Location = new System.Drawing.Point(0, 0);
@@ -158,7 +158,7 @@ namespace MyManagementApp.ChildForms
             this.CustomerGridNew.PrintInfo.MeasurementPrinterName = null;
             this.CustomerGridNew.PrintInfo.PageSettings = ((System.Drawing.Printing.PageSettings)(resources.GetObject("CustomerGridNew.PrintInfo.PageSettings")));
             this.CustomerGridNew.PropBag = resources.GetString("CustomerGridNew.PropBag");
-            this.CustomerGridNew.Size = new System.Drawing.Size(794, 363);
+            this.CustomerGridNew.Size = new System.Drawing.Size(794, 361);
             this.CustomerGridNew.TabIndex = 14;
             this.CustomerGridNew.UseCompatibleTextRendering = false;
             // 
@@ -166,7 +166,7 @@ namespace MyManagementApp.ChildForms
             // 
             this.btnAdd.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAdd.Location = new System.Drawing.Point(403, 58);
+            this.btnAdd.Location = new System.Drawing.Point(403, 60);
             this.btnAdd.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(94, 23);
@@ -178,7 +178,7 @@ namespace MyManagementApp.ChildForms
             // 
             this.btnDelete.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnDelete.Location = new System.Drawing.Point(703, 58);
+            this.btnDelete.Location = new System.Drawing.Point(703, 60);
             this.btnDelete.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(94, 23);
@@ -194,12 +194,12 @@ namespace MyManagementApp.ChildForms
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-            this.tableLayoutPanel1.Controls.Add(this.txbCustomerPanel, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.btnDelete, 4, 1);
-            this.tableLayoutPanel1.Controls.Add(this.CustomerGridNew, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.btnCustomerSave, 3, 1);
             this.tableLayoutPanel1.Controls.Add(this.btnAdd, 1, 1);
             this.tableLayoutPanel1.Controls.Add(this.btnCancel, 2, 1);
+            this.tableLayoutPanel1.Controls.Add(this.txbCustomerPanel, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.CustomerGridNew, 0, 2);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -207,6 +207,7 @@ namespace MyManagementApp.ChildForms
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(800, 450);
             this.tableLayoutPanel1.TabIndex = 17;
             // 
@@ -214,7 +215,7 @@ namespace MyManagementApp.ChildForms
             // 
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCancel.Location = new System.Drawing.Point(503, 58);
+            this.btnCancel.Location = new System.Drawing.Point(503, 60);
             this.btnCancel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(94, 23);
