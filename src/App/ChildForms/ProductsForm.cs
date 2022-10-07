@@ -5,6 +5,7 @@ using System.Windows.Forms;
 using AppCore.Enums.ProductStatusEnum;
 using System.Collections.Generic;
 using MyProducts;
+using System.Drawing;
 
 namespace MyManagementApp.ChildForms
 
@@ -17,7 +18,10 @@ namespace MyManagementApp.ChildForms
         #endregion
 
         #region Presentation
+        private bool _editing;
         private bool _newItem;
+        private bool _loading;
+        private bool _filling;
         private Guid _currentId; 
 
         public ProductsForm()
@@ -29,14 +33,27 @@ namespace MyManagementApp.ChildForms
             this.btnProdSave.Click += btnProdSave_Click;
             this.btnAdd.Click += btnProdAdd_Click;
             this.btnDelete.Click += btnProdDelete_Click;
+            this.btnCancel.Click += BtnCancel_Click;
 
             this.ProductGridNew.RowColChange += ProductGridNew_RowColChange;
 
+            tbxProductID.TextChanged += TbxProductID_TextChanged;
+            tbxProdDescription.TextChanged += TbxProdDescription_TextChanged;
+            cbxProdStatus.TextChanged += CbxProdStatus_TextChanged;
+            tbxProdBrand.TextChanged += TbxProdBrand_TextChanged;
+            txtProdPrice.TextChanged += TxtProdPrice_TextChanged;
+
+
         }
 
+   
+
+
+        // Tools 
         private void ProductsForm_Shown(object sender, EventArgs e)
         {
             LoadData();
+            EnabledDisabledBtn();
         }
 
 
@@ -44,13 +61,12 @@ namespace MyManagementApp.ChildForms
         { 
             _newItem = true;
 
-            tbxProductID.Clear();
-            tbxProdDescription.Clear();
-            txtProdPrice.Clear();
-            tbxProdBrand.Clear();
-            cbxProdStatus.SelectedItem = ProductStatusEnum.Active;
+            ClearActions();
 
-            tbxProductID.Focus();
+            // form buttons status
+            _editing = true;
+            EnabledDisabledBtn();
+
         }
         private void btnProdSave_Click(object sender, EventArgs e)
         {
@@ -79,8 +95,13 @@ namespace MyManagementApp.ChildForms
                 result = MessageBox.Show(message, caption);
             }
 
-            _newItem = false;
             LoadData();
+
+            // Form Status
+            _newItem = false;
+            _editing = false;
+            EnabledDisabledBtn();
+            
 
 
         }
@@ -89,6 +110,42 @@ namespace MyManagementApp.ChildForms
         {
             var id = _currentId;
             DeleteProduct(id);
+
+            LoadData();
+            ClearActions();
+
+            //Form Status
+
+            _newItem = false;
+            _editing = false;
+            EnabledDisabledBtn();
+        }
+
+        private void BtnCancel_Click(object sender, EventArgs e)
+        {
+            LoadData();
+
+            // Form Status
+
+            _newItem = false;
+            _editing = false;
+            EnabledDisabledBtn();
+        }
+
+        private void EnabledDisabledBtn()
+        {
+            if (_editing)
+            {
+                btnAdd.Enabled = false;
+                btnDelete.Enabled = false;
+                btnCancel.Enabled = true;
+            }
+            else
+            {
+                btnAdd.Enabled = true;
+                btnDelete.Enabled = true;
+                btnCancel.Enabled = false;
+            }
         }
 
         // grid
@@ -102,10 +159,68 @@ namespace MyManagementApp.ChildForms
             var row = table.Rows[currentRow];
             FillFields(row);
         }
+
+        private void ConfigureGrid()
+        {
+
+            // Zebra Design
+            ProductGridNew.AlternatingRows = true;
+            ProductGridNew.OddRowStyle.BackColor = Color.WhiteSmoke;
+            ProductGridNew.EvenRowStyle.BackColor = Color.White;
+
+            foreach (C1.Win.C1TrueDBGrid.C1DisplayColumn item in ProductGridNew.Splits[0].DisplayColumns)
+            {
+
+                // Block itens editing
+                item.Locked = true;
+
+                if (item.DataColumn.DataField.ToLower() == "id".ToLower())
+                {
+                    item.Visible = false;
+                }
+                if (item.DataColumn.DataField.ToLower() == "code".ToLower())
+                {
+                    item.DataColumn.Caption = "Code";
+     
+                }
+                if (item.DataColumn.DataField.ToLower() == "name".ToLower())
+                {
+                    item.DataColumn.Caption = "Description";
+                    item.Width = 300;
+                }
+                if (item.DataColumn.DataField.ToLower() == "brand".ToLower())
+                {
+                    item.DataColumn.Caption = "Brand";
+                }
+                if (item.DataColumn.DataField.ToLower() == "price".ToLower())
+                {
+                    item.DataColumn.Caption = "Price";
+                }
+                if (item.DataColumn.DataField.ToLower() == "active".ToLower())
+                {
+                    item.DataColumn.Caption = "Active";
+                }
+
+            }
+
+        }
+
+        private void ClearActions()
+        {
+            tbxProductID.Clear();
+            tbxProdDescription.Clear();
+            txtProdPrice.Clear();
+            tbxProdBrand.Clear();
+            cbxProdStatus.SelectedItem = ProductStatusEnum.Active;
+
+            tbxProductID.Focus();
+        }
+
         // fill control
 
         private void FillFields (DataRow row)
         {
+            _filling = true;
             _currentId = row.Field<Guid>("id");
 
             var productCode = row.Field<string>("code");
@@ -119,21 +234,68 @@ namespace MyManagementApp.ChildForms
             tbxProdBrand.Text = brand;
             txtProdPrice.Text = price;
             cbxProdStatus.SelectedItem = active ? ProductStatusEnum.Active : ProductStatusEnum.Inactive;
+
+            _filling = false;
         }
 
         // load
         private void LoadData()
         {
-           
+            _loading = true;
             _productsTable = LoadFromDatabase();
             ProductGridNew.SetDataBinding(_productsTable, null, false);
+            ConfigureGrid();
+
+            _loading = false;
+        }
+
+        // Control Events
+
+
+        private void TbxProductID_TextChanged(object sender, EventArgs e)
+        {
+            if (_filling)
+                return;
+            _editing = true;
+            EnabledDisabledBtn();
+        }
+
+        private void TbxProdDescription_TextChanged(object sender, EventArgs e)
+        {
+            if (_filling)
+                return;
+            _editing = true;
+            EnabledDisabledBtn();
         }
 
 
+        private void CbxProdStatus_TextChanged(object sender, EventArgs e)
+        {
+            if (_filling)
+                return;
+            _editing = true;
+            EnabledDisabledBtn();
+        }
+
+        private void TbxProdBrand_TextChanged(object sender, EventArgs e)
+        {
+            if (_filling)
+                return;
+            _editing = true;
+            EnabledDisabledBtn();
+        }
+
+        private void TxtProdPrice_TextChanged(object sender, EventArgs e)
+        {
+            if (_filling)
+                return;
+            _editing = true;
+            EnabledDisabledBtn();
+        }
 
         #endregion
 
-        #region application layer
+        #region application layer (BLL)
         private DataTable _productsTable;
         private List<Product> _productsList = new List<Product>();
 
@@ -148,7 +310,7 @@ namespace MyManagementApp.ChildForms
                 ProductName = productName,
                 Brand = brand,
                 Price = price,
-                Status = ProductStatusEnum.Active
+                Active = productStatus == ProductStatusEnum.Active
 
             };
 
@@ -158,19 +320,20 @@ namespace MyManagementApp.ChildForms
         private void UpdateProduct(string productCode, string productName, string brand, string price, ProductStatusEnum productStatus, Guid id)
         {
 
-            // ler
+            // Read
             var product = GetProductById(id);
 
             if (product == null)
                 throw new Exception("Product not found");
 
-            // alterar
+            // Alter
             product.ProductCode = productCode;
             product.ProductName = productName;
             product.Brand = brand;
             product.Price = price;
             product.Active = productStatus == ProductStatusEnum.Active;
-            // persistir
+
+            // Persist
 
             UpdateDatabase(product);
 
@@ -183,6 +346,7 @@ namespace MyManagementApp.ChildForms
                 throw new Exception("Product not found");
 
             DeleteDatabase(product);
+            
         }
 
 
@@ -226,7 +390,7 @@ namespace MyManagementApp.ChildForms
             if (dbConnection.State == ConnectionState.Open)
                 dbConnection.Close();
 
-            // liberação memória RAM da app..
+            // Clean RAM.
             dbConnection.Dispose();
             dbConnection = null;
 

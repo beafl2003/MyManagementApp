@@ -16,7 +16,7 @@ namespace MyProducts
         public string ProductName { get; set; }
         public string Brand { get; set; }
         public string Price { get; set; }
-        public ProductStatusEnum Status { get; set; }
+        //public ProductStatusEnum Status { get; set; }
         public bool Active { get; set; }
     }
 

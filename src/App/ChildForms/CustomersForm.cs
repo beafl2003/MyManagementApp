@@ -23,7 +23,7 @@ namespace MyManagementApp.ChildForms
         #endregion
 
         #region presentation
-        private bool _edinting;
+        private bool _editing;
         private bool _newItem;
         private bool _loading;
         private bool _filling;
@@ -63,14 +63,11 @@ namespace MyManagementApp.ChildForms
         }
         private void btnCustomerAdd_Click(object sender, EventArgs e)
         {
-         
-            tbxcustomerID.Clear();
-            tbxcustomerName.Clear();
-            cbxCustomerStatus.SelectedItem = CustomerStatusEnum.Active;
-            tbxcustomerID.Focus();
+
+            ClearActions();
 
             // form status
-            _edinting = true;
+            _editing = true;
             _newItem = true;
             EnabledDisabledBtn();
         }
@@ -104,7 +101,7 @@ namespace MyManagementApp.ChildForms
 
             // form status
             _newItem = false;
-            _edinting = false;
+            _editing = false;
             EnabledDisabledBtn();
         }
         private void btnCustomerDelete_Click(object sender, EventArgs e)
@@ -114,9 +111,11 @@ namespace MyManagementApp.ChildForms
           
             LoadData();
 
+            ClearActions();
+
             // form status
             _newItem = false;
-            _edinting = false;
+            _editing = false;
             EnabledDisabledBtn();
         }
         private void BtnCancel_Click(object sender, EventArgs e)
@@ -125,12 +124,12 @@ namespace MyManagementApp.ChildForms
 
             // form status
             _newItem = false;
-            _edinting = false;
+            _editing = false;
             EnabledDisabledBtn();
         }
         private void EnabledDisabledBtn()
         {
-            if(_edinting)
+            if(_editing)
             {
                 btnAdd.Enabled = false;
                 btnDelete.Enabled = false;
@@ -157,17 +156,9 @@ namespace MyManagementApp.ChildForms
         }
         private void ConfigureGrid()
         {
-            // colunas
-            //foreach (C1.Win.C1TrueDBGrid.C1DataColumn item in CustomerGridNew.Columns)
-            //{
-            //    if (item.DataField == "Id")
-            //    {
-            //        item.Caption = "";
-            //        item.vi
-            //    }
-            //}
+           
 
-            // zebrado
+            // zebra design
             CustomerGridNew.AlternatingRows = true;
             CustomerGridNew.OddRowStyle.BackColor = Color.WhiteSmoke;
             CustomerGridNew.EvenRowStyle.BackColor = Color.White;
@@ -175,7 +166,7 @@ namespace MyManagementApp.ChildForms
             foreach (C1.Win.C1TrueDBGrid.C1DisplayColumn item in CustomerGridNew.Splits[0].DisplayColumns)
             {
 
-                // bloquear todos
+                // Block Item Editing 
                 item.Locked = true;
 
                 if (item.DataColumn.DataField.ToLower() == "id".ToLower())
@@ -199,6 +190,14 @@ namespace MyManagementApp.ChildForms
             }
         }
 
+
+        private void ClearActions()
+        {
+            tbxcustomerID.Clear();
+            tbxcustomerName.Clear();
+            cbxCustomerStatus.SelectedItem = CustomerStatusEnum.Active;
+            tbxcustomerID.Focus();
+        }
 
         // fill control
         private void FillFields(DataRow row)
@@ -226,7 +225,7 @@ namespace MyManagementApp.ChildForms
         {
             _loading = true;
 
-            // CustomerGridNew.SetDataBinding(_customersList, null, false);
+       
             _customersTable = LoadFromDatabase();
             CustomerGridNew.SetDataBinding(_customersTable, null, false);
             ConfigureGrid();
@@ -241,7 +240,7 @@ namespace MyManagementApp.ChildForms
             if (_filling)
                 return;
 
-            _edinting = true;
+            _editing = true;
             EnabledDisabledBtn();
         }
 
@@ -250,7 +249,7 @@ namespace MyManagementApp.ChildForms
             if (_filling)
                 return;
 
-            _edinting = true;
+            _editing = true;
             EnabledDisabledBtn();
         }
 
@@ -259,7 +258,7 @@ namespace MyManagementApp.ChildForms
             if (_filling)
                 return;
 
-            _edinting = true;
+            _editing = true;
             EnabledDisabledBtn();
         }
 
@@ -281,29 +280,29 @@ namespace MyManagementApp.ChildForms
                 Active = customerStatus == CustomerStatusEnum.Active
 
             };
-            //_customersList.Add(customer);
+            
 
             InsertDatabase(customer);
         }
 
         private void UpdateCustomer(string customerCode, string customerName, CustomerStatusEnum customerStatus, Guid id)
         {
-            //var customerCode = (_customersList.Count + 1).ToString();
+           
 
 
-            // ler
+            // Read
             var customer = GetCustomerById(id);
 
             if (customer == null)
                 throw new Exception(" Customer not found");
 
-            // alterar
+            // Alter
             customer.CustomerCode = customerCode;
             customer.CustomerName = customerName;
             customer.Active = customerStatus == CustomerStatusEnum.Active;
            
-            // persistir
-            //_customersList.Add(customer);
+            // Persist
+          
             UpdateDatabase(customer);
         }
 
@@ -359,7 +358,7 @@ namespace MyManagementApp.ChildForms
             if (dbConnection.State == ConnectionState.Open)
                 dbConnection.Close();
 
-            // liberação memória RAM da app..
+            // Clean RAM 
             dbConnection.Dispose();
             dbConnection = null;
 
