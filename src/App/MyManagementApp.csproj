@@ -32,6 +32,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup />
+  <PropertyGroup />
+  <PropertyGroup />
   <ItemGroup>
     <Reference Include="C1.Win.4, Version=4.0.20183.338, Culture=neutral, PublicKeyToken=944ae1ea0e47ca04" />
     <Reference Include="C1.Win.C1SplitContainer.4, Version=4.0.20183.338, Culture=neutral, PublicKeyToken=79882d576c6336da, processorArchitecture=MSIL" />
@@ -55,6 +58,12 @@
     <Compile Include="ChildForms\CustomersForm.Designer.cs">
       <DependentUpon>CustomersForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ChildForms\OrdersForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ChildForms\OrdersForm.Designer.cs">
+      <DependentUpon>OrdersForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="ChildForms\ProductsForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -71,6 +80,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="ChildForms\CustomersForm.resx">
       <DependentUpon>CustomersForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ChildForms\OrdersForm.resx">
+      <DependentUpon>OrdersForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ChildForms\ProductsForm.resx">
       <DependentUpon>ProductsForm.cs</DependentUpon>
@@ -102,9 +114,17 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AppCore\AppCore.csproj">
-      <Project>{604676e1-a6b3-4a5f-b704-4ad153b0e5c0}</Project>
-      <Name>AppCore</Name>
+    <ProjectReference Include="..\..\MyManagementApp.Application\MyManagementApp.Application.csproj">
+      <Project>{e81b64fc-24b9-497b-8de4-5502cb1a47a8}</Project>
+      <Name>MyManagementApp.Application</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MyManagementApp.Data\MyManagementApp.Data.csproj">
+      <Project>{ffba694b-0d69-4e31-86d6-50bb440ec652}</Project>
+      <Name>MyManagementApp.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MyManagementApp.Domain\MyManagementApp.Domain.csproj">
+      <Project>{806c7b5f-319b-4d72-a194-deb5ffc79670}</Project>
+      <Name>MyManagementApp.Domain</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

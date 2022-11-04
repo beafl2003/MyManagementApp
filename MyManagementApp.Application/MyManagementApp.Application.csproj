@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{604676E1-A6B3-4A5F-B704-4AD153B0E5C0}</ProjectGuid>
+    <ProjectGuid>{E81B64FC-24B9-497B-8DE4-5502CB1A47A8}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>AppCore</RootNamespace>
-    <AssemblyName>AppCore</AssemblyName>
+    <RootNamespace>MyManagementApp.Application</RootNamespace>
+    <AssemblyName>MyManagementApp.Application</AssemblyName>
     <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -41,14 +41,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BLL\Enums\CustomerStatusEnum.cs" />
-    <Compile Include="BLL\Enums\ProductStatusEnum.cs" />
-    <Compile Include="BLL\MyProducts.cs" />
-    <Compile Include="BLL\MyUsers.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\CustomerAppService.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="DAL\" />
+    <ProjectReference Include="..\src\MyManagementApp.Data\MyManagementApp.Data.csproj">
+      <Project>{ffba694b-0d69-4e31-86d6-50bb440ec652}</Project>
+      <Name>MyManagementApp.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\src\MyManagementApp.Domain\MyManagementApp.Domain.csproj">
+      <Project>{806c7b5f-319b-4d72-a194-deb5ffc79670}</Project>
+      <Name>MyManagementApp.Domain</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

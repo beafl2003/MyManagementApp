@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MyManagementApp.Domain;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -20,23 +21,23 @@ namespace MyManagmentApp
             this.tsiProducts.Click += new System.EventHandler(this.tsiProducts_Click);
             this.tsiCustomers.Click += new System.EventHandler(this.tsiCustomers_Click);
 
-            var listDeUsuarios = new List<MyUsers.user>
+            var listDeUsuarios = new List<User>
             {
-                new MyUsers.user { Username = "beafl2003", Fullname="Anna Beatriz Azevedo Fidelis"},
-                new MyUsers.user { Username = "fl0k3rdev", Fullname = "Gustavo Henrique Coleti Ranci"},
+                new User { Username = "beafl2003", Fullname="Anna Beatriz Azevedo Fidelis"},
+                new User { Username = "fl0k3rdev", Fullname = "Gustavo Henrique Coleti Ranci"},
             };
         }
 
 
-        
-     
+
+
         private void tsiProducts_Click(object sender, EventArgs e)
         {
             // chamada de form filho
             var prodForm = new MyManagementApp.ChildForms.ProductsForm();
             prodForm.MdiParent = this;
             prodForm.StartPosition = FormStartPosition.CenterScreen;
-           
+
 
             prodForm.Show();
 
@@ -53,7 +54,19 @@ namespace MyManagmentApp
         }
 
 
+        private void tsiOrders_Click(object sender, EventArgs e)
+        {
+            
 
+              var ordersForm = new MyManagementApp.ChildForms.OrdersForm();
+              ordersForm.MdiParent = this;
+              ordersForm.StartPosition = FormStartPosition.CenterScreen;
+
+              ordersForm.Show();
+
+
+            
+        }
     }
 
   

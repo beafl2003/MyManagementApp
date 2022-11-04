@@ -2,10 +2,10 @@
 using System.Data;
 using System.Data.SqlClient;
 using System.Windows.Forms;
-using AppCore.Enums.ProductStatusEnum;
 using System.Collections.Generic;
-using MyProducts;
 using System.Drawing;
+using MyManagementApp.Domain.Enums;
+using MyManagementApp.Domain;
 
 namespace MyManagementApp.ChildForms
 

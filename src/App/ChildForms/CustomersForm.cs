@@ -1,26 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Data.Common;
-using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
-using System.Runtime.Remoting;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using AppCore.Enums.CustomerStatusEnum;
-using MyCustomers;
+using MyManagementApp.Application.Services;
+using MyManagementApp.Data.Repositories;
+using MyManagementApp.Domain;
+using MyManagementApp.Domain.Core;
+using MyManagementApp.Domain.Enums;
 
 namespace MyManagementApp.ChildForms
 {
     public partial class CustomersForm : Form
     {
-
-        #region config
-        private readonly  string _server = @"ANNA-BEATRIZ\SQLEXPRESS";
-        #endregion
 
         #region presentation
         private bool _editing;
@@ -28,6 +21,7 @@ namespace MyManagementApp.ChildForms
         private bool _loading;
         private bool _filling;
         private Guid _currentId;
+        private readonly CustomerAppService _customerAppService;
 
 
         public CustomersForm()
@@ -52,6 +46,8 @@ namespace MyManagementApp.ChildForms
             tbxcustomerName.TextChanged += TbxcustomerName_TextChanged;
             cbxCustomerStatus.TextChanged += CbxCustomerStatus_TextChanged;
 
+
+            _customerAppService = new CustomerAppService();
         }
 
 
@@ -73,29 +69,30 @@ namespace MyManagementApp.ChildForms
         }
         private void btnCustomerSave_Click(object sender, EventArgs e)
         {
-            if (tbxcustomerID.Text.Length > 0 && tbxcustomerName.Text.Length >0 && cbxCustomerStatus.SelectedItem != null)
+            if (_newItem)
             {
-                if (_newItem)
-                {
-                    NewCustomer(tbxcustomerID.Text, tbxcustomerName.Text, (CustomerStatusEnum)Enum.Parse(typeof(CustomerStatusEnum),
-                        cbxCustomerStatus.SelectedItem.ToString()));
-                }
-                else
-                {
-                    var id = _currentId;
+                var r = _customerAppService.NewCustomer(tbxcustomerID.Text, tbxcustomerName.Text, (CustomerStatusEnum)Enum.Parse(typeof(CustomerStatusEnum),
+                    cbxCustomerStatus.SelectedItem.ToString()));
 
-                    UpdateCustomer(tbxcustomerID.Text, tbxcustomerName.Text, (CustomerStatusEnum)Enum.Parse(typeof(CustomerStatusEnum),
-                     cbxCustomerStatus.SelectedItem.ToString()), id);
-                }
-            
+                if(!r.Success)
+                {
+                    NotifyError(r);
+                    return;
+                }                 
             }
             else
             {
-                string message = "Some information probably is missing. Verify and try again";
-                string caption = "Warning";
-                DialogResult result;
-                result = MessageBox.Show(message, caption);
+                var id = _currentId;
+                var r = _customerAppService.UpdateCustomer(tbxcustomerID.Text, tbxcustomerName.Text, (CustomerStatusEnum)Enum.Parse(typeof(CustomerStatusEnum),
+                    cbxCustomerStatus.SelectedItem.ToString()), id);
+
+                if (!r.Success)
+                {
+                    NotifyError(r);
+                    return;
+                }
             }
+            
      
             LoadData();
 
@@ -107,8 +104,14 @@ namespace MyManagementApp.ChildForms
         private void btnCustomerDelete_Click(object sender, EventArgs e)
         {
             var id = _currentId;
-            DeleteCustomer(id);
-          
+            var r = _customerAppService.DeleteCustomer(id);
+            if (!r.Success)
+            {
+                NotifyError(r);
+                return;
+            }
+
+
             LoadData();
 
             ClearActions();
@@ -189,8 +192,6 @@ namespace MyManagementApp.ChildForms
 
             }
         }
-
-
         private void ClearActions()
         {
             tbxcustomerID.Clear();
@@ -219,15 +220,14 @@ namespace MyManagementApp.ChildForms
             _filling = false;
         }
 
-
         // load
         private void LoadData()
         {
             _loading = true;
 
        
-            _customersTable = LoadFromDatabase();
-            CustomerGridNew.SetDataBinding(_customersTable, null, false);
+            var customersTable = _customerAppService.LoadFromDatabase();
+            CustomerGridNew.SetDataBinding(customersTable, null, false);
             ConfigureGrid();
 
             _loading = false;
@@ -262,278 +262,28 @@ namespace MyManagementApp.ChildForms
             EnabledDisabledBtn();
         }
 
-        #endregion
-
-        #region application layer (BLL)
-        private DataTable _customersTable;
-        private List<Customer> _customersList = new List<Customer>();
 
 
-        private void NewCustomer(string customerCode, string customerName, CustomerStatusEnum customerStatus)
+        // notifications
+        private void NotifyError()
         {
-
-            var customer = new Customer()
-            {
-                Id = Guid.NewGuid(),
-                CustomerCode = customerCode,
-                CustomerName = customerName,
-                Active = customerStatus == CustomerStatusEnum.Active
-
-            };
-            
-
-            InsertDatabase(customer);
+            NotifyError(Result.Factory.False());
         }
-
-        private void UpdateCustomer(string customerCode, string customerName, CustomerStatusEnum customerStatus, Guid id)
+        private void NotifyError(Result r)
         {
-           
 
+            if (r.Success)
+                return;
 
-            // Read
-            var customer = GetCustomerById(id);
-
-            if (customer == null)
-                throw new Exception(" Customer not found");
-
-            // Alter
-            customer.CustomerCode = customerCode;
-            customer.CustomerName = customerName;
-            customer.Active = customerStatus == CustomerStatusEnum.Active;
-           
-            // Persist
-          
-            UpdateDatabase(customer);
+            var message = r.Messages.Any() 
+                ? "Some information probably is missing. Verify and try again" 
+                        + Environment.NewLine + "   - "
+                        + string.Join(Environment.NewLine + "   - ", r.Messages)
+                : "Some information probably is missing. Verify and try again";
+            string caption = "Warning";
+            DialogResult result;
+            result = MessageBox.Show(message, caption);
         }
-
-        private void DeleteCustomer(Guid id)
-        {
-            var customer = GetCustomerById(id);
-
-            if (customer == null)
-                throw new Exception("Customer not found");
-
-            DeleteDatabase(customer);
-        }
-        #endregion
-
-        #region data access layer (DAL)
-
-        private Customer GetCustomerById(Guid id)
-        {
-
-            var dbConnection = GetConnection();
-            dbConnection.Open();
-
-            var sql = $@"
-            SELECT * FROM Customers
-	            WHERE id = @id;";
-            var command = new System.Data.SqlClient.SqlCommand(sql, dbConnection);
-            command.Parameters.Add(new System.Data.SqlClient.SqlParameter("@id", id));
-
-
-            var adpter = new System.Data.SqlClient.SqlDataAdapter(command);
-            // dataTable
-            var table = new DataTable();
-            adpter.Fill(table);
-
-
-            if(table.Rows.Count == 0)
-                return default;
-
-            // datarow
-            var row = table.Rows[0];
-
-         
-
-            var customer = new Customer()
-            {
-                Id = row.Field<Guid>("id"),
-                CustomerCode = row.Field<string>("code"),
-                CustomerName = row.Field<string>("name"),
-                Active = row.Field<bool>("active"),
-            };
-
-
-            if (dbConnection.State == ConnectionState.Open)
-                dbConnection.Close();
-
-            // Clean RAM 
-            dbConnection.Dispose();
-            dbConnection = null;
-
-            return customer;
-
-        }
-        private bool InsertDatabase(Customer customer)
-        {
-            var dbConnection = GetConnection();
-            dbConnection.Open();
-
-            var sql = $@"
-                INSERT INTO Customers (id, code, [name], active) Values (@id, @code, @name, @active);";
-            var command = new System.Data.SqlClient.SqlCommand(sql, dbConnection);
-
-            command.Parameters.Add(new System.Data.SqlClient.SqlParameter("@id", customer.Id));
-            command.Parameters.Add(new System.Data.SqlClient.SqlParameter("@code", customer.CustomerCode));
-            command.Parameters.Add(new System.Data.SqlClient.SqlParameter("@name", customer.CustomerName));
-            command.Parameters.Add(new System.Data.SqlClient.SqlParameter("@active", customer.Active));
-
-            // command.Parameters.Add(new System.Data.SqlClient.SqlParameter("@createdDate", DateTime.Now));
-
-            var rowsAffected = command.ExecuteNonQuery();
-
-            if (dbConnection.State == ConnectionState.Open)
-                dbConnection.Close();
-
-
-            // liberação memória RAM da app..
-            dbConnection.Dispose();
-            dbConnection = null;
-
-
-            if (rowsAffected > 0)
-                return true;
-            else
-                return false;
-        }
-        private bool UpdateDatabase(Customer customer)
-        {
-            var dbConnection = GetConnection();
-            dbConnection.Open();
-
-            var sql = $@"
-                UPDATE 
-                    Customers
-                        SET code = @code, name = @name , active = @active
-	            WHERE id = @id;";
-
-            var command = new System.Data.SqlClient.SqlCommand(sql, dbConnection);
-            command.Parameters.Add(new System.Data.SqlClient.SqlParameter("@id", customer.Id));
-            command.Parameters.Add(new System.Data.SqlClient.SqlParameter("@code", customer.CustomerCode));
-            command.Parameters.Add(new System.Data.SqlClient.SqlParameter("@name", customer.CustomerName));
-            command.Parameters.Add(new System.Data.SqlClient.SqlParameter("@active", customer.Active));
-            // command.Parameters.Add(new System.Data.SqlClient.SqlParameter("@createdDate", DateTime.Now));
-
-            var rowsAffected = command.ExecuteNonQuery();
-
-            if (dbConnection.State == ConnectionState.Open)
-                dbConnection.Close();
-
-
-            // liberação memória RAM da app..
-            dbConnection.Dispose();
-            dbConnection = null;
-
-
-            if (rowsAffected > 0)
-                return true;
-            else
-                return false;
-        }
-        private bool DeleteDatabase(Customer customer)
-        {
-            var dbConnection = GetConnection();
-            dbConnection.Open();
-
-            var sql = $@"
-                DELETE Customers 
-	                WHERE id = @id;";
-
-            var command = new System.Data.SqlClient.SqlCommand(sql, dbConnection);
-            command.Parameters.Add(new System.Data.SqlClient.SqlParameter("@id", customer.Id));
-            // command.Parameters.Add(new System.Data.SqlClient.SqlParameter("@code", customer.CustomerCode));
-            // command.Parameters.Add(new System.Data.SqlClient.SqlParameter("@name", customer.CustomerName));
-            // command.Parameters.Add(new System.Data.SqlClient.SqlParameter("@active", customer.Active));
-
-            var rowsAffected = command.ExecuteNonQuery();
-
-            if (dbConnection.State == ConnectionState.Open)
-                dbConnection.Close();
-
-
-            // liberação memória RAM da app..
-            dbConnection.Dispose();
-            dbConnection = null;
-
-
-            if (rowsAffected > 0)
-                return true;
-            else
-                return false;
-        }  
-        private DataTable LoadFromDatabase() 
-        {
-            var connectionString = @"Server=ANNA-BEATRIZ\SQLEXPRESS;Database=MyManagementAppDb;User Id=sa;Password=dp";
-            //DbConnection dbConnection2 = new System.Data.Odbc.OdbcConnection();
-            var dbConnection = new System.Data.SqlClient.SqlConnection(connectionString);
-            dbConnection.Open();
-
-
-            var sql = "SELECT * FROM Customers";
-            var command = new System.Data.SqlClient.SqlCommand(sql, dbConnection);
-
-
-            // adpater
-            var adpter = new System.Data.SqlClient.SqlDataAdapter(command);
-            // dataTable
-            var table = new DataTable();
-            adpter.Fill(table);
-
-            //// dataSet
-            //// conjunto de tabelas + seus relacionamentos + ...
-            //var dataSet = new DataSet();
-            //adpter.Fill(dataSet, "Products");
-            //// adpterCustomers.Fill(dataSet, "Customers");
-
-
-
-            //// 1 - reader
-            //var dataReader = command.ExecuteReader();
-            //while (dataReader.Read())
-            //{
-            //    var id = dataReader["id"];
-            //    var code = dataReader.GetString(1);
-            //    var description = dataReader["description"];
-            //}
-
-
-
-            if (dbConnection.State == ConnectionState.Open)
-                dbConnection.Close();
-
-
-            // liberação memória RAM da app..
-            dbConnection.Dispose();
-            dbConnection = null;
-
-
-            return table;
-
-        }
-
-        private SqlConnection GetConnection()
-        {
-            var connectionString = $@"Server={_server};Database=MyManagementAppDb;User Id=sa;Password=dp";
-            var dbConnection = new System.Data.SqlClient.SqlConnection(connectionString);
-            return dbConnection;
-        }
-
-        // configuração
-        // DB >> SQL server 
-
-        // 
-        // DSN >> config.ini
-        // ConnectionString 
-
-        // DbConnections("ConnectionString") >> 
-
-        // leitura
-
-        // (commands)DataReader, (commands)DataAdapter()
-
-        // escrita
-        // commands = "";
         #endregion
     }
 
