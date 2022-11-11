@@ -2,10 +2,12 @@
 using System.Data;
 using System.Data.SqlClient;
 using System.Windows.Forms;
-using System.Collections.Generic;
 using System.Drawing;
 using MyManagementApp.Domain.Enums;
 using MyManagementApp.Domain;
+using MyManagementApp.Domain.Core;
+using MyManagementApp.Application.Services;
+using System.Linq;
 
 namespace MyManagementApp.ChildForms
 
@@ -22,7 +24,8 @@ namespace MyManagementApp.ChildForms
         private bool _newItem;
         private bool _loading;
         private bool _filling;
-        private Guid _currentId; 
+        private Guid _currentId;
+        private readonly ProductAppService _productAppService;
 
         public ProductsForm()
         {
@@ -43,10 +46,10 @@ namespace MyManagementApp.ChildForms
             tbxProdBrand.TextChanged += TbxProdBrand_TextChanged;
             txtProdPrice.TextChanged += TxtProdPrice_TextChanged;
 
-
+            _productAppService = new ProductAppService();
         }
 
-   
+
 
 
         // Tools 
@@ -58,7 +61,7 @@ namespace MyManagementApp.ChildForms
 
 
         private void btnProdAdd_Click(object sender, EventArgs e)
-        { 
+        {
             _newItem = true;
 
             ClearActions();
@@ -71,29 +74,31 @@ namespace MyManagementApp.ChildForms
         private void btnProdSave_Click(object sender, EventArgs e)
         {
 
-            // validations
-            if (tbxProductID.Text.Length > 0 && tbxProdDescription.Text.Length > 0 && cbxProdStatus.SelectedItem != null && tbxProdBrand.Text.Length > 0 && txtProdPrice.Text.Length > 0)
+
+            if (_newItem)
             {
-                if (_newItem)
+                var r = _productAppService.NewProduct(tbxProductID.Text, tbxProdDescription.Text, tbxProdBrand.Text, txtProdPrice.Text, (ProductStatusEnum)Enum.Parse(typeof(ProductStatusEnum),
+                      cbxProdStatus.SelectedItem.ToString()));
+
+                if (!r.Success)
                 {
-                    NewProduct(tbxProductID.Text, tbxProdDescription.Text, tbxProdBrand.Text, txtProdPrice.Text, (ProductStatusEnum)Enum.Parse(typeof(ProductStatusEnum),
-                cbxProdStatus.SelectedItem.ToString()));
+                    NotifyError(r);
+                    return;
                 }
-                else
-                {
-                    var id = _currentId;
-                    UpdateProduct(tbxProductID.Text, tbxProdDescription.Text, tbxProdBrand.Text, txtProdPrice.Text, (ProductStatusEnum)Enum.Parse(typeof(ProductStatusEnum),
-                cbxProdStatus.SelectedItem.ToString()), id);
-                }
-             
             }
             else
             {
-                string message = "Some information probably is missing. Verify and try again";
-                string caption = "Warning";
-                DialogResult result;
-                result = MessageBox.Show(message, caption);
+                var id = _currentId;
+                var r = _productAppService.UpdateProduct(tbxProductID.Text, tbxProdDescription.Text, tbxProdBrand.Text, txtProdPrice.Text, (ProductStatusEnum)Enum.Parse(typeof(ProductStatusEnum),
+                      cbxProdStatus.SelectedItem.ToString()), id);
+
+                if (!r.Success)
+                {
+                    NotifyError(r);
+                    return;
+                }
             }
+
 
             LoadData();
 
@@ -101,7 +106,7 @@ namespace MyManagementApp.ChildForms
             _newItem = false;
             _editing = false;
             EnabledDisabledBtn();
-            
+
 
 
         }
@@ -109,7 +114,12 @@ namespace MyManagementApp.ChildForms
         private void btnProdDelete_Click(object sender, EventArgs e)
         {
             var id = _currentId;
-            DeleteProduct(id);
+            var r = _productAppService.DeleteProduct(id);
+            if (!r.Success)
+            {
+                NotifyError(r);
+                return;
+            }
 
             LoadData();
             ClearActions();
@@ -181,7 +191,7 @@ namespace MyManagementApp.ChildForms
                 if (item.DataColumn.DataField.ToLower() == "code".ToLower())
                 {
                     item.DataColumn.Caption = "Code";
-     
+
                 }
                 if (item.DataColumn.DataField.ToLower() == "name".ToLower())
                 {
@@ -218,7 +228,7 @@ namespace MyManagementApp.ChildForms
 
         // fill control
 
-        private void FillFields (DataRow row)
+        private void FillFields(DataRow row)
         {
             _filling = true;
             _currentId = row.Field<Guid>("id");
@@ -242,8 +252,8 @@ namespace MyManagementApp.ChildForms
         private void LoadData()
         {
             _loading = true;
-            _productsTable = LoadFromDatabase();
-            ProductGridNew.SetDataBinding(_productsTable, null, false);
+            var productsTable = _productAppService.LoadFromDatabase();
+            ProductGridNew.SetDataBinding(productsTable, null, false);
             ConfigureGrid();
 
             _loading = false;
@@ -293,251 +303,30 @@ namespace MyManagementApp.ChildForms
             EnabledDisabledBtn();
         }
 
+
+        // notifications
+
+        private void NotifyError()
+        {
+            NotifyError(Result.Factory.False());
+        }
+        private void NotifyError(Result r)
+        {
+
+            if (r.Success)
+                return;
+
+            var message = r.Messages.Any()
+                ? "Some information probably is missing. Verify and try again"
+                        + Environment.NewLine + "   - "
+                        + string.Join(Environment.NewLine + "   - ", r.Messages)
+                : "Some information probably is missing. Verify and try again";
+            string caption = "Warning";
+            DialogResult result;
+            result = MessageBox.Show(message, caption);
+        }
         #endregion
-
-        #region application layer (BLL)
-        private DataTable _productsTable;
-        private List<Product> _productsList = new List<Product>();
-
-
-        private void NewProduct (string productCode, string productName, string brand, string price, ProductStatusEnum productStatus)
-        {
-
-            var product = new Product()
-            {
-                Id = Guid.NewGuid(),
-                ProductCode = productCode,
-                ProductName = productName,
-                Brand = brand,
-                Price = price,
-                Active = productStatus == ProductStatusEnum.Active
-
-            };
-
-            InsertDatabase(product);
-        }
-
-        private void UpdateProduct(string productCode, string productName, string brand, string price, ProductStatusEnum productStatus, Guid id)
-        {
-
-            // Read
-            var product = GetProductById(id);
-
-            if (product == null)
-                throw new Exception("Product not found");
-
-            // Alter
-            product.ProductCode = productCode;
-            product.ProductName = productName;
-            product.Brand = brand;
-            product.Price = price;
-            product.Active = productStatus == ProductStatusEnum.Active;
-
-            // Persist
-
-            UpdateDatabase(product);
-
-        }
-
-        private void DeleteProduct(Guid id)
-        {
-            var product = GetProductById(id);
-            if (product == null)
-                throw new Exception("Product not found");
-
-            DeleteDatabase(product);
-            
-        }
-
-
-        #endregion
-
-        #region data access layer (DAL)
-
-        private Product GetProductById(Guid id)
-        {
-            var dbConnection = GetConnection();
-            dbConnection.Open();
-
-            var sql = $@"
-            SELECT * FROM Products
-            WHERE id = @id;";
-            var command = new System.Data.SqlClient.SqlCommand(sql, dbConnection);
-            command.Parameters.Add(new System.Data.SqlClient.SqlParameter("@id", id));
-
-            var adapter = new System.Data.SqlClient.SqlDataAdapter(command);
-            var table = new DataTable();
-            adapter.Fill(table);
-
-
-            if (table.Rows.Count == 0)
-                return default;
-
-            var row = table.Rows[0];
-
-
-            var product = new Product()
-            {
-                Id = row.Field<Guid>("id"),
-                ProductCode = row.Field<string>("code"),
-                ProductName = row.Field<string>("name"),
-                Brand = row.Field<string>("brand"),
-                Price = row.Field<string>("price"),
-                Active = row.Field<bool>("active"),
-            };
-
-
-            if (dbConnection.State == ConnectionState.Open)
-                dbConnection.Close();
-
-            // Clean RAM.
-            dbConnection.Dispose();
-            dbConnection = null;
-
-            return product;
-
-        }
-
-        private bool UpdateDatabase(Product product)
-        {
-            var dbConnection = GetConnection();
-            dbConnection.Open();
-
-            var sql = $@"
-                UPDATE 
-                    Products
-                        SET code = @code, name = @name ,  brand = @brand, active = @active, price = @price
-	            WHERE id = @id;";
-
-            var command = new System.Data.SqlClient.SqlCommand(sql, dbConnection);
-            command.Parameters.Add(new System.Data.SqlClient.SqlParameter("@id", product.Id));
-            command.Parameters.Add(new System.Data.SqlClient.SqlParameter("@code", product.ProductCode));
-            command.Parameters.Add(new System.Data.SqlClient.SqlParameter("@name", product.ProductName));
-            command.Parameters.Add(new System.Data.SqlClient.SqlParameter("@brand", product.Brand));
-            command.Parameters.Add(new System.Data.SqlClient.SqlParameter("@price", product.Price));
-            command.Parameters.Add(new System.Data.SqlClient.SqlParameter("@active", product.Active));
-
-            var rowsAffected = command.ExecuteNonQuery();
-
-            if (dbConnection.State == ConnectionState.Open)
-                dbConnection.Close();
-
-
-            // liberação memória RAM da app..
-            dbConnection.Dispose();
-            dbConnection = null;
-
-
-            if (rowsAffected > 0)
-                return true;
-            else
-                return false;
-        }
-
-
-        private bool InsertDatabase(Product product)
-        {
-            var dbConnection = GetConnection();
-            dbConnection.Open();
-
-            var sql = $@"
-                INSERT INTO Products (id, code, [name], brand, price, active) Values (@id, @code, @name, @brand, @price, @active);";
-            var command = new System.Data.SqlClient.SqlCommand(sql, dbConnection);
-            command.Parameters.Add(new System.Data.SqlClient.SqlParameter("@id", product.Id));
-            command.Parameters.Add(new System.Data.SqlClient.SqlParameter("@code", product.ProductCode));
-            command.Parameters.Add(new System.Data.SqlClient.SqlParameter("@name", product.ProductName));
-            command.Parameters.Add(new System.Data.SqlClient.SqlParameter("@brand", product.Brand));
-            command.Parameters.Add(new System.Data.SqlClient.SqlParameter("@price", product.Price));
-            command.Parameters.Add(new System.Data.SqlClient.SqlParameter("@active", product.Active));
-
-            var rowsAffected = command.ExecuteNonQuery();
-
-            if (dbConnection.State == ConnectionState.Open)
-                dbConnection.Close();
-
-
-            // liberação memória RAM da app..
-            dbConnection.Dispose();
-            dbConnection = null;
-
-
-            if (rowsAffected > 0)
-                return true;
-            else
-                return false;
-        }
-        private bool DeleteDatabase(Product product)
-        {
-            var dbConnection = GetConnection();
-            dbConnection.Open();
-
-            var sql = $@"
-                DELETE Products 
-	                WHERE id = @id;";
-
-            var command = new System.Data.SqlClient.SqlCommand(sql, dbConnection);
-            command.Parameters.Add(new System.Data.SqlClient.SqlParameter("@id", product.Id));
-            // command.Parameters.Add(new System.Data.SqlClient.SqlParameter("@code", product.ProductCode));
-            // command.Parameters.Add(new System.Data.SqlClient.SqlParameter("@name", product.ProductName));
-            // command.Parameters.Add(new System.Data.SqlClient.SqlParameter("@brand", product.Brand));
-            // command.Parameters.Add(new System.Data.SqlClient.SqlParameter("@price", product.Price));
-            // command.Parameters.Add(new System.Data.SqlClient.SqlParameter("@active", product.Active));
-
-            var rowsAffected = command.ExecuteNonQuery();
-
-            if (dbConnection.State == ConnectionState.Open)
-                dbConnection.Close();
-
-
-            // liberação memória RAM da app..
-            dbConnection.Dispose();
-            dbConnection = null;
-
-
-            if (rowsAffected > 0)
-                return true;
-            else
-                return false;
-        }
-        private DataTable LoadFromDatabase()
-        {
-            var connectionString = @"Server=ANNA-BEATRIZ\SQLEXPRESS;Database=MyManagementAppDb;User Id=sa;Password=dp";
-            //DbConnection dbConnection2 = new System.Data.Odbc.OdbcConnection();
-            var dbConnection = new System.Data.SqlClient.SqlConnection(connectionString);
-            dbConnection.Open();
-
-
-            var sql = "SELECT * FROM Products";
-            var command = new System.Data.SqlClient.SqlCommand(sql, dbConnection);
-
-
-            // adpater
-            var adpter = new System.Data.SqlClient.SqlDataAdapter(command);
-            // dataTable
-            var table = new DataTable();
-            adpter.Fill(table);
-
-
-            if (dbConnection.State == ConnectionState.Open)
-                dbConnection.Close();
-
-
-            // liberação memória RAM da app..
-            dbConnection.Dispose();
-            dbConnection = null;
-
-
-            return table;
-
-        }
-
-        private SqlConnection GetConnection()
-        {
-            var connectionString = $@"Server={_server};Database=MyManagementAppDb;User Id=sa;Password=dp";
-            var dbConnection = new System.Data.SqlClient.SqlConnection(connectionString);
-            return dbConnection;
-        }
     }
-    }
+}
 
-    #endregion
+      

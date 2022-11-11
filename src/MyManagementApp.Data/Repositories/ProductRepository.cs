@@ -3,11 +3,11 @@ using MyManagementApp.Domain;
 using System;
 using System.Data;
 
-namespace MyManagementApp.Repositories
+namespace MyManagementApp.Data.Repositories
 {
     public class ProductRepository
     {
-        private Product GetProductById(Guid id)
+        public Product GetProductById(Guid id)
         {
             var dbConnection = ConnectionProvider.GetConnection();
             dbConnection.Open();
@@ -51,7 +51,7 @@ namespace MyManagementApp.Repositories
 
         }
 
-        private bool UpdateDatabase(Product product)
+        public bool UpdateDatabase(Product product)
         {
             var dbConnection = ConnectionProvider.GetConnection();
             dbConnection.Open();
@@ -88,7 +88,7 @@ namespace MyManagementApp.Repositories
         }
 
 
-        private bool InsertDatabase(Product product)
+        public bool InsertDatabase(Product product)
         {
             var dbConnection = ConnectionProvider.GetConnection();
             dbConnection.Open();
@@ -119,7 +119,7 @@ namespace MyManagementApp.Repositories
             else
                 return false;
         }
-        private bool DeleteDatabase(Product product)
+        public bool DeleteDatabase(Product product)
         {
             var dbConnection = ConnectionProvider.GetConnection();
             dbConnection.Open();
@@ -152,10 +152,9 @@ namespace MyManagementApp.Repositories
             else
                 return false;
         }
-        private DataTable LoadFromDatabase()
+        public DataTable LoadFromDatabase()
         {
             var connectionString = @"Server=ANNA-BEATRIZ\SQLEXPRESS;Database=MyManagementAppDb;User Id=sa;Password=dp";
-            //DbConnection dbConnection2 = new System.Data.Odbc.OdbcConnection();
             var dbConnection = new System.Data.SqlClient.SqlConnection(connectionString);
             dbConnection.Open();
 
