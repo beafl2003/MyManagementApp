@@ -12,10 +12,16 @@ namespace MyManagementApp.ChildForms
 {
     public partial class OrdersForm : Form
     {
+        #region Config
+        #endregion
+
+        #region Presentation
         public OrdersForm()
         {
             InitializeComponent();
 
         }
+
+        #endregion
     }
 }

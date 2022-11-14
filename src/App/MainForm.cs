@@ -20,6 +20,7 @@ namespace MyManagmentApp
 
             this.tsiProducts.Click += new System.EventHandler(this.tsiProducts_Click);
             this.tsiCustomers.Click += new System.EventHandler(this.tsiCustomers_Click);
+            this.tsiCustomers.Click += new System.EventHandler(this.tsiOrders_Click);
 
             var listDeUsuarios = new List<User>
             {

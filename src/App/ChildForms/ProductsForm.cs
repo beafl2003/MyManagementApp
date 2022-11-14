@@ -325,7 +325,7 @@ namespace MyManagementApp.ChildForms
             DialogResult result;
             result = MessageBox.Show(message, caption);
         }
-        #endregion
+        #endregion    }
     }
 }
 
