@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MyManagementApp.Domain.Enums;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -19,6 +20,7 @@ namespace MyManagementApp.ChildForms
         public OrdersForm()
         {
             InitializeComponent();
+            this.cbxOrderStatus.DataSource = Enum.GetValues(typeof(OrderStatusEnum));
 
         }
 
