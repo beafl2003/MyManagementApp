@@ -20,10 +20,22 @@ namespace MyManagementApp.ChildForms
         public OrdersForm()
         {
             InitializeComponent();
+
             this.cbxOrderStatus.DataSource = Enum.GetValues(typeof(OrderStatusEnum));
+            this.cbxOrderItemStatus.DataSource = Enum.GetValues(typeof(OrderItemStatusEnum));
+
+            this.Shown += OrdersForm_Shown;
 
         }
 
+
         #endregion
+
+        private void OrdersForm_Shown(object sender, EventArgs e)
+        {
+            //// LoadData();
+            //EnabledDisabledBtn();
+        }
+
     }
 }

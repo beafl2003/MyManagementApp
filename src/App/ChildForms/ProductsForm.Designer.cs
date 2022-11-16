@@ -18,7 +18,6 @@ namespace MyManagementApp.ChildForms
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ProductsForm));
             this.lbProdStatus = new System.Windows.Forms.Label();
-            this.cbxProdStatus = new System.Windows.Forms.ComboBox();
             this.lbProdDescription = new System.Windows.Forms.Label();
             this.lbProdID = new System.Windows.Forms.Label();
             this.tbxProdPanel = new System.Windows.Forms.TableLayoutPanel();
@@ -34,6 +33,7 @@ namespace MyManagementApp.ChildForms
             this.btnDelete = new System.Windows.Forms.Button();
             this.tableLayoutMain = new System.Windows.Forms.TableLayoutPanel();
             this.btnCancel = new System.Windows.Forms.Button();
+            this.cbxProdStatus = new System.Windows.Forms.ComboBox();
             this.tbxProdPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ProductGridNew)).BeginInit();
             this.tableLayoutMain.SuspendLayout();
@@ -46,15 +46,6 @@ namespace MyManagementApp.ChildForms
             this.lbProdStatus.Size = new System.Drawing.Size(94, 17);
             this.lbProdStatus.TabIndex = 7;
             this.lbProdStatus.Text = "Status";
-            // 
-            // cbxProdStatus
-            // 
-            this.cbxProdStatus.BackColor = System.Drawing.SystemColors.Info;
-            this.cbxProdStatus.FormattingEnabled = true;
-            this.cbxProdStatus.Location = new System.Drawing.Point(703, 23);
-            this.cbxProdStatus.Name = "cbxProdStatus";
-            this.cbxProdStatus.Size = new System.Drawing.Size(94, 24);
-            this.cbxProdStatus.TabIndex = 2;
             // 
             // lbProdDescription
             // 
@@ -85,7 +76,6 @@ namespace MyManagementApp.ChildForms
             this.tbxProdPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
             this.tbxProdPanel.Controls.Add(this.lbProdStatus, 3, 0);
             this.tbxProdPanel.Controls.Add(this.tbxProductID, 0, 1);
-            this.tbxProdPanel.Controls.Add(this.cbxProdStatus, 3, 1);
             this.tbxProdPanel.Controls.Add(this.lbProdID, 0, 0);
             this.tbxProdPanel.Controls.Add(this.tbxProdBrand, 0, 3);
             this.tbxProdPanel.Controls.Add(this.lbProdBrand, 0, 2);
@@ -93,6 +83,7 @@ namespace MyManagementApp.ChildForms
             this.tbxProdPanel.Controls.Add(this.tbxProdDescription, 1, 1);
             this.tbxProdPanel.Controls.Add(this.lbProdDescription, 1, 0);
             this.tbxProdPanel.Controls.Add(this.txtProdPrice, 1, 3);
+            this.tbxProdPanel.Controls.Add(this.cbxProdStatus, 3, 1);
             this.tbxProdPanel.Location = new System.Drawing.Point(0, 3);
             this.tbxProdPanel.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
             this.tbxProdPanel.Name = "tbxProdPanel";
@@ -258,6 +249,15 @@ namespace MyManagementApp.ChildForms
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
             // 
+            // cbxProdStatus
+            // 
+            this.cbxProdStatus.BackColor = System.Drawing.SystemColors.Info;
+            this.cbxProdStatus.FormattingEnabled = true;
+            this.cbxProdStatus.Location = new System.Drawing.Point(703, 23);
+            this.cbxProdStatus.Name = "cbxProdStatus";
+            this.cbxProdStatus.Size = new System.Drawing.Size(94, 24);
+            this.cbxProdStatus.TabIndex = 11;
+            // 
             // ProductsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -280,7 +280,6 @@ namespace MyManagementApp.ChildForms
         private System.Windows.Forms.TableLayoutPanel tbxProdPanel;
         private System.Windows.Forms.TextBox tbxProductID;
         private System.Windows.Forms.TextBox tbxProdDescription;
-        private System.Windows.Forms.ComboBox cbxProdStatus;
         private System.Windows.Forms.Label lbProdStatus;
         private System.Windows.Forms.TextBox tbxProdBrand;
         private System.Windows.Forms.Label lbProdBrand;
@@ -292,5 +291,6 @@ namespace MyManagementApp.ChildForms
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.TableLayoutPanel tableLayoutMain;
         private System.Windows.Forms.Button btnCancel;
+        private System.Windows.Forms.ComboBox cbxProdStatus;
     }
 }
