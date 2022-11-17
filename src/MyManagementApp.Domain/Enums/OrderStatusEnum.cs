@@ -8,6 +8,7 @@ namespace MyManagementApp.Domain.Enums
 {
     public enum OrderStatusEnum
     {
+
         Open,
         Closed,
         Finished

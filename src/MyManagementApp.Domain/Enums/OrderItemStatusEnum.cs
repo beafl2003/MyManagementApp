@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace MyManagementApp.Domain.Enums
 {
     public enum OrderItemStatusEnum
-    {
+    {        
         Ordered,
         InTransit,
         Delivered

@@ -55,9 +55,9 @@ namespace MyManagementApp.ChildForms
             this.OrderItemsGrid = new C1.Win.C1TrueDBGrid.C1TrueDBGrid();
             this.btnAdd = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
-            this.btnProdSave = new System.Windows.Forms.Button();
             this.tbxTotalPrice = new System.Windows.Forms.TextBox();
             this.lbTotalPrice = new System.Windows.Forms.Label();
+            this.btnProdSave = new System.Windows.Forms.Button();
             this.tableLayoutMain.SuspendLayout();
             this.tbxOrderPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.OrderItemsGrid)).BeginInit();
@@ -67,9 +67,9 @@ namespace MyManagementApp.ChildForms
             // 
             this.tableLayoutMain.ColumnCount = 4;
             this.tableLayoutMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 101F));
-            this.tableLayoutMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 110F));
-            this.tableLayoutMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 95F));
+            this.tableLayoutMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 76F));
+            this.tableLayoutMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 76F));
+            this.tableLayoutMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 76F));
             this.tableLayoutMain.Controls.Add(this.cbxOrderItemStatus, 3, 2);
             this.tableLayoutMain.Controls.Add(this.tbxUnitPrice, 2, 2);
             this.tableLayoutMain.Controls.Add(this.lbUnitPrice, 2, 1);
@@ -82,30 +82,32 @@ namespace MyManagementApp.ChildForms
             this.tableLayoutMain.Controls.Add(this.OrderItemsGrid, 0, 6);
             this.tableLayoutMain.Controls.Add(this.btnAdd, 1, 4);
             this.tableLayoutMain.Controls.Add(this.btnCancel, 2, 4);
-            this.tableLayoutMain.Controls.Add(this.btnProdSave, 3, 4);
             this.tableLayoutMain.Controls.Add(this.tbxTotalPrice, 3, 3);
             this.tableLayoutMain.Controls.Add(this.lbTotalPrice, 2, 3);
+            this.tableLayoutMain.Controls.Add(this.btnProdSave, 3, 4);
             this.tableLayoutMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutMain.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutMain.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tableLayoutMain.Name = "tableLayoutMain";
             this.tableLayoutMain.RowCount = 7;
             this.tableLayoutMain.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutMain.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 29F));
-            this.tableLayoutMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 27F));
-            this.tableLayoutMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 2F));
             this.tableLayoutMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24F));
-            this.tableLayoutMain.Size = new System.Drawing.Size(800, 450);
+            this.tableLayoutMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24F));
+            this.tableLayoutMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tableLayoutMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 2F));
+            this.tableLayoutMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
+            this.tableLayoutMain.Size = new System.Drawing.Size(870, 562);
             this.tableLayoutMain.TabIndex = 2;
             // 
             // cbxOrderItemStatus
             // 
             this.cbxOrderItemStatus.BackColor = System.Drawing.SystemColors.Info;
             this.cbxOrderItemStatus.FormattingEnabled = true;
-            this.cbxOrderItemStatus.Location = new System.Drawing.Point(708, 126);
+            this.cbxOrderItemStatus.Location = new System.Drawing.Point(796, 102);
+            this.cbxOrderItemStatus.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.cbxOrderItemStatus.Name = "cbxOrderItemStatus";
-            this.cbxOrderItemStatus.Size = new System.Drawing.Size(89, 24);
+            this.cbxOrderItemStatus.Size = new System.Drawing.Size(68, 21);
             this.cbxOrderItemStatus.TabIndex = 3;
             // 
             // tbxUnitPrice
@@ -113,17 +115,19 @@ namespace MyManagementApp.ChildForms
             this.tbxUnitPrice.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tbxUnitPrice.BackColor = System.Drawing.SystemColors.Info;
-            this.tbxUnitPrice.Location = new System.Drawing.Point(598, 126);
+            this.tbxUnitPrice.Location = new System.Drawing.Point(720, 102);
+            this.tbxUnitPrice.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tbxUnitPrice.Name = "tbxUnitPrice";
-            this.tbxUnitPrice.Size = new System.Drawing.Size(104, 22);
+            this.tbxUnitPrice.Size = new System.Drawing.Size(72, 20);
             this.tbxUnitPrice.TabIndex = 16;
             // 
             // lbUnitPrice
             // 
             this.lbUnitPrice.AutoSize = true;
-            this.lbUnitPrice.Location = new System.Drawing.Point(598, 106);
+            this.lbUnitPrice.Location = new System.Drawing.Point(720, 85);
+            this.lbUnitPrice.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbUnitPrice.Name = "lbUnitPrice";
-            this.lbUnitPrice.Size = new System.Drawing.Size(69, 17);
+            this.lbUnitPrice.Size = new System.Drawing.Size(60, 15);
             this.lbUnitPrice.TabIndex = 19;
             this.lbUnitPrice.Text = "Unit Price";
             // 
@@ -131,18 +135,20 @@ namespace MyManagementApp.ChildForms
             // 
             this.lbQtyOrdered.AutoSize = true;
             this.lbQtyOrdered.BackColor = System.Drawing.Color.Transparent;
-            this.lbQtyOrdered.Location = new System.Drawing.Point(497, 106);
+            this.lbQtyOrdered.Location = new System.Drawing.Point(644, 85);
+            this.lbQtyOrdered.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbQtyOrdered.Name = "lbQtyOrdered";
-            this.lbQtyOrdered.Size = new System.Drawing.Size(30, 17);
+            this.lbQtyOrdered.Size = new System.Drawing.Size(24, 15);
             this.lbQtyOrdered.TabIndex = 18;
             this.lbQtyOrdered.Text = "Qty";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(3, 106);
+            this.label1.Location = new System.Drawing.Point(2, 85);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(46, 17);
+            this.label1.Size = new System.Drawing.Size(40, 15);
             this.label1.TabIndex = 16;
             this.label1.Text = "Brand";
             // 
@@ -152,10 +158,10 @@ namespace MyManagementApp.ChildForms
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tbxOrderPanel.ColumnCount = 4;
             this.tableLayoutMain.SetColumnSpan(this.tbxOrderPanel, 4);
-            this.tbxOrderPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-            this.tbxOrderPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
+            this.tbxOrderPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 75F));
+            this.tbxOrderPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 75F));
             this.tbxOrderPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tbxOrderPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
+            this.tbxOrderPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 75F));
             this.tbxOrderPanel.Controls.Add(this.tbxItemDescription, 2, 3);
             this.tbxOrderPanel.Controls.Add(this.tbxItem, 0, 3);
             this.tbxOrderPanel.Controls.Add(this.lbOrderStatus, 3, 0);
@@ -168,15 +174,15 @@ namespace MyManagementApp.ChildForms
             this.tbxOrderPanel.Controls.Add(this.lbCustomer, 1, 0);
             this.tbxOrderPanel.Controls.Add(this.tbxCustomerDescription, 2, 1);
             this.tbxOrderPanel.Controls.Add(this.tbxCustomer, 1, 1);
-            this.tbxOrderPanel.Location = new System.Drawing.Point(0, 3);
-            this.tbxOrderPanel.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
+            this.tbxOrderPanel.Location = new System.Drawing.Point(0, 2);
+            this.tbxOrderPanel.Margin = new System.Windows.Forms.Padding(0, 2, 0, 2);
             this.tbxOrderPanel.Name = "tbxOrderPanel";
             this.tbxOrderPanel.RowCount = 4;
-            this.tbxOrderPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tbxOrderPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tbxOrderPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tbxOrderPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tbxOrderPanel.Size = new System.Drawing.Size(800, 100);
+            this.tbxOrderPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 16F));
+            this.tbxOrderPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24F));
+            this.tbxOrderPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 16F));
+            this.tbxOrderPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 16F));
+            this.tbxOrderPanel.Size = new System.Drawing.Size(870, 81);
             this.tbxOrderPanel.TabIndex = 0;
             // 
             // tbxItemDescription
@@ -184,9 +190,10 @@ namespace MyManagementApp.ChildForms
             this.tbxItemDescription.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tbxItemDescription.BackColor = System.Drawing.SystemColors.Info;
-            this.tbxItemDescription.Location = new System.Drawing.Point(203, 73);
+            this.tbxItemDescription.Location = new System.Drawing.Point(152, 58);
+            this.tbxItemDescription.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tbxItemDescription.Name = "tbxItemDescription";
-            this.tbxItemDescription.Size = new System.Drawing.Size(494, 22);
+            this.tbxItemDescription.Size = new System.Drawing.Size(641, 20);
             this.tbxItemDescription.TabIndex = 15;
             // 
             // tbxItem
@@ -194,16 +201,18 @@ namespace MyManagementApp.ChildForms
             this.tbxItem.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tbxItem.BackColor = System.Drawing.SystemColors.Info;
-            this.tbxItem.Location = new System.Drawing.Point(103, 73);
+            this.tbxItem.Location = new System.Drawing.Point(77, 58);
+            this.tbxItem.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tbxItem.Name = "tbxItem";
-            this.tbxItem.Size = new System.Drawing.Size(94, 22);
+            this.tbxItem.Size = new System.Drawing.Size(71, 20);
             this.tbxItem.TabIndex = 14;
             // 
             // lbOrderStatus
             // 
-            this.lbOrderStatus.Location = new System.Drawing.Point(703, 0);
+            this.lbOrderStatus.Location = new System.Drawing.Point(797, 0);
+            this.lbOrderStatus.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbOrderStatus.Name = "lbOrderStatus";
-            this.lbOrderStatus.Size = new System.Drawing.Size(94, 17);
+            this.lbOrderStatus.Size = new System.Drawing.Size(70, 14);
             this.lbOrderStatus.TabIndex = 7;
             this.lbOrderStatus.Text = "Status";
             // 
@@ -213,9 +222,10 @@ namespace MyManagementApp.ChildForms
             this.tbxOrderID.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tbxOrderID.BackColor = System.Drawing.SystemColors.Info;
-            this.tbxOrderID.Location = new System.Drawing.Point(3, 23);
+            this.tbxOrderID.Location = new System.Drawing.Point(2, 18);
+            this.tbxOrderID.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tbxOrderID.Name = "tbxOrderID";
-            this.tbxOrderID.Size = new System.Drawing.Size(94, 22);
+            this.tbxOrderID.Size = new System.Drawing.Size(71, 20);
             this.tbxOrderID.TabIndex = 0;
             this.tbxOrderID.Tag = "";
             // 
@@ -223,17 +233,19 @@ namespace MyManagementApp.ChildForms
             // 
             this.cbxOrderStatus.BackColor = System.Drawing.SystemColors.Info;
             this.cbxOrderStatus.FormattingEnabled = true;
-            this.cbxOrderStatus.Location = new System.Drawing.Point(703, 23);
+            this.cbxOrderStatus.Location = new System.Drawing.Point(797, 18);
+            this.cbxOrderStatus.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.cbxOrderStatus.Name = "cbxOrderStatus";
-            this.cbxOrderStatus.Size = new System.Drawing.Size(94, 24);
+            this.cbxOrderStatus.Size = new System.Drawing.Size(71, 21);
             this.cbxOrderStatus.TabIndex = 2;
             // 
             // OrderID
             // 
             this.OrderID.AutoSize = true;
-            this.OrderID.Location = new System.Drawing.Point(3, 0);
+            this.OrderID.Location = new System.Drawing.Point(2, 0);
+            this.OrderID.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.OrderID.Name = "OrderID";
-            this.OrderID.Size = new System.Drawing.Size(45, 17);
+            this.OrderID.Size = new System.Drawing.Size(38, 15);
             this.OrderID.TabIndex = 6;
             this.OrderID.Text = "Order";
             // 
@@ -243,35 +255,39 @@ namespace MyManagementApp.ChildForms
             this.tbxLine.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tbxLine.BackColor = System.Drawing.SystemColors.Window;
-            this.tbxLine.Location = new System.Drawing.Point(3, 73);
+            this.tbxLine.Location = new System.Drawing.Point(2, 58);
+            this.tbxLine.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tbxLine.Name = "tbxLine";
-            this.tbxLine.Size = new System.Drawing.Size(94, 22);
+            this.tbxLine.Size = new System.Drawing.Size(71, 20);
             this.tbxLine.TabIndex = 3;
             this.tbxLine.Tag = "";
             // 
             // lbLine
             // 
             this.lbLine.AutoSize = true;
-            this.lbLine.Location = new System.Drawing.Point(3, 50);
+            this.lbLine.Location = new System.Drawing.Point(2, 40);
+            this.lbLine.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbLine.Name = "lbLine";
-            this.lbLine.Size = new System.Drawing.Size(35, 17);
+            this.lbLine.Size = new System.Drawing.Size(31, 15);
             this.lbLine.TabIndex = 8;
             this.lbLine.Text = "Line";
             // 
             // lbltem
             // 
             this.lbltem.AutoSize = true;
-            this.lbltem.Location = new System.Drawing.Point(103, 50);
+            this.lbltem.Location = new System.Drawing.Point(77, 40);
+            this.lbltem.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbltem.Name = "lbltem";
-            this.lbltem.Size = new System.Drawing.Size(34, 17);
+            this.lbltem.Size = new System.Drawing.Size(31, 15);
             this.lbltem.TabIndex = 10;
             this.lbltem.Text = "Item";
             // 
             // lbCustomer
             // 
-            this.lbCustomer.Location = new System.Drawing.Point(103, 0);
+            this.lbCustomer.Location = new System.Drawing.Point(77, 0);
+            this.lbCustomer.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbCustomer.Name = "lbCustomer";
-            this.lbCustomer.Size = new System.Drawing.Size(94, 17);
+            this.lbCustomer.Size = new System.Drawing.Size(70, 14);
             this.lbCustomer.TabIndex = 4;
             this.lbCustomer.Text = "Customer";
             // 
@@ -280,9 +296,10 @@ namespace MyManagementApp.ChildForms
             this.tbxCustomerDescription.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tbxCustomerDescription.BackColor = System.Drawing.SystemColors.Info;
-            this.tbxCustomerDescription.Location = new System.Drawing.Point(203, 23);
+            this.tbxCustomerDescription.Location = new System.Drawing.Point(152, 18);
+            this.tbxCustomerDescription.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tbxCustomerDescription.Name = "tbxCustomerDescription";
-            this.tbxCustomerDescription.Size = new System.Drawing.Size(494, 22);
+            this.tbxCustomerDescription.Size = new System.Drawing.Size(641, 20);
             this.tbxCustomerDescription.TabIndex = 1;
             // 
             // tbxCustomer
@@ -291,9 +308,10 @@ namespace MyManagementApp.ChildForms
             this.tbxCustomer.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tbxCustomer.BackColor = System.Drawing.SystemColors.Info;
-            this.tbxCustomer.Location = new System.Drawing.Point(103, 23);
+            this.tbxCustomer.Location = new System.Drawing.Point(77, 18);
+            this.tbxCustomer.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tbxCustomer.Name = "tbxCustomer";
-            this.tbxCustomer.Size = new System.Drawing.Size(94, 22);
+            this.tbxCustomer.Size = new System.Drawing.Size(71, 20);
             this.tbxCustomer.TabIndex = 12;
             this.tbxCustomer.Tag = "";
             // 
@@ -301,17 +319,19 @@ namespace MyManagementApp.ChildForms
             // 
             this.tbxProdPrice.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbxProdPrice.Location = new System.Drawing.Point(3, 126);
+            this.tbxProdPrice.Location = new System.Drawing.Point(2, 102);
+            this.tbxProdPrice.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tbxProdPrice.Name = "tbxProdPrice";
-            this.tbxProdPrice.Size = new System.Drawing.Size(488, 22);
+            this.tbxProdPrice.Size = new System.Drawing.Size(638, 20);
             this.tbxProdPrice.TabIndex = 4;
             // 
             // lbItemStatus
             // 
             this.lbItemStatus.AutoSize = true;
-            this.lbItemStatus.Location = new System.Drawing.Point(708, 106);
+            this.lbItemStatus.Location = new System.Drawing.Point(796, 85);
+            this.lbItemStatus.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbItemStatus.Name = "lbItemStatus";
-            this.lbItemStatus.Size = new System.Drawing.Size(48, 17);
+            this.lbItemStatus.Size = new System.Drawing.Size(41, 15);
             this.lbItemStatus.TabIndex = 17;
             this.lbItemStatus.Text = "Status";
             // 
@@ -320,9 +340,10 @@ namespace MyManagementApp.ChildForms
             this.tbxQty.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tbxQty.BackColor = System.Drawing.SystemColors.Info;
-            this.tbxQty.Location = new System.Drawing.Point(497, 126);
+            this.tbxQty.Location = new System.Drawing.Point(644, 102);
+            this.tbxQty.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tbxQty.Name = "tbxQty";
-            this.tbxQty.Size = new System.Drawing.Size(95, 22);
+            this.tbxQty.Size = new System.Drawing.Size(72, 20);
             this.tbxQty.TabIndex = 14;
             // 
             // OrderItemsGrid
@@ -332,7 +353,8 @@ namespace MyManagementApp.ChildForms
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tableLayoutMain.SetColumnSpan(this.OrderItemsGrid, 4);
             this.OrderItemsGrid.GroupByCaption = "Drag a column header here to group by that column";
-            this.OrderItemsGrid.Location = new System.Drawing.Point(3, 214);
+            this.OrderItemsGrid.Location = new System.Drawing.Point(2, 182);
+            this.OrderItemsGrid.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.OrderItemsGrid.Name = "OrderItemsGrid";
             this.OrderItemsGrid.PreviewInfo.Location = new System.Drawing.Point(0, 0);
             this.OrderItemsGrid.PreviewInfo.Size = new System.Drawing.Size(0, 0);
@@ -341,7 +363,7 @@ namespace MyManagementApp.ChildForms
             this.OrderItemsGrid.PrintInfo.MeasurementPrinterName = null;
             this.OrderItemsGrid.PrintInfo.PageSettings = ((System.Drawing.Printing.PageSettings)(resources.GetObject("OrderItemsGrid.PrintInfo.PageSettings")));
             this.OrderItemsGrid.PropBag = resources.GetString("OrderItemsGrid.PropBag");
-            this.OrderItemsGrid.Size = new System.Drawing.Size(794, 233);
+            this.OrderItemsGrid.Size = new System.Drawing.Size(866, 378);
             this.OrderItemsGrid.TabIndex = 15;
             this.OrderItemsGrid.UseCompatibleTextRendering = false;
             // 
@@ -349,10 +371,10 @@ namespace MyManagementApp.ChildForms
             // 
             this.btnAdd.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAdd.Location = new System.Drawing.Point(497, 184);
-            this.btnAdd.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnAdd.Location = new System.Drawing.Point(644, 150);
+            this.btnAdd.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(95, 23);
+            this.btnAdd.Size = new System.Drawing.Size(72, 26);
             this.btnAdd.TabIndex = 1;
             this.btnAdd.Text = "Add";
             this.btnAdd.UseVisualStyleBackColor = true;
@@ -361,24 +383,13 @@ namespace MyManagementApp.ChildForms
             // 
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCancel.Location = new System.Drawing.Point(598, 184);
-            this.btnCancel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnCancel.Location = new System.Drawing.Point(720, 150);
+            this.btnCancel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(104, 23);
+            this.btnCancel.Size = new System.Drawing.Size(72, 26);
             this.btnCancel.TabIndex = 2;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
-            // 
-            // btnProdSave
-            // 
-            this.btnProdSave.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnProdSave.Location = new System.Drawing.Point(708, 185);
-            this.btnProdSave.Name = "btnProdSave";
-            this.btnProdSave.Size = new System.Drawing.Size(89, 21);
-            this.btnProdSave.TabIndex = 3;
-            this.btnProdSave.Text = "Save";
-            this.btnProdSave.UseVisualStyleBackColor = true;
             // 
             // tbxTotalPrice
             // 
@@ -387,27 +398,43 @@ namespace MyManagementApp.ChildForms
             this.tbxTotalPrice.BackColor = System.Drawing.SystemColors.Info;
             this.tbxTotalPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbxTotalPrice.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.tbxTotalPrice.Location = new System.Drawing.Point(708, 155);
+            this.tbxTotalPrice.Location = new System.Drawing.Point(796, 126);
+            this.tbxTotalPrice.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tbxTotalPrice.Name = "tbxTotalPrice";
-            this.tbxTotalPrice.Size = new System.Drawing.Size(89, 22);
+            this.tbxTotalPrice.Size = new System.Drawing.Size(72, 22);
             this.tbxTotalPrice.TabIndex = 23;
             // 
             // lbTotalPrice
             // 
             this.lbTotalPrice.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lbTotalPrice.AutoSize = true;
-            this.lbTotalPrice.Location = new System.Drawing.Point(626, 158);
+            this.lbTotalPrice.Location = new System.Drawing.Point(727, 128);
+            this.lbTotalPrice.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbTotalPrice.Name = "lbTotalPrice";
-            this.lbTotalPrice.Size = new System.Drawing.Size(76, 17);
+            this.lbTotalPrice.Size = new System.Drawing.Size(65, 15);
             this.lbTotalPrice.TabIndex = 21;
             this.lbTotalPrice.Text = "Total Price";
             // 
+            // btnProdSave
+            // 
+            this.btnProdSave.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnProdSave.Location = new System.Drawing.Point(796, 150);
+            this.btnProdSave.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnProdSave.Name = "btnProdSave";
+            this.btnProdSave.Size = new System.Drawing.Size(72, 25);
+            this.btnProdSave.TabIndex = 3;
+            this.btnProdSave.Text = "Save";
+            this.btnProdSave.UseVisualStyleBackColor = true;
+            // 
             // OrdersForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(870, 562);
             this.Controls.Add(this.tableLayoutMain);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.MinimumSize = new System.Drawing.Size(618, 413);
             this.Name = "OrdersForm";
             this.Text = "OrdersForm";
             this.Shown += new System.EventHandler(this.OrdersForm_Shown);
