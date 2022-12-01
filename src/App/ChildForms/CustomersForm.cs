@@ -9,6 +9,7 @@ using MyManagementApp.Data.Repositories;
 using MyManagementApp.Domain;
 using MyManagementApp.Domain.Core;
 using MyManagementApp.Domain.Enums;
+using TestandoComponentes.Extensions;
 
 namespace MyManagementApp.ChildForms
 {
@@ -76,7 +77,7 @@ namespace MyManagementApp.ChildForms
 
                 if(!r.Success)
                 {
-                    NotifyError(r);
+                    this.NotifyError(r);
                     return;
                 }                 
             }
@@ -88,7 +89,7 @@ namespace MyManagementApp.ChildForms
 
                 if (!r.Success)
                 {
-                    NotifyError(r);
+                    this.NotifyError(r);
                     return;
                 }
             }
@@ -107,7 +108,7 @@ namespace MyManagementApp.ChildForms
             var r = _customerAppService.DeleteCustomer(id);
             if (!r.Success)
             {
-                NotifyError(r);
+                this.NotifyError(r);
                 return;
             }
 
@@ -262,28 +263,6 @@ namespace MyManagementApp.ChildForms
             EnabledDisabledBtn();
         }
 
-
-
-        // notifications
-        private void NotifyError()
-        {
-            NotifyError(Result.Factory.False());
-        }
-        private void NotifyError(Result r)
-        {
-
-            if (r.Success)
-                return;
-
-            var message = r.Messages.Any() 
-                ? "Some information probably is missing. Verify and try again" 
-                        + Environment.NewLine + "   - "
-                        + string.Join(Environment.NewLine + "   - ", r.Messages)
-                : "Some information probably is missing. Verify and try again";
-            string caption = "Warning";
-            DialogResult result;
-            result = MessageBox.Show(message, caption);
-        }
         #endregion
     }
 

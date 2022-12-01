@@ -8,6 +8,7 @@ using MyManagementApp.Domain;
 using MyManagementApp.Domain.Core;
 using MyManagementApp.Application.Services;
 using System.Linq;
+using TestandoComponentes.Extensions;
 
 namespace MyManagementApp.ChildForms
 
@@ -82,7 +83,7 @@ namespace MyManagementApp.ChildForms
 
                 if (!r.Success)
                 {
-                    NotifyError(r);
+                    this.NotifyError(r);
                     return;
                 }
             }
@@ -94,7 +95,7 @@ namespace MyManagementApp.ChildForms
 
                 if (!r.Success)
                 {
-                    NotifyError(r);
+                    this.NotifyError(r);
                     return;
                 }
             }
@@ -117,7 +118,7 @@ namespace MyManagementApp.ChildForms
             var r = _productAppService.DeleteProduct(id);
             if (!r.Success)
             {
-                NotifyError(r);
+                this.NotifyError(r);
                 return;
             }
 
@@ -302,31 +303,9 @@ namespace MyManagementApp.ChildForms
             _editing = true;
             EnabledDisabledBtn();
         }
-
-
-        // notifications
-
-        private void NotifyError()
-        {
-            NotifyError(Result.Factory.False());
-        }
-        private void NotifyError(Result r)
-        {
-
-            if (r.Success)
-                return;
-
-            var message = r.Messages.Any()
-                ? "Some information probably is missing. Verify and try again"
-                        + Environment.NewLine + "   - "
-                        + string.Join(Environment.NewLine + "   - ", r.Messages)
-                : "Some information probably is missing. Verify and try again";
-            string caption = "Warning";
-            DialogResult result;
-            result = MessageBox.Show(message, caption);
-        }
-        #endregion    }
+        #endregion    
     }
+    
 }
 
       

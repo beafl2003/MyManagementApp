@@ -1,12 +1,30 @@
 ﻿using MyManagementApp.Domain;
 using System;
 using System.Data;
-
+using Dapper;
 namespace MyManagementApp.Data.Repositories
 {
     public class CustomerRepository
     {
         public Customer GetCustomerById(Guid id)
+        {
+
+            var dbConnection = ConnectionProvider.GetConnection();
+
+            var sql = $@"
+            SELECT id, code as customerCode, name as customerName, active FROM Customers
+	            WHERE id = @id;";
+
+            var prm = new { Id = id, Teste = "" };
+            var customer = dbConnection.QueryFirstOrDefault<Customer>(sql, prm);
+
+            dbConnection.Dispose();
+            dbConnection = null;
+
+            return customer;
+
+        }
+        public Customer GetCustomerById2(Guid id)
         {
 
             var dbConnection = ConnectionProvider.GetConnection();
@@ -52,7 +70,26 @@ namespace MyManagementApp.Data.Repositories
             return customer;
 
         }
+
         public bool InsertDatabase(Customer customer)
+        {
+            var dbConnection = ConnectionProvider.GetConnection();
+            var sql = $@"
+                INSERT INTO Customers (id, code, [name], active) Values (@id, @customerCode, @customerName, @active);";
+            var rowsAffected = dbConnection.Execute(sql, customer);
+
+            if (dbConnection.State == ConnectionState.Open)
+                dbConnection.Close();
+
+            dbConnection.Dispose();
+            dbConnection = null;
+
+            if (rowsAffected > 0)
+                return true;
+            else
+                return false;
+        }
+        public bool InsertDatabase2(Customer customer)
         {
             var dbConnection = ConnectionProvider.GetConnection();
             dbConnection.Open();
