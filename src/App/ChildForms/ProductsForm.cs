@@ -17,7 +17,7 @@ namespace MyManagementApp.ChildForms
     {
 
         #region config
-        private readonly string _server = @"ANNA-BEATRIZ\SQLEXPRESS";
+        //private readonly string _server = @"ANNA-BEATRIZ\SQLEXPRESS";
         #endregion
 
         #region Presentation

@@ -1,10 +1,8 @@
 ﻿using MyManagementApp.Domain.Core;
+using MyManagementApp.Domain.Enums;
 using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using MyManagementApp.Data.Repositories;
 
 namespace MyManagementApp.Application.Services
 {
@@ -24,7 +22,7 @@ namespace MyManagementApp.Application.Services
 
         #region methods
 
-
+        // Load from database
         public DataTable LoadFromDatabase()
         {
             return _orderRepository.LoadFromDatabase();
@@ -51,7 +49,48 @@ namespace MyManagementApp.Application.Services
 
 
         // update order
+
+        public Result UpdateOrder(int orderNumber, Guid customerID, OrderStatusEnum orderStatus)
+        {
+            // Read
+            var order = _orderRepository.GetOrderByNumber(orderNumber);
+
+            if (order == null)
+                return Result.Factory.False("Order not found");
+
+            // Update order
+
+            order.OrderNumber = orderNumber;
+            order.CustomerID = customerID;
+            order.OrderStatus = orderStatus;
+
+            var r = order.IsValid();
+            if (!r.Success)
+                return r;
+
+            _orderRepository.UpdateFromdatabase(order);
+
+            return Result.Factory.True(); 
+
+        }
+
+
+
         // delete order
+
+        public Result DeleteOrder(int orderNumber)
+        {
+            //Read
+            var order = _orderRepository.GetOrderByNumber(orderNumber);
+
+            if (order == null)
+                return Result.Factory.False("Order not found");
+
+            _orderRepository.DeleteFromDataBase(order);
+
+            return Result.Factory.True();
+
+        }
 
         #endregion
     }

@@ -25,7 +25,7 @@ namespace MyManagementApp.ChildForms
         private bool _newItem;
         private bool _loading;
         private bool _filling;
-        private int _currentId;
+        private int _currentOrderNum;
 
         private readonly OrdersAppService _orderAppService;
 
@@ -46,7 +46,7 @@ namespace MyManagementApp.ChildForms
 
         }
 
-  
+
         private void OrderItemsGrid_RowColChange(object sender, C1.Win.C1TrueDBGrid.RowColChangeEventArgs e)
         {
             var currentRow = OrderItemsGrid.Row;
@@ -57,22 +57,19 @@ namespace MyManagementApp.ChildForms
             FillFields(row);
         }
 
-
-        #endregion
-
         private void OrdersForm_Shown(object sender, EventArgs e)
         {
-             LoadData();
+            LoadData();
             //EnabledDisabledBtn();
         }
 
         private void LoadData()
         {
-           
+
             var customersTable = _orderAppService.LoadFromDatabase();
             OrderItemsGrid.SetDataBinding(customersTable, null, false);
 
-         
+
         }
 
         // fill control
@@ -80,7 +77,7 @@ namespace MyManagementApp.ChildForms
         {
             _filling = true;
 
-            _currentId = row.Field<int>("OrderNumber");
+            _currentOrderNum = row.Field<int>("OrderNumber");
 
             var OrderNumber = row.Field<int>("OrderNumber").ToString();
             var statusOrder = row.Field<string>("OrderStatus").ToOrderStatusEnum();
@@ -125,27 +122,60 @@ namespace MyManagementApp.ChildForms
             LoadData();
         }
 
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+
+            var customerId = Guid.Parse("0B949210-2822-48CB-8F1E-36B1825A67AF");
+            if (_newItem)
+            {
+                var r = _orderAppService.NewOrder(customerId);
+
+                if (!r.Success)
+                {
+                    this.NotifyError(r);
+                    return;
+                }
+            }
+            else
+            {
+                var customerID = _currentOrderNum;
+                //var r = _orderAppService.UpdateOrder(tbxOrderID,)
+
+                // int orderNumber, Guid customerID, OrderStatusEnum orderStatus
+
+            }
+        }
+
+
         #endregion
-    }
 
-    public static class MyExtension
-    {
-        public static string ToDoubleString2(int valorInteiro)
+        #region Extension Tests
+        public static class MyExtension
         {
-            // 100
-            // "100"
-            // 100.0
-            // "100.00"
-            return double.Parse(valorInteiro.ToString()).ToString();
+            public static string ToDoubleString2( int valorInteiro)
+            {
+                // 100
+                // "100"
+                // 100.0
+                // "100.00"
+                return double.Parse(valorInteiro.ToString()).ToString();
+
+            }
+            public static string ToDoubleString (int valorInteiro)
+            {
+                // 100
+                // "100"
+                // 100.0
+                // "100.00"
+                return double.Parse(valorInteiro.ToString()).ToString();
+            }
+            
 
         }
-        public static string ToDoubleString(this int valorInteiro)
-        {
-            // 100
-            // "100"
-            // 100.0
-            // "100.00"
-            return double.Parse(valorInteiro.ToString()).ToString();
-        }
+
     }
+
+    #endregion
 }
+
+#endregion

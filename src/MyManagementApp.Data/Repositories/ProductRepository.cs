@@ -154,8 +154,7 @@ namespace MyManagementApp.Data.Repositories
         }
         public DataTable LoadFromDatabase()
         {
-            var connectionString = @"Server=ANNA-BEATRIZ\SQLEXPRESS;Database=MyManagementAppDb;User Id=sa;Password=dp";
-            var dbConnection = new System.Data.SqlClient.SqlConnection(connectionString);
+            var dbConnection = ConnectionProvider.GetConnection();
             dbConnection.Open();
 
 

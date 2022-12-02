@@ -16,7 +16,7 @@
             {
                 return new DataConfig() {
                     DataBase = "MyManagementAppDb",
-                    Server = @"ANNA-BEATRIZ\SQLEXPRESS",
+                    Server = @"localhost\SQLEXPRESS",
                     User = "sa",
                     Password = "dp"                
                 };

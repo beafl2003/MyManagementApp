@@ -4,6 +4,7 @@ using MyManagementApp.Domain.Enums;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,10 +26,10 @@ public class OrderRepository
 	                WHERE
 	                OrderNumber = @OrderNumber;";
 
-        var command = new System.Data.SqlClient.SqlCommand(sql, dbConnection);
-        command.Parameters.Add(new System.Data.SqlClient.SqlParameter("@OrderNumber", OrderNumber));
+        var command = new SqlCommand(sql, dbConnection);
+        command.Parameters.Add(new SqlParameter("@OrderNumber", OrderNumber));
 
-        var adapter = new System.Data.SqlClient.SqlDataAdapter(command);
+        var adapter = new SqlDataAdapter(command);
         // dataTable
         var table = new DataTable();
         adapter.Fill(table);
@@ -101,6 +102,71 @@ public class OrderRepository
             return false;
     }
 
+    public bool UpdateFromdatabase(Order order) 
+    {
+        var dbConnection = ConnectionProvider.GetConnection();
+        dbConnection.Open();
+
+        var sql = $@"UPDATE Orders SET
+                OrderNumber = @OrderNumber,
+                Customerid = @Customerid
+                OrderStatus = @OrderStatus
+                WHERE OrderNumber = @OrderNumber;";
+
+        // command
+        var command = new SqlCommand(sql, dbConnection);
+        command.Parameters.Add(new SqlParameter("@OrderNumber", order.OrderNumber));
+        command.Parameters.Add(new SqlParameter("@Customerid", order.CustomerID));
+        command.Parameters.Add(new SqlParameter("@OrderStatus", order.OrderStatus));
+
+        var rowsAffected = command.ExecuteNonQuery();
+
+        if (dbConnection.State == ConnectionState.Open)
+            dbConnection.Close();
+
+
+        // liberação memória RAM da app..
+        dbConnection.Dispose();
+
+
+        if (rowsAffected > 0)
+            return true;
+        else
+            return false;
+
+
+    }
+
+    public bool DeleteFromDataBase(Order order)
+    {
+
+        var dbConnection = ConnectionProvider.GetConnection();
+        dbConnection.Open();
+
+        var sql = $@"
+                    DELETE FROM Orders 
+                    WHERE OrderNumber = @OrderNumber";
+
+        var command = new SqlCommand(sql, dbConnection);
+        command.Parameters.Add(new SqlParameter("@OrderNumber", order.OrderNumber));
+        var rowsAffected = command.ExecuteNonQuery();
+
+
+        if (dbConnection.State == ConnectionState.Open)
+            dbConnection.Close();
+
+
+        // liberação memória RAM da app..
+        dbConnection.Dispose();
+
+
+        if (rowsAffected > 0)
+            return true;
+        else
+            return false;
+
+    }
+
     public DataTable LoadFromDatabase()
     {
         var dbConnection = ConnectionProvider.GetConnection();
@@ -114,11 +180,11 @@ public class OrderRepository
 
                     AND Customers.id = Orders.Customerid";
 
-        var command = new System.Data.SqlClient.SqlCommand(sql, dbConnection);
+        var command = new SqlCommand(sql, dbConnection);
 
 
         // adapter
-        var adapter = new System.Data.SqlClient.SqlDataAdapter(command);
+        var adapter = new SqlDataAdapter(command);
         // dataTable
         var table = new DataTable();
         adapter.Fill(table);
@@ -134,9 +200,12 @@ public class OrderRepository
 
 
         return table;
-    
+
 
     }
+
+
+
 }
 
 
