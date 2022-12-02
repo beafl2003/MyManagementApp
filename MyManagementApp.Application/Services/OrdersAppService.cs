@@ -70,10 +70,9 @@ namespace MyManagementApp.Application.Services
 
             _orderRepository.UpdateFromdatabase(order);
 
-            return Result.Factory.True(); 
+            return Result.Factory.True();
 
         }
-
 
 
         // delete order

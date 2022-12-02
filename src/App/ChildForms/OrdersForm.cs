@@ -109,6 +109,9 @@ namespace MyManagementApp.ChildForms
 
             var customerId = Guid.Parse("0B949210-2822-48CB-8F1E-36B1825A67AF");
 
+            // Here I'm using this specific Guid, cause it will be defined in another selection form.
+            // So temporaily, it's this fixed value
+
             var r = _orderAppService.NewOrder(customerId);
             if (!r.Success)
             {
@@ -126,6 +129,9 @@ namespace MyManagementApp.ChildForms
         {
 
             var customerId = Guid.Parse("0B949210-2822-48CB-8F1E-36B1825A67AF");
+            // Here I'm using this specific Guid, cause it will be defined in another selection form.
+            // So temporaily, it's this fixed value
+
             if (_newItem)
             {
                 var r = _orderAppService.NewOrder(customerId);
