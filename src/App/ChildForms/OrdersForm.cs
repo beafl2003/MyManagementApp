@@ -26,6 +26,7 @@ namespace MyManagementApp.ChildForms
         private bool _loading;
         private bool _filling;
         private int _currentOrderNum;
+        private Guid _currentCustomerId;
 
         private readonly OrdersAppService _orderAppService;
 
@@ -78,6 +79,7 @@ namespace MyManagementApp.ChildForms
             _filling = true;
 
             _currentOrderNum = row.Field<int>("OrderNumber");
+            _currentCustomerId = Guid.Parse("0B949210-2822-48CB-8F1E-36B1825A67AF");
 
             var OrderNumber = row.Field<int>("OrderNumber").ToString();
             var statusOrder = row.Field<string>("OrderStatus").ToOrderStatusEnum();
@@ -107,7 +109,7 @@ namespace MyManagementApp.ChildForms
             // com base no retorno a gente monta o objeto order
 
 
-            var customerId = Guid.Parse("0B949210-2822-48CB-8F1E-36B1825A67AF");
+            var customerId = _currentCustomerId;
 
             // Here I'm using this specific Guid, cause it will be defined in another selection form.
             // So temporaily, it's this fixed value
@@ -128,7 +130,7 @@ namespace MyManagementApp.ChildForms
         private void btnSave_Click(object sender, EventArgs e)
         {
 
-            var customerId = Guid.Parse("0B949210-2822-48CB-8F1E-36B1825A67AF");
+            var customerId = _currentCustomerId;
             // Here I'm using this specific Guid, cause it will be defined in another selection form.
             // So temporaily, it's this fixed value
 
@@ -144,8 +146,8 @@ namespace MyManagementApp.ChildForms
             }
             else
             {
-                var customerID = _currentOrderNum;
-                //var r = _orderAppService.UpdateOrder(tbxOrderID,)
+
+                var r = _orderAppService.UpdateOrder(int.Parse(tbxOrderID.Text), customerId, (OrderStatusEnum)Enum.Parse(typeof(OrderStatusEnum),cbxOrderStatus.SelectedItem.ToString()));
 
                 // int orderNumber, Guid customerID, OrderStatusEnum orderStatus
 

@@ -45,11 +45,14 @@ public class OrderRepository
         {
             OrderNumber = row.Field<int>("OrderNumber"),
             CustomerID = row.Field<Guid>("Customerid"),
-            OrderStatus = row.Field<OrderStatusEnum>("OrderStatus"),
-            //CustomerCode = row.Field<string>("Customers.code"),
-            //CustomerName = row.Field<string>("Customers.name")
+            OrderStatus = row.Field<OrderStatusEnum>("OrderStatus")
+            //(CustomerStatusEnum)Enum.Parse(typeof(CustomerStatusEnum),
+            //cbxCustomerStatus.SelectedItem.ToString()));
 
-        };
+        //CustomerCode = row.Field<string>("Customers.code"),
+        //CustomerName = row.Field<string>("Customers.name")
+
+    };
 
         if (dbConnection.State == ConnectionState.Open)
             dbConnection.Close();
