@@ -41,18 +41,20 @@ public class OrderRepository
         // datarow
         var row = table.Rows[0];
 
+        var StatusOfTheOrder = row.Field<string>("OrderStatus");
+
         var Order = new Order()
         {
             OrderNumber = row.Field<int>("OrderNumber"),
             CustomerID = row.Field<Guid>("Customerid"),
-            OrderStatus = row.Field<OrderStatusEnum>("OrderStatus")
-            //(CustomerStatusEnum)Enum.Parse(typeof(CustomerStatusEnum),
+            OrderStatus = (OrderStatusEnum)StatusOfTheOrder.ToOrderStatusEnum()
+            //OrderStatus = row.Field<OrderStatusEnum>((int)("OrderStatus").ToOrderStatusEnum())
             //cbxCustomerStatus.SelectedItem.ToString()));
 
-        //CustomerCode = row.Field<string>("Customers.code"),
-        //CustomerName = row.Field<string>("Customers.name")
+            //CustomerCode = row.Field<string>("Customers.code"),
+            //CustomerName = row.Field<string>("Customers.name")
 
-    };
+        };
 
         if (dbConnection.State == ConnectionState.Open)
             dbConnection.Close();
@@ -70,13 +72,15 @@ public class OrderRepository
         var dbConnection = ConnectionProvider.GetConnection();
         dbConnection.Open();
 
+        string StatusOfTheOrder = order.OrderStatus.ToDataValue();
+
         var sql = $@"INSERT INTO Orders(CustomerID, OrderStatus)
                     VALUES(@id, @OrderStatus)
                     SELECT SCOPE_IDENTITY();";
 
         var command = new System.Data.SqlClient.SqlCommand(sql, dbConnection);
         command.Parameters.Add(new System.Data.SqlClient.SqlParameter("@id", order.CustomerID));
-        command.Parameters.Add(new System.Data.SqlClient.SqlParameter("@OrderStatus", order.OrderStatus.ToDataValue()));
+        command.Parameters.Add(new System.Data.SqlClient.SqlParameter("@OrderStatus", StatusOfTheOrder));
 
         // command.ExecuteNonQuery() = linhas afetadas
         // command.ExecuteReader() = ponteiro
@@ -110,19 +114,24 @@ public class OrderRepository
         var dbConnection = ConnectionProvider.GetConnection();
         dbConnection.Open();
 
+        string CustomerIDToString = order.CustomerID.ToString();
+        string StatusOfTheOrder = order.OrderStatus.ToDataValue();
+
+
         var sql = $@"UPDATE Orders SET
-                OrderNumber = @OrderNumber,
-                Customerid = @Customerid
+                Customerid = @Customerid,
                 OrderStatus = @OrderStatus
                 WHERE OrderNumber = @OrderNumber;";
 
+        
         // command
         var command = new SqlCommand(sql, dbConnection);
         command.Parameters.Add(new SqlParameter("@OrderNumber", order.OrderNumber));
-        command.Parameters.Add(new SqlParameter("@Customerid", order.CustomerID));
-        command.Parameters.Add(new SqlParameter("@OrderStatus", order.OrderStatus));
+        command.Parameters.Add(new SqlParameter("@Customerid", CustomerIDToString));
+        command.Parameters.Add(new SqlParameter("@OrderStatus", StatusOfTheOrder));
 
         var rowsAffected = command.ExecuteNonQuery();
+
 
         if (dbConnection.State == ConnectionState.Open)
             dbConnection.Close();
@@ -136,7 +145,6 @@ public class OrderRepository
             return true;
         else
             return false;
-
 
     }
 

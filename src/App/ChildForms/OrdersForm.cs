@@ -67,8 +67,8 @@ namespace MyManagementApp.ChildForms
         private void LoadData()
         {
 
-            var customersTable = _orderAppService.LoadFromDatabase();
-            OrderItemsGrid.SetDataBinding(customersTable, null, false);
+            var ordersTable = _orderAppService.LoadFromDatabase();
+            OrderItemsGrid.SetDataBinding(ordersTable, null, false);
 
 
         }
@@ -143,11 +143,27 @@ namespace MyManagementApp.ChildForms
                     this.NotifyError(r);
                     return;
                 }
+                else 
+                {
+                    LoadData();
+                }
             }
             else
             {
 
                 var r = _orderAppService.UpdateOrder(int.Parse(tbxOrderID.Text), customerId, (OrderStatusEnum)Enum.Parse(typeof(OrderStatusEnum),cbxOrderStatus.SelectedItem.ToString()));
+
+                if (!r.Success)
+                {
+                    this.NotifyError(r);
+                    return;
+   
+                }
+                else
+                {
+                    LoadData();
+                }
+
 
                 // int orderNumber, Guid customerID, OrderStatusEnum orderStatus
 
