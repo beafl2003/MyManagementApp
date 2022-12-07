@@ -41,26 +41,29 @@ namespace MyManagementApp.ChildForms
             // 
             // lbProdStatus
             // 
-            this.lbProdStatus.Location = new System.Drawing.Point(747, 0);
+            this.lbProdStatus.Location = new System.Drawing.Point(560, 0);
+            this.lbProdStatus.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbProdStatus.Name = "lbProdStatus";
-            this.lbProdStatus.Size = new System.Drawing.Size(93, 17);
+            this.lbProdStatus.Size = new System.Drawing.Size(70, 14);
             this.lbProdStatus.TabIndex = 7;
             this.lbProdStatus.Text = "Status";
             // 
             // lbProdDescription
             // 
-            this.lbProdDescription.Location = new System.Drawing.Point(103, 0);
+            this.lbProdDescription.Location = new System.Drawing.Point(77, 0);
+            this.lbProdDescription.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbProdDescription.Name = "lbProdDescription";
-            this.lbProdDescription.Size = new System.Drawing.Size(93, 17);
+            this.lbProdDescription.Size = new System.Drawing.Size(70, 14);
             this.lbProdDescription.TabIndex = 4;
             this.lbProdDescription.Text = "Description";
             // 
             // lbProdID
             // 
             this.lbProdID.AutoSize = true;
-            this.lbProdID.Location = new System.Drawing.Point(3, 0);
+            this.lbProdID.Location = new System.Drawing.Point(2, 0);
+            this.lbProdID.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbProdID.Name = "lbProdID";
-            this.lbProdID.Size = new System.Drawing.Size(74, 17);
+            this.lbProdID.Size = new System.Drawing.Size(58, 13);
             this.lbProdID.TabIndex = 6;
             this.lbProdID.Text = "Product ID";
             // 
@@ -70,10 +73,10 @@ namespace MyManagementApp.ChildForms
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tbxProdPanel.ColumnCount = 4;
             this.tableLayoutMain.SetColumnSpan(this.tbxProdPanel, 5);
-            this.tbxProdPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-            this.tbxProdPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
+            this.tbxProdPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 75F));
+            this.tbxProdPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 75F));
             this.tbxProdPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tbxProdPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
+            this.tbxProdPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 75F));
             this.tbxProdPanel.Controls.Add(this.lbProdStatus, 3, 0);
             this.tbxProdPanel.Controls.Add(this.tbxProductID, 0, 1);
             this.tbxProdPanel.Controls.Add(this.lbProdID, 0, 0);
@@ -88,11 +91,11 @@ namespace MyManagementApp.ChildForms
             this.tbxProdPanel.Margin = new System.Windows.Forms.Padding(0, 2, 0, 2);
             this.tbxProdPanel.Name = "tbxProdPanel";
             this.tbxProdPanel.RowCount = 4;
-            this.tbxProdPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tbxProdPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tbxProdPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tbxProdPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tbxProdPanel.Size = new System.Drawing.Size(844, 100);
+            this.tbxProdPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 16F));
+            this.tbxProdPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24F));
+            this.tbxProdPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 16F));
+            this.tbxProdPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 16F));
+            this.tbxProdPanel.Size = new System.Drawing.Size(633, 81);
             this.tbxProdPanel.TabIndex = 0;
             // 
             // tbxProductID
@@ -101,10 +104,10 @@ namespace MyManagementApp.ChildForms
             this.tbxProductID.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tbxProductID.BackColor = System.Drawing.SystemColors.Info;
-            this.tbxProductID.Location = new System.Drawing.Point(3, 22);
-            this.tbxProductID.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tbxProductID.Location = new System.Drawing.Point(2, 18);
+            this.tbxProductID.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tbxProductID.Name = "tbxProductID";
-            this.tbxProductID.Size = new System.Drawing.Size(94, 22);
+            this.tbxProductID.Size = new System.Drawing.Size(71, 20);
             this.tbxProductID.TabIndex = 0;
             this.tbxProductID.Tag = "";
             // 
@@ -114,28 +117,30 @@ namespace MyManagementApp.ChildForms
             this.tbxProdBrand.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tbxProdBrand.BackColor = System.Drawing.SystemColors.Window;
-            this.tbxProdBrand.Location = new System.Drawing.Point(3, 72);
-            this.tbxProdBrand.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tbxProdBrand.Location = new System.Drawing.Point(2, 58);
+            this.tbxProdBrand.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tbxProdBrand.Name = "tbxProdBrand";
-            this.tbxProdBrand.Size = new System.Drawing.Size(94, 22);
+            this.tbxProdBrand.Size = new System.Drawing.Size(71, 20);
             this.tbxProdBrand.TabIndex = 3;
             this.tbxProdBrand.Tag = "";
             // 
             // lbProdBrand
             // 
             this.lbProdBrand.AutoSize = true;
-            this.lbProdBrand.Location = new System.Drawing.Point(3, 50);
+            this.lbProdBrand.Location = new System.Drawing.Point(2, 40);
+            this.lbProdBrand.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbProdBrand.Name = "lbProdBrand";
-            this.lbProdBrand.Size = new System.Drawing.Size(46, 17);
+            this.lbProdBrand.Size = new System.Drawing.Size(35, 13);
             this.lbProdBrand.TabIndex = 8;
             this.lbProdBrand.Text = "Brand";
             // 
             // lbProdPrice
             // 
             this.lbProdPrice.AutoSize = true;
-            this.lbProdPrice.Location = new System.Drawing.Point(103, 50);
+            this.lbProdPrice.Location = new System.Drawing.Point(77, 40);
+            this.lbProdPrice.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbProdPrice.Name = "lbProdPrice";
-            this.lbProdPrice.Size = new System.Drawing.Size(40, 17);
+            this.lbProdPrice.Size = new System.Drawing.Size(31, 13);
             this.lbProdPrice.TabIndex = 10;
             this.lbProdPrice.Text = "Price";
             // 
@@ -145,40 +150,40 @@ namespace MyManagementApp.ChildForms
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tbxProdDescription.BackColor = System.Drawing.SystemColors.Info;
             this.tbxProdPanel.SetColumnSpan(this.tbxProdDescription, 2);
-            this.tbxProdDescription.Location = new System.Drawing.Point(103, 22);
-            this.tbxProdDescription.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tbxProdDescription.Location = new System.Drawing.Point(77, 18);
+            this.tbxProdDescription.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tbxProdDescription.Name = "tbxProdDescription";
-            this.tbxProdDescription.Size = new System.Drawing.Size(638, 22);
+            this.tbxProdDescription.Size = new System.Drawing.Size(479, 20);
             this.tbxProdDescription.TabIndex = 1;
             // 
             // txtProdPrice
             // 
             this.txtProdPrice.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtProdPrice.Location = new System.Drawing.Point(103, 72);
-            this.txtProdPrice.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtProdPrice.Location = new System.Drawing.Point(77, 58);
+            this.txtProdPrice.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtProdPrice.Name = "txtProdPrice";
-            this.txtProdPrice.Size = new System.Drawing.Size(94, 22);
+            this.txtProdPrice.Size = new System.Drawing.Size(71, 20);
             this.txtProdPrice.TabIndex = 4;
             // 
             // cbxProdStatus
             // 
             this.cbxProdStatus.BackColor = System.Drawing.SystemColors.Info;
             this.cbxProdStatus.FormattingEnabled = true;
-            this.cbxProdStatus.Location = new System.Drawing.Point(747, 22);
-            this.cbxProdStatus.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cbxProdStatus.Location = new System.Drawing.Point(560, 18);
+            this.cbxProdStatus.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.cbxProdStatus.Name = "cbxProdStatus";
-            this.cbxProdStatus.Size = new System.Drawing.Size(93, 24);
+            this.cbxProdStatus.Size = new System.Drawing.Size(71, 21);
             this.cbxProdStatus.TabIndex = 11;
             // 
             // btnProdSave
             // 
             this.btnProdSave.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnProdSave.Location = new System.Drawing.Point(647, 106);
-            this.btnProdSave.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnProdSave.Location = new System.Drawing.Point(485, 87);
+            this.btnProdSave.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnProdSave.Name = "btnProdSave";
-            this.btnProdSave.Size = new System.Drawing.Size(94, 23);
+            this.btnProdSave.Size = new System.Drawing.Size(71, 19);
             this.btnProdSave.TabIndex = 3;
             this.btnProdSave.Text = "Save";
             this.btnProdSave.UseVisualStyleBackColor = true;
@@ -190,8 +195,8 @@ namespace MyManagementApp.ChildForms
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tableLayoutMain.SetColumnSpan(this.ProductGridNew, 5);
             this.ProductGridNew.GroupByCaption = "Drag a column header here to group by that column";
-            this.ProductGridNew.Location = new System.Drawing.Point(3, 133);
-            this.ProductGridNew.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.ProductGridNew.Location = new System.Drawing.Point(2, 110);
+            this.ProductGridNew.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.ProductGridNew.Name = "ProductGridNew";
             this.ProductGridNew.PreviewInfo.Location = new System.Drawing.Point(0, 0);
             this.ProductGridNew.PreviewInfo.Size = new System.Drawing.Size(0, 0);
@@ -200,7 +205,7 @@ namespace MyManagementApp.ChildForms
             this.ProductGridNew.PrintInfo.MeasurementPrinterName = null;
             this.ProductGridNew.PrintInfo.PageSettings = ((System.Drawing.Printing.PageSettings)(resources.GetObject("ProductGridNew.PrintInfo.PageSettings")));
             this.ProductGridNew.PropBag = resources.GetString("ProductGridNew.PropBag");
-            this.ProductGridNew.Size = new System.Drawing.Size(838, 419);
+            this.ProductGridNew.Size = new System.Drawing.Size(629, 338);
             this.ProductGridNew.TabIndex = 5;
             this.ProductGridNew.UseCompatibleTextRendering = false;
             // 
@@ -208,10 +213,10 @@ namespace MyManagementApp.ChildForms
             // 
             this.btnAdd.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAdd.Location = new System.Drawing.Point(447, 106);
-            this.btnAdd.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnAdd.Location = new System.Drawing.Point(335, 87);
+            this.btnAdd.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(94, 23);
+            this.btnAdd.Size = new System.Drawing.Size(71, 19);
             this.btnAdd.TabIndex = 1;
             this.btnAdd.Text = "Add";
             this.btnAdd.UseVisualStyleBackColor = true;
@@ -220,10 +225,10 @@ namespace MyManagementApp.ChildForms
             // 
             this.btnDelete.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnDelete.Location = new System.Drawing.Point(747, 106);
-            this.btnDelete.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnDelete.Location = new System.Drawing.Point(560, 87);
+            this.btnDelete.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(94, 23);
+            this.btnDelete.Size = new System.Drawing.Size(71, 19);
             this.btnDelete.TabIndex = 4;
             this.btnDelete.Text = "Delete";
             this.btnDelete.UseVisualStyleBackColor = true;
@@ -232,10 +237,10 @@ namespace MyManagementApp.ChildForms
             // 
             this.tableLayoutMain.ColumnCount = 5;
             this.tableLayoutMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-            this.tableLayoutMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-            this.tableLayoutMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-            this.tableLayoutMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
+            this.tableLayoutMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 75F));
+            this.tableLayoutMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 75F));
+            this.tableLayoutMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 75F));
+            this.tableLayoutMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 75F));
             this.tableLayoutMain.Controls.Add(this.tbxProdPanel, 0, 0);
             this.tableLayoutMain.Controls.Add(this.btnAdd, 1, 1);
             this.tableLayoutMain.Controls.Add(this.btnDelete, 4, 1);
@@ -244,36 +249,36 @@ namespace MyManagementApp.ChildForms
             this.tableLayoutMain.Controls.Add(this.ProductGridNew, 0, 2);
             this.tableLayoutMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutMain.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutMain.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tableLayoutMain.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tableLayoutMain.Name = "tableLayoutMain";
             this.tableLayoutMain.RowCount = 3;
             this.tableLayoutMain.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutMain.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutMain.Size = new System.Drawing.Size(844, 554);
+            this.tableLayoutMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 16F));
+            this.tableLayoutMain.Size = new System.Drawing.Size(633, 450);
             this.tableLayoutMain.TabIndex = 0;
             // 
             // btnCancel
             // 
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCancel.Location = new System.Drawing.Point(547, 106);
-            this.btnCancel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnCancel.Location = new System.Drawing.Point(410, 87);
+            this.btnCancel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(94, 23);
+            this.btnCancel.Size = new System.Drawing.Size(71, 19);
             this.btnCancel.TabIndex = 2;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
             // 
             // ProductsForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(844, 554);
+            this.ClientSize = new System.Drawing.Size(633, 450);
             this.Controls.Add(this.tableLayoutMain);
-            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.MinimumSize = new System.Drawing.Size(818, 497);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.MinimumSize = new System.Drawing.Size(618, 411);
             this.Name = "ProductsForm";
             this.Text = "ProductsForm";
             this.tbxProdPanel.ResumeLayout(false);

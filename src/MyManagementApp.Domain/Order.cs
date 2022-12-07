@@ -30,8 +30,8 @@ namespace MyManagementApp.Domain.Core
             if (CustomerID == Guid.Empty)
                 messages.Add("CustomerId is empty");
 
-            if (!Enum.IsDefined(typeof(OrderStatusEnum), OrderStatus))
-                messages.Add("Please select a status for your order");
+            //if (!Enum.IsDefined(typeof(OrderStatusEnum), OrderStatus))
+            //    messages.Add("Please select a status for your order");
 
 
 

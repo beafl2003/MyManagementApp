@@ -3,6 +3,7 @@ using System.Data;
 using System.Drawing;
 using System.Windows.Forms;
 using MyManagementApp.Application.Services;
+using TestandoComponentes.Extensions;
 
 namespace MyManagementApp.ChildForms
 {
@@ -12,18 +13,22 @@ namespace MyManagementApp.ChildForms
         #region Presentation
         private Guid _currentId;
         private readonly CustomerAppService _customerAppService;
+        private readonly OrdersAppService _orderAppService;
 
-        
+
         public CustomerPick()
         {
             InitializeComponent();
 
             this.Shown += CustomerPick_Shown;
-            //this.CustomerGrid.RowColChange += CustomerGrid_RowColChange;
+            this.CustomerGrid.RowColChange += CustomerGrid_RowColChange;
 
+
+            _orderAppService = new OrdersAppService();
             _customerAppService = new CustomerAppService();
-
         }
+
+
 
 
 
@@ -97,13 +102,55 @@ namespace MyManagementApp.ChildForms
         {
 
 
-            //
+            _currentId = row.Field<Guid>("id");
+            var customerCode = row.Field<string>("code");
+            var customerName = row.Field<string>("name");
+            var active = row.Field<bool>("active");
+
+            tbxcustomerID.Text = customerCode;
+            tbxcustomerName.Text = customerName;
+
+
+
         }
 
+        private void CustomerGrid_Enter(object sender, C1.Win.C1TrueDBGrid.RowColChangeEventArgs e)
+        {
+            // aqui coloco a ação gerada pelo enter
 
+            var customerId = this._currentId;
+            var r = _orderAppService.NewOrder(customerId);
+            if (!r.Success)
+            {
+                //this.NotifyError(r);
+                return;
+            }
+
+        }
+
+        private void CustomerGrid_DoubleClick(object sender, EventArgs e)
+        {
+            var customerId = this._currentId;
+            var r = _orderAppService.NewOrder(customerId);
+            if (!r.Success)
+            {
+                this.NotifyError(r);
+
+            }
+            else
+            {
+                this.Close();
+                //OrdersForm.CustomerPicked = true;
+
+
+
+            }
+                
+            
+        }
+
+        #endregion
     }
-
-    #endregion
 }
 
 

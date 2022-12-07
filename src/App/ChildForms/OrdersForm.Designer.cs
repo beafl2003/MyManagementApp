@@ -116,7 +116,7 @@ namespace MyManagementApp.ChildForms
             this.cbxOrderStatus.Margin = new System.Windows.Forms.Padding(2);
             this.cbxOrderStatus.Name = "cbxOrderStatus";
             this.cbxOrderStatus.Size = new System.Drawing.Size(71, 21);
-            this.cbxOrderStatus.TabIndex = 2;
+            this.cbxOrderStatus.TabIndex = 3;
             // 
             // OrderID
             // 
@@ -144,7 +144,7 @@ namespace MyManagementApp.ChildForms
             this.tbxCustomerDescription.Margin = new System.Windows.Forms.Padding(2);
             this.tbxCustomerDescription.Name = "tbxCustomerDescription";
             this.tbxCustomerDescription.Size = new System.Drawing.Size(457, 20);
-            this.tbxCustomerDescription.TabIndex = 1;
+            this.tbxCustomerDescription.TabIndex = 2;
             // 
             // tbxCustomer
             // 
@@ -154,9 +154,8 @@ namespace MyManagementApp.ChildForms
             this.tbxCustomer.Margin = new System.Windows.Forms.Padding(2);
             this.tbxCustomer.Name = "tbxCustomer";
             this.tbxCustomer.Size = new System.Drawing.Size(71, 20);
-            this.tbxCustomer.TabIndex = 12;
+            this.tbxCustomer.TabIndex = 1;
             this.tbxCustomer.Tag = "";
-            this.tbxCustomer.Enter += new System.EventHandler(this.tbxCustomer_Enter);
             // 
             // tbxItemDescription
             // 

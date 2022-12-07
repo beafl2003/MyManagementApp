@@ -71,7 +71,7 @@ namespace MyManagementApp.ChildForms
             //EnabledDisabledBtn();
         }
 
-        private void LoadData()
+        public void LoadData()
         {
 
             var ordersTable = _orderAppService.LoadFromDatabase();
@@ -79,6 +79,11 @@ namespace MyManagementApp.ChildForms
 
 
         }
+
+
+
+  
+                        
 
         // fill control
         private void FillFields(DataRow row)
@@ -101,16 +106,10 @@ namespace MyManagementApp.ChildForms
             _filling = false;
         }
 
-   
+
 
         //Abre janela de cliente
-        private void tbxCustomer_Enter(object sender, EventArgs e)
-        {
-            var ordersForm = new CustomerPick();
-            ordersForm.Show();
 
-
-        }
 
 
 
@@ -122,30 +121,31 @@ namespace MyManagementApp.ChildForms
             var customersSearch = new CustomerPick();
             customersSearch.Show();
             customersSearch.StartPosition = FormStartPosition.CenterScreen;
-
+            LoadData();
 
             // seleção do cliente (janela de diálogo - modal)
             // com base no retorno a gente monta o objeto order
 
 
 
-            var customerId = _currentCustomerId;
+            //var customerId = _currentCustomerId;
 
-            // Here I'm using this specific Guid, cause it will be defined in another selection form.
-            // So temporaily, it's this fixed value
+            //// Here I'm using this specific Guid, cause it will be defined in another selection form.
+            //// So temporaily, it's this fixed value
 
-            var r = _orderAppService.NewOrder(customerId);
-            if (!r.Success)
-            {
-                this.NotifyError(r);
-                return;
-            }
+            //var r = _orderAppService.NewOrder(customerId);
+            //if (!r.Success)
+            //{
+            //    this.NotifyError(r);
+            //    return;
+            //}
 
 
-            _newItem = false;
-            _editing = false;
-            LoadData();
+            //_newItem = false;
+            //_editing = false;
+
         }
+
 
         private void btnSave_Click(object sender, EventArgs e)
         {
