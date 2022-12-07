@@ -37,6 +37,7 @@ namespace MyManagmentApp
             this.tsiOrders = new System.Windows.Forms.ToolStripMenuItem();
             this.myAccountToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.logoffToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsiSearchCustomers = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -48,7 +49,8 @@ namespace MyManagmentApp
             this.myAccountToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(800, 28);
+            this.menuStrip1.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
+            this.menuStrip1.Size = new System.Drawing.Size(600, 24);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -57,27 +59,28 @@ namespace MyManagmentApp
             this.consultasToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsiProducts,
             this.tsiCustomers,
-            this.tsiOrders});
+            this.tsiOrders,
+            this.tsiSearchCustomers});
             this.consultasToolStripMenuItem.Name = "consultasToolStripMenuItem";
-            this.consultasToolStripMenuItem.Size = new System.Drawing.Size(61, 24);
+            this.consultasToolStripMenuItem.Size = new System.Drawing.Size(49, 20);
             this.consultasToolStripMenuItem.Text = "Views";
             // 
             // tsiProducts
             // 
             this.tsiProducts.Name = "tsiProducts";
-            this.tsiProducts.Size = new System.Drawing.Size(161, 26);
+            this.tsiProducts.Size = new System.Drawing.Size(180, 22);
             this.tsiProducts.Text = "Products";
             // 
             // tsiCustomers
             // 
             this.tsiCustomers.Name = "tsiCustomers";
-            this.tsiCustomers.Size = new System.Drawing.Size(161, 26);
+            this.tsiCustomers.Size = new System.Drawing.Size(180, 22);
             this.tsiCustomers.Text = "Customers";
             // 
             // tsiOrders
             // 
             this.tsiOrders.Name = "tsiOrders";
-            this.tsiOrders.Size = new System.Drawing.Size(161, 26);
+            this.tsiOrders.Size = new System.Drawing.Size(180, 22);
             this.tsiOrders.Text = "Orders";
             this.tsiOrders.Click += new System.EventHandler(this.tsiOrders_Click);
             // 
@@ -86,24 +89,32 @@ namespace MyManagmentApp
             this.myAccountToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.logoffToolStripMenuItem});
             this.myAccountToolStripMenuItem.Name = "myAccountToolStripMenuItem";
-            this.myAccountToolStripMenuItem.Size = new System.Drawing.Size(101, 24);
+            this.myAccountToolStripMenuItem.Size = new System.Drawing.Size(84, 20);
             this.myAccountToolStripMenuItem.Text = "My Account";
             // 
             // logoffToolStripMenuItem
             // 
             this.logoffToolStripMenuItem.Name = "logoffToolStripMenuItem";
-            this.logoffToolStripMenuItem.Size = new System.Drawing.Size(142, 26);
+            this.logoffToolStripMenuItem.Size = new System.Drawing.Size(114, 22);
             this.logoffToolStripMenuItem.Text = "Log-off";
+            // 
+            // tsiSearchCustomers
+            // 
+            this.tsiSearchCustomers.Name = "tsiSearchCustomers";
+            this.tsiSearchCustomers.Size = new System.Drawing.Size(180, 22);
+            this.tsiSearchCustomers.Text = "Search Customers";
+            this.tsiSearchCustomers.Click += new System.EventHandler(this.tsiSearchCustomers_Click);
             // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(600, 366);
             this.Controls.Add(this.menuStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.IsMdiContainer = true;
             this.MainMenuStrip = this.menuStrip1;
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "MainForm";
             this.Text = "MyManagementApp";
             this.menuStrip1.ResumeLayout(false);
@@ -123,6 +134,7 @@ namespace MyManagmentApp
         private System.Windows.Forms.ToolStripMenuItem myAccountToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem logoffToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem tsiOrders;
+        private System.Windows.Forms.ToolStripMenuItem tsiSearchCustomers;
     }
 }
 

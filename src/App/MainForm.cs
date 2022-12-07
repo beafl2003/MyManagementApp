@@ -1,4 +1,5 @@
-﻿using MyManagementApp.Domain;
+﻿using MyManagementApp.ChildForms;
+using MyManagementApp.Domain;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -21,6 +22,7 @@ namespace MyManagmentApp
             this.tsiProducts.Click += new System.EventHandler(this.tsiProducts_Click);
             this.tsiCustomers.Click += new System.EventHandler(this.tsiCustomers_Click);
             this.tsiOrders.Click += new System.EventHandler(this.tsiOrders_Click);
+            this.tsiSearchCustomers.Click += new EventHandler(this.tsiSearchCustomers_Click);
 
             var listDeUsuarios = new List<User>
             {
@@ -57,18 +59,33 @@ namespace MyManagmentApp
 
         private void tsiOrders_Click(object sender, EventArgs e)
         {
-            
-
-              var ordersForm = new MyManagementApp.ChildForms.OrdersForm();
-              ordersForm.MdiParent = this;
-              ordersForm.StartPosition = FormStartPosition.CenterScreen;
-
-              ordersForm.Show();
 
 
-            
+            var ordersForm = new MyManagementApp.ChildForms.OrdersForm();
+            ordersForm.MdiParent = this;
+            ordersForm.StartPosition = FormStartPosition.CenterScreen;
+
+            ordersForm.Show();
+
+
+
+        }
+
+        public void tsiSearchCustomers_Click(object sender, EventArgs e)
+        {
+            var customersSearch = new CustomerPick();
+            customersSearch.MdiParent = this;
+            customersSearch.StartPosition = FormStartPosition.CenterScreen;
+
+            customersSearch.Show();
+        }
+
+        public void ClickOnTsiSearchCustomers()
+        {
+            {
+                this.tsiSearchCustomers.Click += new EventHandler(this.tsiSearchCustomers_Click);
+            }
+
         }
     }
-
-  
 }

@@ -12,6 +12,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using TestandoComponentes.Extensions;
+using TestandoComponentes;
+using MyManagmentApp;
 
 namespace MyManagementApp.ChildForms
 {
@@ -36,7 +38,6 @@ namespace MyManagementApp.ChildForms
 
             this.cbxOrderStatus.DataSource = Enum.GetValues(typeof(OrderStatusEnum));
             this.cbxOrderItemStatus.DataSource = Enum.GetValues(typeof(OrderItemStatusEnum));
-
             this.OrderItemsGrid.RowColChange += OrderItemsGrid_RowColChange;
             this.Shown += OrdersForm_Shown;
 
@@ -59,6 +60,12 @@ namespace MyManagementApp.ChildForms
         }
 
         private void OrdersForm_Shown(object sender, EventArgs e)
+        {
+            LoadData();
+            //EnabledDisabledBtn();
+        }
+
+        private void OrdersForm_Load(object sender, EventArgs e)
         {
             LoadData();
             //EnabledDisabledBtn();
@@ -94,19 +101,32 @@ namespace MyManagementApp.ChildForms
             _filling = false;
         }
 
-        private void OrdersForm_Load(object sender, EventArgs e)
+   
+
+        //Abre janela de cliente
+        private void tbxCustomer_Enter(object sender, EventArgs e)
         {
+            var ordersForm = new CustomerPick();
+            ordersForm.Show();
+
 
         }
+
+
 
 
         #region order tools
         private void BtnAdd_Click(object sender, EventArgs e)
         {
             // direto
+            var customersSearch = new CustomerPick();
+            customersSearch.Show();
+            customersSearch.StartPosition = FormStartPosition.CenterScreen;
+
 
             // seleção do cliente (janela de diálogo - modal)
             // com base no retorno a gente monta o objeto order
+
 
 
             var customerId = _currentCustomerId;

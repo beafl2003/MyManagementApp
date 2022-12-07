@@ -156,6 +156,7 @@ namespace MyManagementApp.ChildForms
             this.tbxCustomer.Size = new System.Drawing.Size(71, 20);
             this.tbxCustomer.TabIndex = 12;
             this.tbxCustomer.Tag = "";
+            this.tbxCustomer.Enter += new System.EventHandler(this.tbxCustomer_Enter);
             // 
             // tbxItemDescription
             // 
@@ -386,6 +387,7 @@ namespace MyManagementApp.ChildForms
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.ClientSize = new System.Drawing.Size(722, 562);
             this.Controls.Add(this.btnSaveItem);
             this.Controls.Add(this.btnCancelItem);
