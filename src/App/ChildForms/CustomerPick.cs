@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Windows.Forms;
 using MyManagementApp.Application.Services;
 using TestandoComponentes.Extensions;
+using MyManagementApp.ChildForms;
 
 namespace MyManagementApp.ChildForms
 {
@@ -14,6 +15,7 @@ namespace MyManagementApp.ChildForms
         private Guid _currentId;
         private readonly CustomerAppService _customerAppService;
         private readonly OrdersAppService _orderAppService;
+        private readonly OrderRepository _orderRepository;
 
 
         public CustomerPick()
@@ -26,6 +28,8 @@ namespace MyManagementApp.ChildForms
 
             _orderAppService = new OrdersAppService();
             _customerAppService = new CustomerAppService();
+            
+
         }
 
 
@@ -105,11 +109,11 @@ namespace MyManagementApp.ChildForms
             _currentId = row.Field<Guid>("id");
             var customerCode = row.Field<string>("code");
             var customerName = row.Field<string>("name");
-            var active = row.Field<bool>("active");
 
             tbxcustomerID.Text = customerCode;
             tbxcustomerName.Text = customerName;
 
+            
 
 
         }
@@ -122,10 +126,16 @@ namespace MyManagementApp.ChildForms
             var r = _orderAppService.NewOrder(customerId);
             if (!r.Success)
             {
-                //this.NotifyError(r);
-                return;
-            }
+                this.NotifyError(r);
 
+            }
+            else
+            {
+                this.Close();
+
+
+
+            }
         }
 
         private void CustomerGrid_DoubleClick(object sender, EventArgs e)
@@ -150,6 +160,36 @@ namespace MyManagementApp.ChildForms
         }
 
         #endregion
+
+        private void CustomerGrid_KeyUp(object sender, KeyEventArgs e)
+        {
+
+            if (e.KeyCode == Keys.Enter)
+            {
+                //Do something
+                //e.Handled = true;
+
+                var customerId = this._currentId;
+                var r = _orderAppService.NewOrder(customerId);
+                if (!r.Success)
+                {
+                    this.NotifyError(r);
+
+                }
+                else
+                {
+                    this.Close();
+
+
+
+                }
+            }
+        }
+
+        private void CustomerPick_FormClosing(object sender, FormClosingEventArgs e)
+        {
+
+        }
     }
 }
 

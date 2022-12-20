@@ -15,8 +15,12 @@ namespace MyManagmentApp
 {
     public partial class MainForm : Form
     {
+
+ 
+
         public MainForm()
         {
+
             InitializeComponent();
 
             this.tsiProducts.Click += new System.EventHandler(this.tsiProducts_Click);
@@ -24,12 +28,16 @@ namespace MyManagmentApp
             this.tsiOrders.Click += new System.EventHandler(this.tsiOrders_Click);
             this.tsiSearchCustomers.Click += new EventHandler(this.tsiSearchCustomers_Click);
 
+            
+
             var listDeUsuarios = new List<User>
             {
                 new User { Username = "beafl2003", Fullname="Anna Beatriz Azevedo Fidelis"},
                 new User { Username = "fl0k3rdev", Fullname = "Gustavo Henrique Coleti Ranci"},
             };
-        }
+
+          
+    }
 
 
 
@@ -78,6 +86,8 @@ namespace MyManagmentApp
             customersSearch.StartPosition = FormStartPosition.CenterScreen;
 
             customersSearch.Show();
+
+             
         }
 
         public void ClickOnTsiSearchCustomers()
@@ -87,5 +97,7 @@ namespace MyManagmentApp
             }
 
         }
+
+       
     }
 }

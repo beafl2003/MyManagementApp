@@ -28,6 +28,7 @@ namespace MyManagementApp.ChildForms
         private bool _loading;
         private bool _filling;
         private int _currentOrderNum;
+        public bool _refreshOrders;
         private Guid _currentCustomerId;
 
         private readonly OrdersAppService _orderAppService;
@@ -80,8 +81,6 @@ namespace MyManagementApp.ChildForms
 
         }
 
-
-
   
                         
 
@@ -122,6 +121,7 @@ namespace MyManagementApp.ChildForms
             customersSearch.Show();
             customersSearch.StartPosition = FormStartPosition.CenterScreen;
             LoadData();
+
 
             // seleção do cliente (janela de diálogo - modal)
             // com base no retorno a gente monta o objeto order
