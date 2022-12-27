@@ -90,7 +90,7 @@ namespace MyManagementApp.ChildForms
             _filling = true;
 
             _currentOrderNum = row.Field<int>("OrderNumber");
-            _currentCustomerId = Guid.Parse("0B949210-2822-48CB-8F1E-36B1825A67AF");
+            //_currentCustomerId = Guid.Parse("0B949210-2822-48CB-8F1E-36B1825A67AF");
 
             var OrderNumber = row.Field<int>("OrderNumber").ToString();
             var statusOrder = row.Field<string>("OrderStatus").ToOrderStatusEnum();
@@ -117,9 +117,10 @@ namespace MyManagementApp.ChildForms
         private void BtnAdd_Click(object sender, EventArgs e)
         {
             // direto
-            var customersSearch = new CustomerPick();
-            customersSearch.Show();
-            customersSearch.StartPosition = FormStartPosition.CenterScreen;
+            //var customersSearch = new CustomerPick();
+            //customersSearch.Show();
+            //customersSearch.StartPosition = FormStartPosition.CenterScreen;
+            ShowMyDialogBox();
             LoadData();
 
 
@@ -188,12 +189,29 @@ namespace MyManagementApp.ChildForms
                 // int orderNumber, Guid customerID, OrderStatusEnum orderStatus
 
             }
+
+
         }
 
 
+
+        public void ShowMyDialogBox()
+        {
+            CustomerPick customerpickDialog = new CustomerPick();
+
+            // Show testDialog as a modal dialog and determine if DialogResult = OK.
+            if (customerpickDialog.ShowDialog(this) == DialogResult.OK)
+            {
+                // Read the contents of testDialog's TextBox.
+                this._currentCustomerId = customerpickDialog._currentId;
+            }
+
+            customerpickDialog.Dispose();
+        }
+
         #endregion
 
-        #region Extension Tests
+            #region Extension Tests
         public static class MyExtension
         {
             public static string ToDoubleString2( int valorInteiro)

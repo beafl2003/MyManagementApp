@@ -12,7 +12,7 @@ namespace MyManagementApp.ChildForms
     {
 
         #region Presentation
-        private Guid _currentId;
+        public Guid _currentId;
         private readonly CustomerAppService _customerAppService;
         private readonly OrdersAppService _orderAppService;
         private readonly OrderRepository _orderRepository;
@@ -28,7 +28,7 @@ namespace MyManagementApp.ChildForms
 
             _orderAppService = new OrdersAppService();
             _customerAppService = new CustomerAppService();
-            
+
 
         }
 
@@ -113,7 +113,7 @@ namespace MyManagementApp.ChildForms
             tbxcustomerID.Text = customerCode;
             tbxcustomerName.Text = customerName;
 
-            
+
 
 
         }
@@ -155,8 +155,8 @@ namespace MyManagementApp.ChildForms
 
 
             }
-                
-            
+
+
         }
 
         #endregion
@@ -190,7 +190,9 @@ namespace MyManagementApp.ChildForms
         {
 
         }
+
     }
 }
+
 
 

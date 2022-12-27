@@ -82,7 +82,6 @@ namespace MyManagmentApp
         public void tsiSearchCustomers_Click(object sender, EventArgs e)
         {
             var customersSearch = new CustomerPick();
-            customersSearch.MdiParent = this;
             customersSearch.StartPosition = FormStartPosition.CenterScreen;
 
             customersSearch.Show();
