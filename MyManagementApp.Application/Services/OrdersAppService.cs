@@ -52,7 +52,8 @@ namespace MyManagementApp.Application.Services
 
         // update order
 
-        public Result UpdateOrder(int orderNumber, Guid customerID, OrderStatusEnum orderStatus)
+        // UpdateOrder(int orderNumber, Guid customerID, OrderStatusEnum orderStatus)
+        public Result UpdateOrder(int orderNumber, OrderStatusEnum orderStatus)
         {
             // Read
             var order = _orderRepository.GetOrderByNumber(orderNumber);
@@ -63,7 +64,6 @@ namespace MyManagementApp.Application.Services
             // Update order
 
             order.OrderNumber = orderNumber;
-            order.CustomerID = customerID;
             order.OrderStatus = orderStatus;
 
             var r = order.IsValid();

@@ -105,7 +105,7 @@ namespace MyManagementApp.ChildForms
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tbxProductID.BackColor = System.Drawing.SystemColors.Info;
             this.tbxProductID.Location = new System.Drawing.Point(2, 18);
-            this.tbxProductID.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tbxProductID.Margin = new System.Windows.Forms.Padding(2);
             this.tbxProductID.Name = "tbxProductID";
             this.tbxProductID.Size = new System.Drawing.Size(71, 20);
             this.tbxProductID.TabIndex = 0;
@@ -118,7 +118,7 @@ namespace MyManagementApp.ChildForms
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tbxProdBrand.BackColor = System.Drawing.SystemColors.Window;
             this.tbxProdBrand.Location = new System.Drawing.Point(2, 58);
-            this.tbxProdBrand.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tbxProdBrand.Margin = new System.Windows.Forms.Padding(2);
             this.tbxProdBrand.Name = "tbxProdBrand";
             this.tbxProdBrand.Size = new System.Drawing.Size(71, 20);
             this.tbxProdBrand.TabIndex = 3;
@@ -151,7 +151,7 @@ namespace MyManagementApp.ChildForms
             this.tbxProdDescription.BackColor = System.Drawing.SystemColors.Info;
             this.tbxProdPanel.SetColumnSpan(this.tbxProdDescription, 2);
             this.tbxProdDescription.Location = new System.Drawing.Point(77, 18);
-            this.tbxProdDescription.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tbxProdDescription.Margin = new System.Windows.Forms.Padding(2);
             this.tbxProdDescription.Name = "tbxProdDescription";
             this.tbxProdDescription.Size = new System.Drawing.Size(479, 20);
             this.tbxProdDescription.TabIndex = 1;
@@ -161,7 +161,7 @@ namespace MyManagementApp.ChildForms
             this.txtProdPrice.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtProdPrice.Location = new System.Drawing.Point(77, 58);
-            this.txtProdPrice.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtProdPrice.Margin = new System.Windows.Forms.Padding(2);
             this.txtProdPrice.Name = "txtProdPrice";
             this.txtProdPrice.Size = new System.Drawing.Size(71, 20);
             this.txtProdPrice.TabIndex = 4;
@@ -171,7 +171,7 @@ namespace MyManagementApp.ChildForms
             this.cbxProdStatus.BackColor = System.Drawing.SystemColors.Info;
             this.cbxProdStatus.FormattingEnabled = true;
             this.cbxProdStatus.Location = new System.Drawing.Point(560, 18);
-            this.cbxProdStatus.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cbxProdStatus.Margin = new System.Windows.Forms.Padding(2);
             this.cbxProdStatus.Name = "cbxProdStatus";
             this.cbxProdStatus.Size = new System.Drawing.Size(71, 21);
             this.cbxProdStatus.TabIndex = 11;
@@ -181,7 +181,7 @@ namespace MyManagementApp.ChildForms
             this.btnProdSave.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btnProdSave.Location = new System.Drawing.Point(485, 87);
-            this.btnProdSave.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnProdSave.Margin = new System.Windows.Forms.Padding(2);
             this.btnProdSave.Name = "btnProdSave";
             this.btnProdSave.Size = new System.Drawing.Size(71, 19);
             this.btnProdSave.TabIndex = 3;
@@ -196,7 +196,7 @@ namespace MyManagementApp.ChildForms
             this.tableLayoutMain.SetColumnSpan(this.ProductGridNew, 5);
             this.ProductGridNew.GroupByCaption = "Drag a column header here to group by that column";
             this.ProductGridNew.Location = new System.Drawing.Point(2, 110);
-            this.ProductGridNew.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ProductGridNew.Margin = new System.Windows.Forms.Padding(2);
             this.ProductGridNew.Name = "ProductGridNew";
             this.ProductGridNew.PreviewInfo.Location = new System.Drawing.Point(0, 0);
             this.ProductGridNew.PreviewInfo.Size = new System.Drawing.Size(0, 0);
@@ -214,7 +214,7 @@ namespace MyManagementApp.ChildForms
             this.btnAdd.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btnAdd.Location = new System.Drawing.Point(335, 87);
-            this.btnAdd.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnAdd.Margin = new System.Windows.Forms.Padding(2);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(71, 19);
             this.btnAdd.TabIndex = 1;
@@ -226,7 +226,7 @@ namespace MyManagementApp.ChildForms
             this.btnDelete.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btnDelete.Location = new System.Drawing.Point(560, 87);
-            this.btnDelete.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnDelete.Margin = new System.Windows.Forms.Padding(2);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(71, 19);
             this.btnDelete.TabIndex = 4;
@@ -249,7 +249,7 @@ namespace MyManagementApp.ChildForms
             this.tableLayoutMain.Controls.Add(this.ProductGridNew, 0, 2);
             this.tableLayoutMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutMain.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutMain.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tableLayoutMain.Margin = new System.Windows.Forms.Padding(2);
             this.tableLayoutMain.Name = "tableLayoutMain";
             this.tableLayoutMain.RowCount = 3;
             this.tableLayoutMain.RowStyles.Add(new System.Windows.Forms.RowStyle());
@@ -264,7 +264,7 @@ namespace MyManagementApp.ChildForms
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCancel.Location = new System.Drawing.Point(410, 87);
-            this.btnCancel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnCancel.Margin = new System.Windows.Forms.Padding(2);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(71, 19);
             this.btnCancel.TabIndex = 2;
@@ -277,7 +277,7 @@ namespace MyManagementApp.ChildForms
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(633, 450);
             this.Controls.Add(this.tableLayoutMain);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.MinimumSize = new System.Drawing.Size(618, 411);
             this.Name = "ProductsForm";
             this.Text = "ProductsForm";

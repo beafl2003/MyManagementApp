@@ -44,7 +44,7 @@ namespace MyManagementApp.ChildForms
             this.lbLine = new System.Windows.Forms.Label();
             this.lbltem = new System.Windows.Forms.Label();
             this.btnAdd = new System.Windows.Forms.Button();
-            this.btnCancel = new System.Windows.Forms.Button();
+            this.btnDelete = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.lbTotalPrice = new System.Windows.Forms.Label();
             this.tbxTotalPrice = new System.Windows.Forms.TextBox();
@@ -216,15 +216,16 @@ namespace MyManagementApp.ChildForms
             this.btnAdd.Text = "Add";
             this.btnAdd.UseVisualStyleBackColor = true;
             // 
-            // btnCancel
+            // btnDelete
             // 
-            this.btnCancel.Location = new System.Drawing.Point(547, 66);
-            this.btnCancel.Margin = new System.Windows.Forms.Padding(2);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(70, 19);
-            this.btnCancel.TabIndex = 2;
-            this.btnCancel.Text = "Cancel";
-            this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnDelete.Location = new System.Drawing.Point(547, 66);
+            this.btnDelete.Margin = new System.Windows.Forms.Padding(2);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(70, 19);
+            this.btnDelete.TabIndex = 2;
+            this.btnDelete.Text = "Delete";
+            this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // btnSave
             // 
@@ -394,7 +395,7 @@ namespace MyManagementApp.ChildForms
             this.Controls.Add(this.OrderItemsGrid);
             this.Controls.Add(this.tbxItemDescription);
             this.Controls.Add(this.btnSave);
-            this.Controls.Add(this.btnCancel);
+            this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.tbxOrderPanel);
             this.Controls.Add(this.tbxItem);
@@ -438,7 +439,7 @@ namespace MyManagementApp.ChildForms
         private System.Windows.Forms.Label lbCustomer;
         private System.Windows.Forms.TextBox tbxCustomerDescription;
         private System.Windows.Forms.Button btnAdd;
-        private System.Windows.Forms.Button btnCancel;
+        private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.TextBox tbxCustomer;
         private System.Windows.Forms.TextBox tbxUnitPrice;
         private System.Windows.Forms.Label lbUnitPrice;

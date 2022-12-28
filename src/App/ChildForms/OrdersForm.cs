@@ -90,7 +90,6 @@ namespace MyManagementApp.ChildForms
             _filling = true;
 
             _currentOrderNum = row.Field<int>("OrderNumber");
-            //_currentCustomerId = Guid.Parse("0B949210-2822-48CB-8F1E-36B1825A67AF");
 
             var OrderNumber = row.Field<int>("OrderNumber").ToString();
             var statusOrder = row.Field<string>("OrderStatus").ToOrderStatusEnum();
@@ -116,35 +115,33 @@ namespace MyManagementApp.ChildForms
         #region order tools
         private void BtnAdd_Click(object sender, EventArgs e)
         {
-            // direto
-            //var customersSearch = new CustomerPick();
-            //customersSearch.Show();
-            //customersSearch.StartPosition = FormStartPosition.CenterScreen;
+            _newItem = true;
+
             ShowMyDialogBox();
             LoadData();
 
-
             // seleção do cliente (janela de diálogo - modal)
-            // com base no retorno a gente monta o objeto order
+
+            _newItem = false;
 
 
 
-            //var customerId = _currentCustomerId;
 
-            //// Here I'm using this specific Guid, cause it will be defined in another selection form.
-            //// So temporaily, it's this fixed value
+        }
 
-            //var r = _orderAppService.NewOrder(customerId);
-            //if (!r.Success)
-            //{
-            //    this.NotifyError(r);
-            //    return;
-            //}
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            var r = _orderAppService.DeleteOrder(_currentOrderNum);
 
-
-            //_newItem = false;
-            //_editing = false;
-
+            if (!r.Success)
+            {
+                this.NotifyError(r);
+                return;
+            }
+            else
+            {
+                LoadData();
+            }
         }
 
 
@@ -172,7 +169,7 @@ namespace MyManagementApp.ChildForms
             else
             {
 
-                var r = _orderAppService.UpdateOrder(int.Parse(tbxOrderID.Text), customerId, (OrderStatusEnum)Enum.Parse(typeof(OrderStatusEnum),cbxOrderStatus.SelectedItem.ToString()));
+                var r = _orderAppService.UpdateOrder(int.Parse(tbxOrderID.Text), (OrderStatusEnum)Enum.Parse(typeof(OrderStatusEnum),cbxOrderStatus.SelectedItem.ToString()));
 
                 if (!r.Success)
                 {
@@ -234,6 +231,7 @@ namespace MyManagementApp.ChildForms
             
 
         }
+
 
     }
 
