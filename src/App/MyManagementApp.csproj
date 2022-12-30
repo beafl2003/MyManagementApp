@@ -71,6 +71,12 @@
     <Compile Include="ChildForms\OrdersForm.Designer.cs">
       <DependentUpon>OrdersForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ChildForms\OrdersPick.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ChildForms\OrdersPick.Designer.cs">
+      <DependentUpon>OrdersPick.cs</DependentUpon>
+    </Compile>
     <Compile Include="ChildForms\ProductsForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -96,6 +102,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ChildForms\OrdersForm.resx">
       <DependentUpon>OrdersForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ChildForms\OrdersPick.resx">
+      <DependentUpon>OrdersPick.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ChildForms\ProductsForm.resx">
       <DependentUpon>ProductsForm.cs</DependentUpon>

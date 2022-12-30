@@ -107,6 +107,7 @@ namespace MyManagementApp.ChildForms
             this.tbxOrderID.Size = new System.Drawing.Size(71, 20);
             this.tbxOrderID.TabIndex = 0;
             this.tbxOrderID.Tag = "";
+            this.tbxOrderID.Enter += new System.EventHandler(this.tbxOrderID_Enter);
             // 
             // cbxOrderStatus
             // 

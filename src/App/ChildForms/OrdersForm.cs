@@ -14,6 +14,7 @@ using System.Windows.Forms;
 using TestandoComponentes.Extensions;
 using TestandoComponentes;
 using MyManagmentApp;
+using TestandoComponentes.ChildForms;
 
 namespace MyManagementApp.ChildForms
 {
@@ -133,7 +134,7 @@ namespace MyManagementApp.ChildForms
         {
             _newItem = true;
 
-            ShowMyDialogBox();
+            ShowCustomerPick();
             LoadData();
 
             // seleção do cliente (janela de diálogo - modal)
@@ -207,7 +208,7 @@ namespace MyManagementApp.ChildForms
 
 
 
-        public void ShowMyDialogBox()
+        public void ShowCustomerPick()
         {
             CustomerPick customerpickDialog = new CustomerPick();
 
@@ -221,6 +222,12 @@ namespace MyManagementApp.ChildForms
             customerpickDialog.Dispose();
         }
 
+        public void ShowOrdersPick()
+        {
+            OrdersPick orderspickDialog = new OrdersPick();
+
+           // if (orderspickDialog.)
+        }
 
         #endregion
 
@@ -248,7 +255,11 @@ namespace MyManagementApp.ChildForms
 
         }
 
+        private void tbxOrderID_Enter(object sender, EventArgs e)
+        {
 
+
+        }
     }
 
     #endregion

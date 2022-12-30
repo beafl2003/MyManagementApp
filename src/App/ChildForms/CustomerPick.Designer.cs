@@ -32,9 +32,9 @@ namespace MyManagementApp.ChildForms
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CustomerPick));
             this.CustomerGrid = new C1.Win.C1TrueDBGrid.C1TrueDBGrid();
             this.ChooseCustomer = new System.Windows.Forms.Label();
-            this.tbxcustomerID = new System.Windows.Forms.TextBox();
             this.tbxcustomerName = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.tbxcustomerID = new System.Windows.Forms.TextBox();
+            this.lbPreview = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.CustomerGrid)).BeginInit();
             this.SuspendLayout();
             // 
@@ -62,21 +62,11 @@ namespace MyManagementApp.ChildForms
             // 
             this.ChooseCustomer.AutoSize = true;
             this.ChooseCustomer.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ChooseCustomer.Location = new System.Drawing.Point(-1, 9);
+            this.ChooseCustomer.Location = new System.Drawing.Point(12, 9);
             this.ChooseCustomer.Name = "ChooseCustomer";
             this.ChooseCustomer.Size = new System.Drawing.Size(171, 15);
             this.ChooseCustomer.TabIndex = 16;
             this.ChooseCustomer.Text = "Please choose your customer;";
-            // 
-            // tbxcustomerID
-            // 
-            this.tbxcustomerID.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.tbxcustomerID.BackColor = System.Drawing.SystemColors.Info;
-            this.tbxcustomerID.Location = new System.Drawing.Point(158, 34);
-            this.tbxcustomerID.Margin = new System.Windows.Forms.Padding(2);
-            this.tbxcustomerID.Name = "tbxcustomerID";
-            this.tbxcustomerID.Size = new System.Drawing.Size(54, 20);
-            this.tbxcustomerID.TabIndex = 17;
             // 
             // tbxcustomerName
             // 
@@ -88,15 +78,25 @@ namespace MyManagementApp.ChildForms
             this.tbxcustomerName.Size = new System.Drawing.Size(397, 20);
             this.tbxcustomerName.TabIndex = 18;
             // 
-            // label1
+            // tbxcustomerID
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(96, 34);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(53, 15);
-            this.label1.TabIndex = 19;
-            this.label1.Text = "Preview:";
+            this.tbxcustomerID.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.tbxcustomerID.BackColor = System.Drawing.SystemColors.Info;
+            this.tbxcustomerID.Location = new System.Drawing.Point(158, 34);
+            this.tbxcustomerID.Margin = new System.Windows.Forms.Padding(2);
+            this.tbxcustomerID.Name = "tbxcustomerID";
+            this.tbxcustomerID.Size = new System.Drawing.Size(54, 20);
+            this.tbxcustomerID.TabIndex = 17;
+            // 
+            // lbPreview
+            // 
+            this.lbPreview.AutoSize = true;
+            this.lbPreview.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbPreview.Location = new System.Drawing.Point(96, 34);
+            this.lbPreview.Name = "lbPreview";
+            this.lbPreview.Size = new System.Drawing.Size(53, 15);
+            this.lbPreview.TabIndex = 19;
+            this.lbPreview.Text = "Preview:";
             // 
             // CustomerPick
             // 
@@ -105,9 +105,10 @@ namespace MyManagementApp.ChildForms
             this.ClientSize = new System.Drawing.Size(633, 348);
             this.Controls.Add(this.tbxcustomerID);
             this.Controls.Add(this.tbxcustomerName);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.lbPreview);
             this.Controls.Add(this.ChooseCustomer);
             this.Controls.Add(this.CustomerGrid);
+            this.MaximumSize = new System.Drawing.Size(649, 387);
             this.MinimumSize = new System.Drawing.Size(649, 387);
             this.Name = "CustomerPick";
             this.Text = "CustomerPick";
@@ -123,8 +124,8 @@ namespace MyManagementApp.ChildForms
 
         private C1.Win.C1TrueDBGrid.C1TrueDBGrid CustomerGrid;
         private System.Windows.Forms.Label ChooseCustomer;
-        private System.Windows.Forms.TextBox tbxcustomerID;
         private System.Windows.Forms.TextBox tbxcustomerName;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox tbxcustomerID;
+        private System.Windows.Forms.Label lbPreview;
     }
 }
