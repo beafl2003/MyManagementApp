@@ -224,9 +224,13 @@ namespace MyManagementApp.ChildForms
 
         public void ShowOrdersPick()
         {
-            OrdersPick orderspickDialog = new OrdersPick();
 
-           // if (orderspickDialog.)
+            OrdersPick ordersPickDialog = new OrdersPick();
+
+            if (ordersPickDialog.ShowDialog(this) == DialogResult.OK)
+            {
+                this._currentOrderNum = ordersPickDialog._currentOrderNum;
+            }
         }
 
         #endregion
@@ -258,7 +262,7 @@ namespace MyManagementApp.ChildForms
         private void tbxOrderID_Enter(object sender, EventArgs e)
         {
 
-
+            ShowOrdersPick();
         }
     }
 

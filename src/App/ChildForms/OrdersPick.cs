@@ -14,12 +14,16 @@ namespace TestandoComponentes.ChildForms
     public partial class OrdersPick : Form
     {
 
+
+        public int _currentOrderNum;
+
         private readonly OrdersAppService _orderAppService;
 
         public OrdersPick()
         {
             InitializeComponent();
             this.Shown += OrdersPick_Shown;
+            _orderAppService = new OrdersAppService();
         }
 
         private void OrdersPick_Shown(object sender, EventArgs e)
