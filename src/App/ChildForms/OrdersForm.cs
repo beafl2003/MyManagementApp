@@ -58,6 +58,7 @@ namespace MyManagementApp.ChildForms
             var table = (DataTable)OrderItemsGrid.DataSource;
             var row = table.Rows[currentRow];
             FillFields(row);
+           
         }
 
         private void OrdersForm_Shown(object sender, EventArgs e)
@@ -79,12 +80,32 @@ namespace MyManagementApp.ChildForms
             OrderItemsGrid.SetDataBinding(ordersTable, null, false);
 
 
+            var rows = ordersTable.Rows.Count;
+
+            if (rows == 0)
+            
+            {
+                ClearActions();
+            };
+
         }
 
-  
-                        
+
+
 
         // fill control
+
+
+        private void ClearActions()
+        {
+
+            tbxOrderID.Clear();
+            tbxCustomer.Clear();
+            tbxCustomerDescription.Clear();
+            cbxOrderItemStatus.SelectedItem = OrderStatusEnum.Open;
+        }
+
+
         private void FillFields(DataRow row)
         {
             _filling = true;
@@ -106,11 +127,6 @@ namespace MyManagementApp.ChildForms
 
 
 
-        //Abre janela de cliente
-
-
-
-
 
         #region order tools
         private void BtnAdd_Click(object sender, EventArgs e)
@@ -123,10 +139,6 @@ namespace MyManagementApp.ChildForms
             // seleção do cliente (janela de diálogo - modal)
 
             _newItem = false;
-
-
-
-
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
@@ -141,6 +153,9 @@ namespace MyManagementApp.ChildForms
             else
             {
                 LoadData();
+              
+                               
+
             }
         }
 
@@ -206,9 +221,10 @@ namespace MyManagementApp.ChildForms
             customerpickDialog.Dispose();
         }
 
+
         #endregion
 
-            #region Extension Tests
+       #region Extension Tests
         public static class MyExtension
         {
             public static string ToDoubleString2( int valorInteiro)

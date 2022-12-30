@@ -51,7 +51,7 @@ namespace MyManagementApp.ChildForms
             this.cbxOrderItemStatus = new System.Windows.Forms.ComboBox();
             this.tbxUnitPrice = new System.Windows.Forms.TextBox();
             this.tbxQty = new System.Windows.Forms.TextBox();
-            this.tbxProdPrice = new System.Windows.Forms.TextBox();
+            this.tbxBrand = new System.Windows.Forms.TextBox();
             this.lbItemStatus = new System.Windows.Forms.Label();
             this.lbUnitPrice = new System.Windows.Forms.Label();
             this.lbQtyOrdered = new System.Windows.Forms.Label();
@@ -169,7 +169,7 @@ namespace MyManagementApp.ChildForms
             // tbxItem
             // 
             this.tbxItem.BackColor = System.Drawing.SystemColors.Info;
-            this.tbxItem.Location = new System.Drawing.Point(9, 128);
+            this.tbxItem.Location = new System.Drawing.Point(84, 128);
             this.tbxItem.Margin = new System.Windows.Forms.Padding(2);
             this.tbxItem.Name = "tbxItem";
             this.tbxItem.Size = new System.Drawing.Size(72, 20);
@@ -179,7 +179,7 @@ namespace MyManagementApp.ChildForms
             // 
             this.tbxLine.AccessibleDescription = "";
             this.tbxLine.BackColor = System.Drawing.SystemColors.Window;
-            this.tbxLine.Location = new System.Drawing.Point(83, 128);
+            this.tbxLine.Location = new System.Drawing.Point(11, 128);
             this.tbxLine.Margin = new System.Windows.Forms.Padding(2);
             this.tbxLine.Name = "tbxLine";
             this.tbxLine.Size = new System.Drawing.Size(72, 20);
@@ -287,13 +287,13 @@ namespace MyManagementApp.ChildForms
             this.tbxQty.Size = new System.Drawing.Size(72, 20);
             this.tbxQty.TabIndex = 14;
             // 
-            // tbxProdPrice
+            // tbxBrand
             // 
-            this.tbxProdPrice.Location = new System.Drawing.Point(9, 171);
-            this.tbxProdPrice.Margin = new System.Windows.Forms.Padding(2);
-            this.tbxProdPrice.Name = "tbxProdPrice";
-            this.tbxProdPrice.Size = new System.Drawing.Size(462, 20);
-            this.tbxProdPrice.TabIndex = 4;
+            this.tbxBrand.Location = new System.Drawing.Point(9, 171);
+            this.tbxBrand.Margin = new System.Windows.Forms.Padding(2);
+            this.tbxBrand.Name = "tbxBrand";
+            this.tbxBrand.Size = new System.Drawing.Size(462, 20);
+            this.tbxBrand.TabIndex = 4;
             // 
             // lbItemStatus
             // 
@@ -409,7 +409,7 @@ namespace MyManagementApp.ChildForms
             this.Controls.Add(this.label1);
             this.Controls.Add(this.tbxQty);
             this.Controls.Add(this.lbQtyOrdered);
-            this.Controls.Add(this.tbxProdPrice);
+            this.Controls.Add(this.tbxBrand);
             this.Controls.Add(this.lbUnitPrice);
             this.Controls.Add(this.lbItemStatus);
             this.Margin = new System.Windows.Forms.Padding(2);
@@ -435,7 +435,7 @@ namespace MyManagementApp.ChildForms
         private System.Windows.Forms.TextBox tbxLine;
         private System.Windows.Forms.Label lbLine;
         private System.Windows.Forms.Label lbltem;
-        private System.Windows.Forms.TextBox tbxProdPrice;
+        private System.Windows.Forms.TextBox tbxBrand;
         private System.Windows.Forms.Label lbCustomer;
         private System.Windows.Forms.TextBox tbxCustomerDescription;
         private System.Windows.Forms.Button btnAdd;
