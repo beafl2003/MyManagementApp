@@ -15,6 +15,7 @@ using TestandoComponentes.Extensions;
 using TestandoComponentes;
 using MyManagmentApp;
 using TestandoComponentes.ChildForms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace MyManagementApp.ChildForms
 {
@@ -59,7 +60,7 @@ namespace MyManagementApp.ChildForms
             var table = (DataTable)OrderItemsGrid.DataSource;
             var row = table.Rows[currentRow];
             FillFields(row);
-           
+
         }
 
         private void OrdersForm_Shown(object sender, EventArgs e)
@@ -84,7 +85,7 @@ namespace MyManagementApp.ChildForms
             var rows = ordersTable.Rows.Count;
 
             if (rows == 0)
-            
+
             {
                 ClearActions();
             };
@@ -133,14 +134,14 @@ namespace MyManagementApp.ChildForms
         private void BtnAdd_Click(object sender, EventArgs e)
         {
             _newItem = true;
-
-            ShowCustomerPick();
-            LoadData();
-
-            // seleção do cliente (janela de diálogo - modal)
-
+            if (MessageBox.Show("Please choose the customer for the new order: ", "New Order", MessageBoxButtons.OK) == DialogResult.OK)
+            {
+                ShowCustomerPick();
+                LoadData();
+            }
             _newItem = false;
         }
+
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
@@ -154,8 +155,8 @@ namespace MyManagementApp.ChildForms
             else
             {
                 LoadData();
-              
-                               
+
+
 
             }
         }
@@ -177,7 +178,7 @@ namespace MyManagementApp.ChildForms
                     this.NotifyError(r);
                     return;
                 }
-                else 
+                else
                 {
                     LoadData();
                 }
@@ -185,13 +186,13 @@ namespace MyManagementApp.ChildForms
             else
             {
 
-                var r = _orderAppService.UpdateOrder(int.Parse(tbxOrderID.Text), (OrderStatusEnum)Enum.Parse(typeof(OrderStatusEnum),cbxOrderStatus.SelectedItem.ToString()));
+                var r = _orderAppService.UpdateOrder(int.Parse(tbxOrderID.Text), (OrderStatusEnum)Enum.Parse(typeof(OrderStatusEnum), cbxOrderStatus.SelectedItem.ToString()));
 
                 if (!r.Success)
                 {
                     this.NotifyError(r);
                     return;
-   
+
                 }
                 else
                 {
@@ -219,7 +220,7 @@ namespace MyManagementApp.ChildForms
                 this._currentCustomerId = customerpickDialog._currentId;
             }
 
-            customerpickDialog.Dispose();
+            
         }
 
         public void ShowOrdersPick()
@@ -231,39 +232,45 @@ namespace MyManagementApp.ChildForms
             {
                 this._currentOrderNum = ordersPickDialog._currentOrderNum;
             }
+
+            ordersPickDialog.Dispose();
         }
 
-        #endregion
-
-       #region Extension Tests
-        public static class MyExtension
-        {
-            public static string ToDoubleString2( int valorInteiro)
-            {
-                // 100
-                // "100"
-                // 100.0
-                // "100.00"
-                return double.Parse(valorInteiro.ToString()).ToString();
-
-            }
-            public static string ToDoubleString (int valorInteiro)
-            {
-                // 100
-                // "100"
-                // 100.0
-                // "100.00"
-                return double.Parse(valorInteiro.ToString()).ToString();
-            }
-            
-
-        }
-
-        private void tbxOrderID_Enter(object sender, EventArgs e)
+        private void tbxOrderID_KeyDown(object sender, KeyEventArgs e)
         {
 
-            ShowOrdersPick();
+            if (e.KeyCode == Keys.Enter)
+            {
+                ShowOrdersPick();
+            }
         }
+
+    }
+
+    #endregion
+
+    #region Extension Tests
+    public static class MyExtension
+    {
+        public static string ToDoubleString2(int valorInteiro)
+        {
+            // 100
+            // "100"
+            // 100.0
+            // "100.00"
+            return double.Parse(valorInteiro.ToString()).ToString();
+
+        }
+        public static string ToDoubleString(int valorInteiro)
+        {
+            // 100
+            // "100"
+            // 100.0
+            // "100.00"
+            return double.Parse(valorInteiro.ToString()).ToString();
+        }
+
+
     }
 
     #endregion

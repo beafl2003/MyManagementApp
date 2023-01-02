@@ -42,8 +42,8 @@ namespace MyManagementApp.ChildForms
             // 
             this.CustomerGrid.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.CustomerGrid.GroupByCaption = "Drag a column header here to group by that column";
-            this.CustomerGrid.Location = new System.Drawing.Point(0, 57);
-            this.CustomerGrid.Margin = new System.Windows.Forms.Padding(2);
+            this.CustomerGrid.Location = new System.Drawing.Point(0, 60);
+            this.CustomerGrid.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.CustomerGrid.Name = "CustomerGrid";
             this.CustomerGrid.PreviewInfo.Location = new System.Drawing.Point(0, 0);
             this.CustomerGrid.PreviewInfo.Size = new System.Drawing.Size(0, 0);
@@ -52,7 +52,7 @@ namespace MyManagementApp.ChildForms
             this.CustomerGrid.PrintInfo.MeasurementPrinterName = null;
             this.CustomerGrid.PrintInfo.PageSettings = ((System.Drawing.Printing.PageSettings)(resources.GetObject("CustomerGrid.PrintInfo.PageSettings")));
             this.CustomerGrid.PropBag = resources.GetString("CustomerGrid.PropBag");
-            this.CustomerGrid.Size = new System.Drawing.Size(633, 291);
+            this.CustomerGrid.Size = new System.Drawing.Size(841, 358);
             this.CustomerGrid.TabIndex = 15;
             this.CustomerGrid.UseCompatibleTextRendering = false;
             this.CustomerGrid.DoubleClick += new System.EventHandler(this.CustomerGrid_DoubleClick);
@@ -62,54 +62,57 @@ namespace MyManagementApp.ChildForms
             // 
             this.ChooseCustomer.AutoSize = true;
             this.ChooseCustomer.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ChooseCustomer.Location = new System.Drawing.Point(12, 9);
+            this.ChooseCustomer.Location = new System.Drawing.Point(16, 11);
+            this.ChooseCustomer.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.ChooseCustomer.Name = "ChooseCustomer";
-            this.ChooseCustomer.Size = new System.Drawing.Size(171, 15);
+            this.ChooseCustomer.Size = new System.Drawing.Size(301, 23);
             this.ChooseCustomer.TabIndex = 16;
-            this.ChooseCustomer.Text = "Please choose your customer;";
+            this.ChooseCustomer.Text = "Press Enter to select the customer:";
             // 
             // tbxcustomerName
             // 
             this.tbxcustomerName.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.tbxcustomerName.BackColor = System.Drawing.SystemColors.Info;
-            this.tbxcustomerName.Location = new System.Drawing.Point(215, 34);
-            this.tbxcustomerName.Margin = new System.Windows.Forms.Padding(2);
+            this.tbxcustomerName.Location = new System.Drawing.Point(287, 42);
+            this.tbxcustomerName.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tbxcustomerName.Name = "tbxcustomerName";
-            this.tbxcustomerName.Size = new System.Drawing.Size(397, 20);
+            this.tbxcustomerName.Size = new System.Drawing.Size(528, 22);
             this.tbxcustomerName.TabIndex = 18;
             // 
             // tbxcustomerID
             // 
             this.tbxcustomerID.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.tbxcustomerID.BackColor = System.Drawing.SystemColors.Info;
-            this.tbxcustomerID.Location = new System.Drawing.Point(158, 34);
-            this.tbxcustomerID.Margin = new System.Windows.Forms.Padding(2);
+            this.tbxcustomerID.Location = new System.Drawing.Point(211, 42);
+            this.tbxcustomerID.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tbxcustomerID.Name = "tbxcustomerID";
-            this.tbxcustomerID.Size = new System.Drawing.Size(54, 20);
+            this.tbxcustomerID.Size = new System.Drawing.Size(71, 22);
             this.tbxcustomerID.TabIndex = 17;
             // 
             // lbPreview
             // 
             this.lbPreview.AutoSize = true;
             this.lbPreview.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbPreview.Location = new System.Drawing.Point(96, 34);
+            this.lbPreview.Location = new System.Drawing.Point(128, 42);
+            this.lbPreview.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbPreview.Name = "lbPreview";
-            this.lbPreview.Size = new System.Drawing.Size(53, 15);
+            this.lbPreview.Size = new System.Drawing.Size(64, 18);
             this.lbPreview.TabIndex = 19;
             this.lbPreview.Text = "Preview:";
             // 
             // CustomerPick
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(633, 348);
+            this.ClientSize = new System.Drawing.Size(841, 418);
             this.Controls.Add(this.tbxcustomerID);
             this.Controls.Add(this.tbxcustomerName);
             this.Controls.Add(this.lbPreview);
             this.Controls.Add(this.ChooseCustomer);
             this.Controls.Add(this.CustomerGrid);
-            this.MaximumSize = new System.Drawing.Size(649, 387);
-            this.MinimumSize = new System.Drawing.Size(649, 387);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.MaximumSize = new System.Drawing.Size(859, 465);
+            this.MinimumSize = new System.Drawing.Size(859, 465);
             this.Name = "CustomerPick";
             this.Text = "CustomerPick";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.CustomerPick_FormClosing);
