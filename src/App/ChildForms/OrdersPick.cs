@@ -1,4 +1,5 @@
 ﻿using MyManagementApp.Application.Services;
+using MyManagementApp.Domain.Enums;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,30 +17,88 @@ namespace TestandoComponentes.ChildForms
 
 
         public int _currentOrderNum;
-
         private readonly OrdersAppService _orderAppService;
+        private bool _filling;
 
         public OrdersPick()
         {
             InitializeComponent();
+
             this.Shown += OrdersPick_Shown;
+            this.OrdersGrid.RowColChange += OrdersGrid_RowColChange;
             _orderAppService = new OrdersAppService();
+
         }
+
+
+
 
         private void OrdersPick_Shown(object sender, EventArgs e)
         {
             LoadData();
             ConfigureGrid();
+
         }
 
         private void LoadData()
         {
-            var ordersTable = _orderAppService.LoadFromDatabase();
-            OrdersGrid.SetDataBinding(ordersTable, null, false);
+            var orderspickTable = _orderAppService.LoadFromDatabase();
+            OrdersGrid.SetDataBinding(orderspickTable, null, false);
             ConfigureGrid();
+
+            var rows = orderspickTable.Rows.Count;
+
+            if (rows == 0)
+
+            {
+                ClearActions();
+            };
+
 
         }
 
+        // grid
+
+        private void OrdersGrid_RowColChange(object sender, C1.Win.C1TrueDBGrid.RowColChangeEventArgs e)
+        {
+            var currentRow = OrdersGrid.Row;
+            if (e.LastRow == currentRow)
+                return;
+            var table = (DataTable)OrdersGrid.DataSource;
+            var row = table.Rows[currentRow];
+            FillFields(row);
+
+        }
+
+
+
+        private void ClearActions()
+        {
+            tbxOrdernum.Clear();
+            tbxcustomerID.Clear();
+            tbxcustomerName.Clear();
+        }
+
+
+
+
+        private void FillFields(DataRow row)
+        {
+            _filling = true;
+
+            _currentOrderNum = row.Field<int>("OrderNumber");
+
+            var OrderNumber = row.Field<int>("OrderNumber").ToString();
+            //var statusOrder = row.Field<string>("OrderStatus").ToOrderStatusEnum();
+            var CustomerCode = row.Field<string>("code");
+            var CustomerName = row.Field<string>("name");
+
+            tbxOrdernum.Text = OrderNumber;
+            tbxcustomerID.Text = CustomerCode;
+            tbxcustomerName.Text = CustomerName;
+
+            _filling = false;
+        }
 
         private void ConfigureGrid()
         {
@@ -86,5 +145,13 @@ namespace TestandoComponentes.ChildForms
 
             }
         }
-    }
+
+        private void OrdersGrid_Enter(object sender, C1.Win.C1TrueDBGrid.RowColChangeEventArgs e)
+        {
+
+            var orderId = this._currentOrderNum;
+            //var r = _orderAppService.GetOrderByNumber
+        }
+    } 
+
 }

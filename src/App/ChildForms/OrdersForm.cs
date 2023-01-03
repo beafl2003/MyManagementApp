@@ -25,6 +25,8 @@ namespace MyManagementApp.ChildForms
         #endregion
 
         #region Presentation
+
+
         private bool _editing;
         private bool _newItem;
         private bool _loading;
@@ -127,18 +129,22 @@ namespace MyManagementApp.ChildForms
             _filling = false;
         }
 
-
+        #endregion
 
 
         #region order tools
         private void BtnAdd_Click(object sender, EventArgs e)
         {
             _newItem = true;
-            if (MessageBox.Show("Please choose the customer for the new order: ", "New Order", MessageBoxButtons.OK) == DialogResult.OK)
-            {
-                ShowCustomerPick();
-                LoadData();
-            }
+            //if (MessageBox.Show("Please choose the customer for the new order: ", "New Order", MessageBoxButtons.OK) == DialogResult.OK)
+            //{
+            //    ShowCustomerPick();
+            //    LoadData();
+            //}
+
+            ShowCustomerPick();
+            LoadData();
+
             _newItem = false;
         }
 
@@ -220,7 +226,7 @@ namespace MyManagementApp.ChildForms
                 this._currentCustomerId = customerpickDialog._currentId;
             }
 
-            
+
         }
 
         public void ShowOrdersPick()
@@ -239,15 +245,14 @@ namespace MyManagementApp.ChildForms
         private void tbxOrderID_KeyDown(object sender, KeyEventArgs e)
         {
 
-            if (e.KeyCode == Keys.Enter)
-            {
-                ShowOrdersPick();
-            }
+            ShowOrdersPick();
+            LoadData();
         }
+        
+        #endregion
 
     }
 
-    #endregion
 
     #region Extension Tests
     public static class MyExtension
@@ -273,7 +278,6 @@ namespace MyManagementApp.ChildForms
 
     }
 
+
     #endregion
 }
-
-#endregion
