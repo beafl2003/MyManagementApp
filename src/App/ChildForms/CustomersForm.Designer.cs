@@ -79,7 +79,7 @@ namespace MyManagementApp.ChildForms
             this.cbxCustomerStatus.BackColor = System.Drawing.SystemColors.Info;
             this.cbxCustomerStatus.FormattingEnabled = true;
             this.cbxCustomerStatus.Location = new System.Drawing.Point(560, 18);
-            this.cbxCustomerStatus.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cbxCustomerStatus.Margin = new System.Windows.Forms.Padding(2);
             this.cbxCustomerStatus.Name = "cbxCustomerStatus";
             this.cbxCustomerStatus.Size = new System.Drawing.Size(71, 21);
             this.cbxCustomerStatus.TabIndex = 9;
@@ -107,7 +107,7 @@ namespace MyManagementApp.ChildForms
             this.tbxcustomerID.BackColor = System.Drawing.SystemColors.Info;
             this.tbxcustomerID.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tbxcustomerID.Location = new System.Drawing.Point(2, 18);
-            this.tbxcustomerID.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tbxcustomerID.Margin = new System.Windows.Forms.Padding(2);
             this.tbxcustomerID.Name = "tbxcustomerID";
             this.tbxcustomerID.Size = new System.Drawing.Size(71, 20);
             this.tbxcustomerID.TabIndex = 0;
@@ -127,7 +127,7 @@ namespace MyManagementApp.ChildForms
             this.tbxcustomerName.BackColor = System.Drawing.SystemColors.Info;
             this.tbxcustomerName.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tbxcustomerName.Location = new System.Drawing.Point(77, 18);
-            this.tbxcustomerName.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tbxcustomerName.Margin = new System.Windows.Forms.Padding(2);
             this.tbxcustomerName.Name = "tbxcustomerName";
             this.tbxcustomerName.Size = new System.Drawing.Size(479, 20);
             this.tbxcustomerName.TabIndex = 1;
@@ -137,7 +137,7 @@ namespace MyManagementApp.ChildForms
             this.btnCustomerSave.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCustomerSave.Location = new System.Drawing.Point(485, 48);
-            this.btnCustomerSave.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnCustomerSave.Margin = new System.Windows.Forms.Padding(2);
             this.btnCustomerSave.Name = "btnCustomerSave";
             this.btnCustomerSave.Size = new System.Drawing.Size(71, 19);
             this.btnCustomerSave.TabIndex = 12;
@@ -152,7 +152,7 @@ namespace MyManagementApp.ChildForms
             this.tableLayoutPanel1.SetColumnSpan(this.CustomerGridNew, 5);
             this.CustomerGridNew.GroupByCaption = "Drag a column header here to group by that column";
             this.CustomerGridNew.Location = new System.Drawing.Point(2, 71);
-            this.CustomerGridNew.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.CustomerGridNew.Margin = new System.Windows.Forms.Padding(2);
             this.CustomerGridNew.Name = "CustomerGridNew";
             this.CustomerGridNew.PreviewInfo.Location = new System.Drawing.Point(0, 0);
             this.CustomerGridNew.PreviewInfo.Size = new System.Drawing.Size(0, 0);
@@ -170,7 +170,7 @@ namespace MyManagementApp.ChildForms
             this.btnAdd.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btnAdd.Location = new System.Drawing.Point(335, 48);
-            this.btnAdd.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnAdd.Margin = new System.Windows.Forms.Padding(2);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(71, 19);
             this.btnAdd.TabIndex = 15;
@@ -182,7 +182,7 @@ namespace MyManagementApp.ChildForms
             this.btnDelete.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btnDelete.Location = new System.Drawing.Point(560, 48);
-            this.btnDelete.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnDelete.Margin = new System.Windows.Forms.Padding(2);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(71, 19);
             this.btnDelete.TabIndex = 16;
@@ -205,7 +205,7 @@ namespace MyManagementApp.ChildForms
             this.tableLayoutPanel1.Controls.Add(this.CustomerGridNew, 0, 2);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(2);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 3;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
@@ -220,7 +220,7 @@ namespace MyManagementApp.ChildForms
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCancel.Location = new System.Drawing.Point(410, 48);
-            this.btnCancel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnCancel.Margin = new System.Windows.Forms.Padding(2);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(71, 19);
             this.btnCancel.TabIndex = 15;
@@ -233,7 +233,7 @@ namespace MyManagementApp.ChildForms
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(633, 450);
             this.Controls.Add(this.tableLayoutPanel1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.MinimumSize = new System.Drawing.Size(618, 409);
             this.Name = "CustomersForm";
             this.Text = "Customers";

@@ -60,8 +60,10 @@ namespace MyManagementApp.ChildForms
             this.btnSaveItem = new System.Windows.Forms.Button();
             this.btnCancelItem = new System.Windows.Forms.Button();
             this.btnAddItem = new System.Windows.Forms.Button();
+            this.OrderItensGrid = new C1.Win.C1TrueDBGrid.C1TrueDBGrid();
             this.tbxOrderPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.OrderItemsGrid)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.OrderItensGrid)).BeginInit();
             this.SuspendLayout();
             // 
             // tbxOrderPanel
@@ -350,7 +352,7 @@ namespace MyManagementApp.ChildForms
             this.OrderItemsGrid.PrintInfo.MeasurementPrinterName = null;
             this.OrderItemsGrid.PrintInfo.PageSettings = ((System.Drawing.Printing.PageSettings)(resources.GetObject("OrderItemsGrid.PrintInfo.PageSettings")));
             this.OrderItemsGrid.PropBag = resources.GetString("OrderItemsGrid.PropBag");
-            this.OrderItemsGrid.Size = new System.Drawing.Size(702, 301);
+            this.OrderItemsGrid.Size = new System.Drawing.Size(702, 129);
             this.OrderItemsGrid.TabIndex = 25;
             this.OrderItemsGrid.UseCompatibleTextRendering = false;
             // 
@@ -384,12 +386,30 @@ namespace MyManagementApp.ChildForms
             this.btnAddItem.Text = "Add";
             this.btnAddItem.UseVisualStyleBackColor = true;
             // 
+            // OrderItensGrid
+            // 
+            this.OrderItensGrid.GroupByCaption = "Drag a column header here to group by that column";
+            this.OrderItensGrid.Location = new System.Drawing.Point(11, 386);
+            this.OrderItensGrid.Margin = new System.Windows.Forms.Padding(2);
+            this.OrderItensGrid.Name = "OrderItensGrid";
+            this.OrderItensGrid.PreviewInfo.Location = new System.Drawing.Point(0, 0);
+            this.OrderItensGrid.PreviewInfo.Size = new System.Drawing.Size(0, 0);
+            this.OrderItensGrid.PreviewInfo.ZoomFactor = 75D;
+            this.OrderItensGrid.PrintInfo.MeasurementDevice = C1.Win.C1TrueDBGrid.PrintInfo.MeasurementDeviceEnum.Screen;
+            this.OrderItensGrid.PrintInfo.MeasurementPrinterName = null;
+            this.OrderItensGrid.PrintInfo.PageSettings = ((System.Drawing.Printing.PageSettings)(resources.GetObject("c1TrueDBGrid1.PrintInfo.PageSettings")));
+            this.OrderItensGrid.PropBag = resources.GetString("OrderItensGrid.PropBag");
+            this.OrderItensGrid.Size = new System.Drawing.Size(702, 129);
+            this.OrderItensGrid.TabIndex = 29;
+            this.OrderItensGrid.UseCompatibleTextRendering = false;
+            // 
             // OrdersForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.ClientSize = new System.Drawing.Size(722, 562);
+            this.Controls.Add(this.OrderItensGrid);
             this.Controls.Add(this.btnSaveItem);
             this.Controls.Add(this.btnCancelItem);
             this.Controls.Add(this.btnAddItem);
@@ -422,6 +442,7 @@ namespace MyManagementApp.ChildForms
             this.tbxOrderPanel.ResumeLayout(false);
             this.tbxOrderPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.OrderItemsGrid)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.OrderItensGrid)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -458,5 +479,6 @@ namespace MyManagementApp.ChildForms
         private System.Windows.Forms.Button btnSaveItem;
         private System.Windows.Forms.Button btnCancelItem;
         private System.Windows.Forms.Button btnAddItem;
+        private C1.Win.C1TrueDBGrid.C1TrueDBGrid OrderItensGrid;
     }
 }

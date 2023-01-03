@@ -24,6 +24,11 @@ public class OrderRepository
 	                     Customers.id = Orders.Customerid 
 	                AND  Customers.id = Orders.Customerid
 	                WHERE
+	                OrderNumber = @OrderNumber;Orders
+                INNER JOIN Customers ON 
+	                     Customers.id = Orders.Customerid 
+	                AND  Customers.id = Orders.Customerid
+	                WHERE
 	                OrderNumber = @OrderNumber;";
 
         var command = new SqlCommand(sql, dbConnection);
