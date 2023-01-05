@@ -35,7 +35,7 @@ namespace MyManagementApp.Data.Repositories
                 ProductCode = row.Field<string>("code"),
                 ProductName = row.Field<string>("name"),
                 Brand = row.Field<string>("brand"),
-                Price = row.Field<string>("price"),
+                Price = row.Field<decimal>("price"),
                 Active = row.Field<bool>("active"),
             };
 

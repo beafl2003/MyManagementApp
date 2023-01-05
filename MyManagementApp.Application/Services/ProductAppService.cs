@@ -28,7 +28,7 @@ namespace MyManagementApp.Application.Services
             return _productRepository.LoadFromDatabase();
         }
 
-        public Result NewProduct(string productCode, string productName, string brand, string price, ProductStatusEnum productStatus)
+        public Result NewProduct(string productCode, string productName, string brand, decimal price, ProductStatusEnum productStatus)
         {
 
             var product = new Product()
@@ -51,7 +51,7 @@ namespace MyManagementApp.Application.Services
             return Result.Factory.True();
         }
 
-        public Result UpdateProduct(string productCode, string productName, string brand, string price, ProductStatusEnum productStatus, Guid id)
+        public Result UpdateProduct(string productCode, string productName, string brand, decimal price, ProductStatusEnum productStatus, Guid id)
         {
 
             // Read

@@ -78,7 +78,7 @@ namespace MyManagementApp.ChildForms
 
             if (_newItem)
             {
-                var r = _productAppService.NewProduct(tbxProductID.Text, tbxProdDescription.Text, tbxProdBrand.Text, txtProdPrice.Text, (ProductStatusEnum)Enum.Parse(typeof(ProductStatusEnum),
+                var r = _productAppService.NewProduct(tbxProductID.Text, tbxProdDescription.Text, tbxProdBrand.Text, Convert.ToDecimal(txtProdPrice.Text), (ProductStatusEnum)Enum.Parse(typeof(ProductStatusEnum),
                       cbxProdStatus.SelectedItem.ToString()));
 
                 if (!r.Success)
@@ -90,7 +90,7 @@ namespace MyManagementApp.ChildForms
             else
             {
                 var id = _currentId;
-                var r = _productAppService.UpdateProduct(tbxProductID.Text, tbxProdDescription.Text, tbxProdBrand.Text, txtProdPrice.Text, (ProductStatusEnum)Enum.Parse(typeof(ProductStatusEnum),
+                var r = _productAppService.UpdateProduct(tbxProductID.Text, tbxProdDescription.Text, tbxProdBrand.Text, Convert.ToDecimal(txtProdPrice.Text), (ProductStatusEnum)Enum.Parse(typeof(ProductStatusEnum),
                       cbxProdStatus.SelectedItem.ToString()), id);
 
                 if (!r.Success)
@@ -237,13 +237,13 @@ namespace MyManagementApp.ChildForms
             var productCode = row.Field<string>("code");
             var productName = row.Field<string>("name");
             var brand = row.Field<string>("brand");
-            var price = row.Field<string>("price");
+            var price = row.Field<decimal>("price");
             var active = row.Field<bool>("active");
 
             tbxProductID.Text = productCode;
             tbxProdDescription.Text = productName;
             tbxProdBrand.Text = brand;
-            txtProdPrice.Text = price;
+            txtProdPrice.Text = Convert.ToString(price);
             cbxProdStatus.SelectedItem = active ? ProductStatusEnum.Active : ProductStatusEnum.Inactive;
 
             _filling = false;
