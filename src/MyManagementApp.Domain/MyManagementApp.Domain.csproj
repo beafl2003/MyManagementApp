@@ -49,6 +49,7 @@
     <Compile Include="Enums\OrderItemStatusEnum.cs" />
     <Compile Include="Enums\OrderStatusEnum.cs" />
     <Compile Include="Enums\ProductStatusEnum.cs" />
+    <Compile Include="OrderItems.cs" />
     <Compile Include="Product.cs" />
     <Compile Include="User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

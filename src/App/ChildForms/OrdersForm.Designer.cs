@@ -397,7 +397,7 @@ namespace MyManagementApp.ChildForms
             this.OrderItensGrid.PreviewInfo.ZoomFactor = 75D;
             this.OrderItensGrid.PrintInfo.MeasurementDevice = C1.Win.C1TrueDBGrid.PrintInfo.MeasurementDeviceEnum.Screen;
             this.OrderItensGrid.PrintInfo.MeasurementPrinterName = null;
-            this.OrderItensGrid.PrintInfo.PageSettings = ((System.Drawing.Printing.PageSettings)(resources.GetObject("c1TrueDBGrid1.PrintInfo.PageSettings")));
+            this.OrderItensGrid.PrintInfo.PageSettings = ((System.Drawing.Printing.PageSettings)(resources.GetObject("OrderItensGrid.PrintInfo.PageSettings")));
             this.OrderItensGrid.PropBag = resources.GetString("OrderItensGrid.PropBag");
             this.OrderItensGrid.Size = new System.Drawing.Size(702, 129);
             this.OrderItensGrid.TabIndex = 29;
