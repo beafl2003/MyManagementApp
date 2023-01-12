@@ -16,6 +16,7 @@ using TestandoComponentes;
 using MyManagmentApp;
 using TestandoComponentes.ChildForms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using System.Runtime.InteropServices;
 
 namespace MyManagementApp.ChildForms
 {
@@ -36,6 +37,7 @@ namespace MyManagementApp.ChildForms
         private Guid _currentCustomerId;
 
         private readonly OrdersAppService _orderAppService;
+        private readonly OrderItemsAppService _orderItemsAppService;
 
         public OrdersForm()
         {
@@ -46,10 +48,13 @@ namespace MyManagementApp.ChildForms
             this.OrderItemsGrid.RowColChange += OrderItemsGrid_RowColChange;
             this.Shown += OrdersForm_Shown;
 
+ 
 
             btnAdd.Click += BtnAdd_Click;
 
             _orderAppService = new OrdersAppService();
+            _orderItemsAppService = new OrderItemsAppService();
+
 
         }
 
@@ -92,6 +97,17 @@ namespace MyManagementApp.ChildForms
                 ClearActions();
             };
 
+
+            var orderItemsTable = _orderItemsAppService.LoadFromDatabase();
+            OrderItems.SetDataBinding(orderItemsTable, null, false);
+
+            var Itemrows = orderItemsTable.Rows.Count;
+
+            if (Itemrows == 0)
+
+            {
+                ClearActions();
+            }
         }
 
 
