@@ -19,18 +19,19 @@ public class OrderRepository
         dbConnection.Open();
 
         var sql = $@"
-                SELECT * FROM Orders
+                SELECT  OrderNumber,
+		                OrderStatus,
+		                Customerid,
+		                Customers.code as 'Customers.code',
+		                Customers.name as 'Customers.name',
+		                Customers.active as 'CustomerStatus'
+		        FROM Orders
                 INNER JOIN Customers ON 
 	                     Customers.id = Orders.Customerid 
 	                AND  Customers.id = Orders.Customerid
-	                WHERE
-	                OrderNumber = @OrderNumber;Orders
-                INNER JOIN Customers ON 
-	                     Customers.id = Orders.Customerid 
-	                AND  Customers.id = Orders.Customerid
-	                WHERE
-	                OrderNumber = @OrderNumber;";
+	               WHERE OrderNumber = @OrderNumber";
 
+        
         var command = new SqlCommand(sql, dbConnection);
         command.Parameters.Add(new SqlParameter("@OrderNumber", OrderNumber));
 
@@ -52,12 +53,12 @@ public class OrderRepository
         {
             OrderNumber = row.Field<int>("OrderNumber"),
             CustomerID = row.Field<Guid>("Customerid"),
-            OrderStatus = (OrderStatusEnum)StatusOfTheOrder.ToOrderStatusEnum()
+            OrderStatus = (OrderStatusEnum)StatusOfTheOrder.ToOrderStatusEnum(),
             //OrderStatus = row.Field<OrderStatusEnum>((int)("OrderStatus").ToOrderStatusEnum())
             //cbxCustomerStatus.SelectedItem.ToString()));
 
-            //CustomerCode = row.Field<string>("Customers.code"),
-            //CustomerName = row.Field<string>("Customers.name")
+            CustomerCode = row.Field<string>("Customers.code"),
+            CustomerName = row.Field<string>("Customers.name"),
 
         };
 

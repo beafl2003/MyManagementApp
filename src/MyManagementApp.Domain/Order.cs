@@ -14,8 +14,8 @@ namespace MyManagementApp.Domain.Core
         public Guid CustomerID { get; set; }
         public OrderStatusEnum OrderStatus { get; set; }
 
-        // public string CustomerCode { get; set; }
-        // public string CustomerName { get; set; }
+        public string CustomerCode { get; set; }
+        public string CustomerName { get; set; }
         // Customerstatus - use as validation for the order
 
         public List<decimal> Items { get; set; }

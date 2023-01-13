@@ -69,6 +69,16 @@ namespace MyManagementApp.ChildForms
             FillFields(row);
 
         }
+        private void OrderItems_RowColChange(object sender, RowColChangeEventArgs e)
+        {
+
+            var currentRow = OrderItems.Row;
+            if (e.LastRow == currentRow)
+                return;
+            var table = (DataTable)OrderItems.DataSource;
+            var row = table.Rows[currentRow];
+            FillItemFields(row);
+        }
 
         private void OrdersForm_Shown(object sender, EventArgs e)
         {
@@ -125,6 +135,34 @@ namespace MyManagementApp.ChildForms
             cbxOrderItemStatus.SelectedItem = OrderStatusEnum.Open;
         }
 
+
+        private void FillItemFields(DataRow row)
+        {
+            _filling = true;
+
+            //_currentOrderNum = row.Field<int>("OrderNumber");
+
+            var OrderItemLine = row.Field<int>("line").ToString();
+            var OrderItemProductCode = row.Field<string>("productcode");
+            var OrderItemProduct = row.Field<string>("product");
+            var OrderItemBrand = row.Field<string>("brand");
+            var OrderItemQtyOrdered = row.Field<decimal>("Qtyordered").ToString("0.00");
+            var OrderItemUnitPrice = row.Field<decimal>("unitprice").ToString("C");
+            var OrderItemTotalPrice = row.Field<decimal>("TotalPrice").ToString("C");
+            // 
+
+            tbxLine.Text = OrderItemLine;
+            tbxItem.Text = OrderItemProductCode;
+            tbxItemDescription.Text = OrderItemProduct;
+            tbxBrand.Text = OrderItemBrand;
+            tbxQty.Text = OrderItemQtyOrdered;
+            tbxUnitPrice.Text = OrderItemUnitPrice;
+            tbxTotalPrice.Text = OrderItemTotalPrice;
+
+
+
+            _filling = false;
+        }
 
         private void FillFields(DataRow row)
         {
@@ -253,7 +291,13 @@ namespace MyManagementApp.ChildForms
             if (ordersPickDialog.ShowDialog(this) == DialogResult.OK)
             {
                 this._currentOrderNum = ordersPickDialog._currentOrderNum;
+                tbxOrderID.Text = ordersPickDialog._currentOrder.OrderNumber.ToString();
+                tbxCustomer.Text = ordersPickDialog._currentOrder.CustomerCode.ToString();
+                tbxCustomerDescription.Text = ordersPickDialog._currentOrder.CustomerName.ToString();
+                cbxOrderStatus.SelectedItem = ordersPickDialog._currentOrder.OrderStatus;
             }
+
+
 
             ordersPickDialog.Dispose();
         }
@@ -264,10 +308,11 @@ namespace MyManagementApp.ChildForms
             ShowOrdersPick();
             LoadData();
         }
-        
+
+
         #endregion
 
-    }
+     }
 
 
     #region Extension Tests

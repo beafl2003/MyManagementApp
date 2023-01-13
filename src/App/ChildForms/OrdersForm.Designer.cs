@@ -182,7 +182,7 @@ namespace MyManagementApp.ChildForms
             // 
             this.tbxLine.AccessibleDescription = "";
             this.tbxLine.BackColor = System.Drawing.SystemColors.Window;
-            this.tbxLine.Location = new System.Drawing.Point(11, 128);
+            this.tbxLine.Location = new System.Drawing.Point(11, 127);
             this.tbxLine.Margin = new System.Windows.Forms.Padding(2);
             this.tbxLine.Name = "tbxLine";
             this.tbxLine.Size = new System.Drawing.Size(72, 20);
@@ -244,7 +244,7 @@ namespace MyManagementApp.ChildForms
             // lbTotalPrice
             // 
             this.lbTotalPrice.AutoSize = true;
-            this.lbTotalPrice.Location = new System.Drawing.Point(565, 196);
+            this.lbTotalPrice.Location = new System.Drawing.Point(512, 204);
             this.lbTotalPrice.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbTotalPrice.Name = "lbTotalPrice";
             this.lbTotalPrice.Size = new System.Drawing.Size(58, 13);
@@ -256,10 +256,10 @@ namespace MyManagementApp.ChildForms
             this.tbxTotalPrice.BackColor = System.Drawing.SystemColors.Info;
             this.tbxTotalPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbxTotalPrice.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.tbxTotalPrice.Location = new System.Drawing.Point(636, 192);
+            this.tbxTotalPrice.Location = new System.Drawing.Point(574, 201);
             this.tbxTotalPrice.Margin = new System.Windows.Forms.Padding(2);
             this.tbxTotalPrice.Name = "tbxTotalPrice";
-            this.tbxTotalPrice.Size = new System.Drawing.Size(72, 19);
+            this.tbxTotalPrice.Size = new System.Drawing.Size(130, 19);
             this.tbxTotalPrice.TabIndex = 23;
             // 
             // cbxOrderItemStatus
@@ -275,7 +275,7 @@ namespace MyManagementApp.ChildForms
             // tbxUnitPrice
             // 
             this.tbxUnitPrice.BackColor = System.Drawing.SystemColors.Info;
-            this.tbxUnitPrice.Location = new System.Drawing.Point(550, 171);
+            this.tbxUnitPrice.Location = new System.Drawing.Point(557, 174);
             this.tbxUnitPrice.Margin = new System.Windows.Forms.Padding(2);
             this.tbxUnitPrice.Name = "tbxUnitPrice";
             this.tbxUnitPrice.Size = new System.Drawing.Size(72, 20);
@@ -378,7 +378,7 @@ namespace MyManagementApp.ChildForms
             // 
             // btnAddItem
             // 
-            this.btnAddItem.Location = new System.Drawing.Point(480, 223);
+            this.btnAddItem.Location = new System.Drawing.Point(483, 223);
             this.btnAddItem.Margin = new System.Windows.Forms.Padding(2);
             this.btnAddItem.Name = "btnAddItem";
             this.btnAddItem.Size = new System.Drawing.Size(70, 19);
@@ -402,6 +402,7 @@ namespace MyManagementApp.ChildForms
             this.OrderItems.Size = new System.Drawing.Size(702, 129);
             this.OrderItems.TabIndex = 29;
             this.OrderItems.UseCompatibleTextRendering = false;
+            this.OrderItems.RowColChange += new C1.Win.C1TrueDBGrid.RowColChangeEventHandler(this.OrderItems_RowColChange);
             // 
             // OrdersForm
             // 

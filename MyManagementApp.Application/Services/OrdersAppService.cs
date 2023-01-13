@@ -30,6 +30,12 @@ namespace MyManagementApp.Application.Services
             return _orderRepository.LoadFromDatabase();
         }
 
+        public Order GetOrderByNumber(int orderNumber)
+        {
+            return _orderRepository.GetOrderByNumber(orderNumber);
+
+        }
+
 
         // new order
         public Result NewOrder(Guid customerId)

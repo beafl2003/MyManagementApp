@@ -1,4 +1,6 @@
 ﻿using MyManagementApp.Application.Services;
+using MyManagementApp.Domain;
+using MyManagementApp.Domain.Core;
 using MyManagementApp.Domain.Enums;
 using System;
 using System.Collections.Generic;
@@ -9,6 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TestandoComponentes.Extensions;
 
 namespace TestandoComponentes.ChildForms
 {
@@ -17,6 +20,7 @@ namespace TestandoComponentes.ChildForms
 
 
         public int _currentOrderNum;
+        public Order _currentOrder;
         private readonly OrdersAppService _orderAppService;
         private bool _filling;
 
@@ -67,10 +71,7 @@ namespace TestandoComponentes.ChildForms
             var table = (DataTable)OrdersGrid.DataSource;
             var row = table.Rows[currentRow];
             FillFields(row);
-
         }
-
-
 
         private void ClearActions()
         {
@@ -149,8 +150,20 @@ namespace TestandoComponentes.ChildForms
         private void OrdersGrid_Enter(object sender, C1.Win.C1TrueDBGrid.RowColChangeEventArgs e)
         {
 
-            var orderId = this._currentOrderNum;
-            //var r = _orderAppService.GetOrderByNumber
+                var orderId = this._currentOrderNum;
+                this._currentOrder = _orderAppService.GetOrderByNumber(orderId);
+
+        }
+
+       private void OrdersGrid_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                var orderId = this._currentOrderNum;
+                this._currentOrder = _orderAppService.GetOrderByNumber(orderId);
+               
+
+            }
         }
     } 
 

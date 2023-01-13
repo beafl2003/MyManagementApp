@@ -50,7 +50,7 @@
             this.OrdersGrid.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.OrdersGrid.GroupByCaption = "Drag a column header here to group by that column";
             this.OrdersGrid.Location = new System.Drawing.Point(0, 59);
-            this.OrdersGrid.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.OrdersGrid.Margin = new System.Windows.Forms.Padding(2);
             this.OrdersGrid.Name = "OrdersGrid";
             this.OrdersGrid.PreviewInfo.Location = new System.Drawing.Point(0, 0);
             this.OrdersGrid.PreviewInfo.Size = new System.Drawing.Size(0, 0);
@@ -63,13 +63,14 @@
             this.OrdersGrid.TabIndex = 16;
             this.OrdersGrid.UseCompatibleTextRendering = false;
             this.OrdersGrid.RowColChange += new C1.Win.C1TrueDBGrid.RowColChangeEventHandler(this.OrdersGrid_RowColChange);
+            this.OrdersGrid.KeyDown += new System.Windows.Forms.KeyEventHandler(this.OrdersGrid_KeyDown);
             // 
             // CustomerGrid
             // 
             this.CustomerGrid.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.CustomerGrid.GroupByCaption = "Drag a column header here to group by that column";
             this.CustomerGrid.Location = new System.Drawing.Point(0, -232);
-            this.CustomerGrid.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.CustomerGrid.Margin = new System.Windows.Forms.Padding(2);
             this.CustomerGrid.Name = "CustomerGrid";
             this.CustomerGrid.PreviewInfo.Location = new System.Drawing.Point(0, 0);
             this.CustomerGrid.PreviewInfo.Size = new System.Drawing.Size(0, 0);
@@ -87,7 +88,7 @@
             this.c1TrueDBGrid1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.c1TrueDBGrid1.GroupByCaption = "Drag a column header here to group by that column";
             this.c1TrueDBGrid1.Location = new System.Drawing.Point(0, -523);
-            this.c1TrueDBGrid1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.c1TrueDBGrid1.Margin = new System.Windows.Forms.Padding(2);
             this.c1TrueDBGrid1.Name = "c1TrueDBGrid1";
             this.c1TrueDBGrid1.PreviewInfo.Location = new System.Drawing.Point(0, 0);
             this.c1TrueDBGrid1.PreviewInfo.Size = new System.Drawing.Size(0, 0);
@@ -105,7 +106,7 @@
             this.c1TrueDBGrid2.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.c1TrueDBGrid2.GroupByCaption = "Drag a column header here to group by that column";
             this.c1TrueDBGrid2.Location = new System.Drawing.Point(0, -814);
-            this.c1TrueDBGrid2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.c1TrueDBGrid2.Margin = new System.Windows.Forms.Padding(2);
             this.c1TrueDBGrid2.Name = "c1TrueDBGrid2";
             this.c1TrueDBGrid2.PreviewInfo.Location = new System.Drawing.Point(0, 0);
             this.c1TrueDBGrid2.PreviewInfo.Size = new System.Drawing.Size(0, 0);
@@ -143,7 +144,7 @@
             this.tbxcustomerID.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.tbxcustomerID.BackColor = System.Drawing.SystemColors.Info;
             this.tbxcustomerID.Location = new System.Drawing.Point(280, 33);
-            this.tbxcustomerID.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tbxcustomerID.Margin = new System.Windows.Forms.Padding(2);
             this.tbxcustomerID.Name = "tbxcustomerID";
             this.tbxcustomerID.Size = new System.Drawing.Size(54, 20);
             this.tbxcustomerID.TabIndex = 22;
@@ -153,7 +154,7 @@
             this.tbxcustomerName.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.tbxcustomerName.BackColor = System.Drawing.SystemColors.Info;
             this.tbxcustomerName.Location = new System.Drawing.Point(338, 33);
-            this.tbxcustomerName.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tbxcustomerName.Margin = new System.Windows.Forms.Padding(2);
             this.tbxcustomerName.Name = "tbxcustomerName";
             this.tbxcustomerName.Size = new System.Drawing.Size(284, 20);
             this.tbxcustomerName.TabIndex = 23;
