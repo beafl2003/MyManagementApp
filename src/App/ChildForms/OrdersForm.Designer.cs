@@ -110,6 +110,7 @@ namespace MyManagementApp.ChildForms
             this.tbxOrderID.TabIndex = 0;
             this.tbxOrderID.Tag = "";
             this.tbxOrderID.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbxOrderID_KeyDown);
+            this.tbxOrderID.KeyUp += new System.Windows.Forms.KeyEventHandler(this.tbxOrderID_KeyUp);
             // 
             // cbxOrderStatus
             // 

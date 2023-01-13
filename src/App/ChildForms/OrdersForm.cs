@@ -288,6 +288,7 @@ namespace MyManagementApp.ChildForms
 
             OrdersPick ordersPickDialog = new OrdersPick();
 
+
             if (ordersPickDialog.ShowDialog(this) == DialogResult.OK)
             {
                 this._currentOrderNum = ordersPickDialog._currentOrderNum;
@@ -296,23 +297,29 @@ namespace MyManagementApp.ChildForms
                 tbxCustomerDescription.Text = ordersPickDialog._currentOrder.CustomerName.ToString();
                 cbxOrderStatus.SelectedItem = ordersPickDialog._currentOrder.OrderStatus;
             }
-
-
+            else
+                MessageBox.Show("Oi");
 
             ordersPickDialog.Dispose();
+
         }
 
         private void tbxOrderID_KeyDown(object sender, KeyEventArgs e)
         {
 
-            ShowOrdersPick();
-            LoadData();
+           // ShowOrdersPick();
+            // LoadData();
         }
 
 
         #endregion
 
-     }
+        private void tbxOrderID_KeyUp(object sender, KeyEventArgs e)
+        {
+            ShowOrdersPick();
+            LoadData();
+        }
+    }
 
 
     #region Extension Tests
