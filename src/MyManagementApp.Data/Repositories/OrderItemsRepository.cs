@@ -11,7 +11,7 @@ namespace MyManagementApp.Data.Repositories
     public class OrderItemsRepository
     {
 
-        public DataTable LoadFromDatabase()
+        public DataTable LoadFromDatabase(int OrderNumber)
         {
             var dbConnection = ConnectionProvider.GetConnection();
             dbConnection.Open();
@@ -30,10 +30,11 @@ namespace MyManagementApp.Data.Repositories
                     INNER JOIN customers ON orderitems.customerid = customers.id
                     INNER JOIN orders ON orderitems.OrderNumber = orders.OrderNumber
                     INNER JOIN products ON orderitems.Productid = Products.id
-                    INNER JOIN address ON orderitems.AddressID = Address.AddressID";
+                    INNER JOIN address ON orderitems.AddressID = Address.AddressID
+                    WHERE orderitems.OrderNumber = @OrderNumber";
 
             var command = new SqlCommand(sql, dbConnection);
-
+            command.Parameters.Add(new SqlParameter("@OrderNumber", OrderNumber));
 
             // adapter
             var adapter = new SqlDataAdapter(command);

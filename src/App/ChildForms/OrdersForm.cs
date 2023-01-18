@@ -68,6 +68,22 @@ namespace MyManagementApp.ChildForms
             var row = table.Rows[currentRow];
             FillFields(row);
 
+            var orderItemsTable = _orderItemsAppService.LoadFromDatabase(_currentOrderNum);
+            OrderItems.SetDataBinding(orderItemsTable, null, false);
+
+            var Itemrows = orderItemsTable.Rows.Count;
+
+            //var theIndex = orderItemsTable.Rows.IndexOf;
+
+            if (Itemrows == 0)
+
+            {
+                ClearActions();
+            }
+
+
+            // orders Grid
+
         }
         private void OrderItems_RowColChange(object sender, RowColChangeEventArgs e)
         {
@@ -98,6 +114,11 @@ namespace MyManagementApp.ChildForms
             var ordersTable = _orderAppService.LoadFromDatabase();
             OrderItemsGrid.SetDataBinding(ordersTable, null, false);
 
+            var currentRow = OrderItemsGrid.Row;
+            var table = (DataTable)OrderItemsGrid.DataSource;
+            var row = table.Rows[currentRow];
+
+            _currentOrderNum = row.Field<int>("OrderNumber");
 
             var rows = ordersTable.Rows.Count;
 
@@ -108,7 +129,7 @@ namespace MyManagementApp.ChildForms
             };
 
 
-            var orderItemsTable = _orderItemsAppService.LoadFromDatabase();
+            var orderItemsTable = _orderItemsAppService.LoadFromDatabase(_currentOrderNum);
             OrderItems.SetDataBinding(orderItemsTable, null, false);
 
             var Itemrows = orderItemsTable.Rows.Count;
@@ -140,7 +161,7 @@ namespace MyManagementApp.ChildForms
         {
             _filling = true;
 
-            //_currentOrderNum = row.Field<int>("OrderNumber");
+            _currentOrderNum = row.Field<int>("OrderNumber");
 
             var OrderItemLine = row.Field<int>("line").ToString();
             var OrderItemProductCode = row.Field<string>("productcode");

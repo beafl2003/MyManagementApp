@@ -23,9 +23,9 @@ namespace MyManagementApp.Application.Services
 
         #region Methods
 
-        public DataTable LoadFromDatabase()
+        public DataTable LoadFromDatabase(int orderNumber)
         {
-            return _orderItemsRepository.LoadFromDatabase();
+            return _orderItemsRepository.LoadFromDatabase(orderNumber);
 
     }
     #endregion
