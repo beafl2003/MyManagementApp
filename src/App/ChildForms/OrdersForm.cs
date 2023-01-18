@@ -73,9 +73,7 @@ namespace MyManagementApp.ChildForms
 
             var Itemrows = orderItemsTable.Rows.Count;
 
-            //var theIndex = orderItemsTable.Rows.IndexOf;
-
-            if (Itemrows == 0)
+             if (Itemrows == 0)
 
             {
                 ClearActions();
@@ -163,16 +161,16 @@ namespace MyManagementApp.ChildForms
 
             _currentOrderNum = row.Field<int>("OrderNumber");
 
-            var OrderItemLine = row.Field<int>("line").ToString();
+            var orderLine = row.Field<Int64>("line").ToString();
             var OrderItemProductCode = row.Field<string>("productcode");
             var OrderItemProduct = row.Field<string>("product");
             var OrderItemBrand = row.Field<string>("brand");
             var OrderItemQtyOrdered = row.Field<decimal>("Qtyordered").ToString("0.00");
             var OrderItemUnitPrice = row.Field<decimal>("unitprice").ToString("C");
             var OrderItemTotalPrice = row.Field<decimal>("TotalPrice").ToString("C");
-            // 
+            //
 
-            tbxLine.Text = OrderItemLine;
+            tbxLine.Text = orderLine;
             tbxItem.Text = OrderItemProductCode;
             tbxItemDescription.Text = OrderItemProduct;
             tbxBrand.Text = OrderItemBrand;

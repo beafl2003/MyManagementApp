@@ -17,7 +17,9 @@ namespace MyManagementApp.Data.Repositories
             dbConnection.Open();
 
 
-            var sql = $@"SELECT orderitems.line,
+            var sql = $@"SELECT 
+                    ROW_NUMBER() OVER (ORDER BY orderitems.line) AS 'line',
+                    orderitems.line AS 'sq',
                     orders.OrderNumber, customers.name AS 'customername',
                     address.address, address.StateOrProvinceCode AS 'state',
                     address.city, address.countrycode AS 'country',
