@@ -71,15 +71,6 @@ namespace MyManagementApp.ChildForms
             var orderItemsTable = _orderItemsAppService.LoadFromDatabase(_currentOrderNum);
             OrderItems.SetDataBinding(orderItemsTable, null, false);
 
-            var Itemrows = orderItemsTable.Rows.Count;
-
-             if (Itemrows == 0)
-
-            {
-                ClearActions();
-            }
-
-
             // orders Grid
 
         }
@@ -335,9 +326,18 @@ namespace MyManagementApp.ChildForms
 
         private void tbxOrderID_KeyUp(object sender, KeyEventArgs e)
         {
-            ShowOrdersPick();
-            LoadData();
+            if (e.KeyCode == Keys.Enter)
+
+            {
+               // var teste = tbxOrderID.Text;
+               // MessageBox.Show(teste);
+                ShowOrdersPick();
+                LoadData();
+            }
+
         }
+
+       
     }
 
 

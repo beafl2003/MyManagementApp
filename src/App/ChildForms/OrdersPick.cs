@@ -160,10 +160,6 @@ namespace TestandoComponentes.ChildForms
             if (e.KeyCode == Keys.Enter)
             {
                 var orderId = this._currentOrderNum;
-                this._currentOrder = _orderAppService.GetOrderByNumber(orderId);
-
-
-
 
             }
         }
