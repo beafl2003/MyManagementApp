@@ -163,6 +163,11 @@ namespace TestandoComponentes.ChildForms
 
             }
         }
+
+        private void OrdersPick_Load(object sender, EventArgs e)
+        {
+
+        }
     } 
 
 }

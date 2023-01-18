@@ -293,6 +293,16 @@ namespace MyManagementApp.ChildForms
 
         }
 
+        public void ShowItemsPick()
+
+        {
+            ItemPick itempickDialog = new ItemPick();
+            if (itempickDialog.ShowDialog(this) == DialogResult.OK)
+            { 
+            
+            }
+        }
+
         public void ShowOrdersPick()
         {
 
@@ -337,7 +347,10 @@ namespace MyManagementApp.ChildForms
 
         }
 
-       
+        private void btnAddItem_Click(object sender, EventArgs e)
+        {
+            _newItem = true;
+        }
     }
 
 

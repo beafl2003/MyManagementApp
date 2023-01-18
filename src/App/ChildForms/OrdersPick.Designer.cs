@@ -71,6 +71,8 @@
             this.CustomerGrid.GroupByCaption = "Drag a column header here to group by that column";
             this.CustomerGrid.Location = new System.Drawing.Point(0, -232);
             this.CustomerGrid.Margin = new System.Windows.Forms.Padding(2);
+            this.CustomerGrid.MaximumSize = new System.Drawing.Size(632, 291);
+            this.CustomerGrid.MinimumSize = new System.Drawing.Size(632, 291);
             this.CustomerGrid.Name = "CustomerGrid";
             this.CustomerGrid.PreviewInfo.Location = new System.Drawing.Point(0, 0);
             this.CustomerGrid.PreviewInfo.Size = new System.Drawing.Size(0, 0);
@@ -198,6 +200,7 @@
             this.MinimumSize = new System.Drawing.Size(648, 385);
             this.Name = "OrdersPick";
             this.Text = "OrdersPick";
+            this.Load += new System.EventHandler(this.OrdersPick_Load);
             ((System.ComponentModel.ISupportInitialize)(this.OrdersGrid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.CustomerGrid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.c1TrueDBGrid1)).EndInit();

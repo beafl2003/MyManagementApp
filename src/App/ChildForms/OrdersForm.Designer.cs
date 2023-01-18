@@ -386,6 +386,7 @@ namespace MyManagementApp.ChildForms
             this.btnAddItem.TabIndex = 26;
             this.btnAddItem.Text = "Add";
             this.btnAddItem.UseVisualStyleBackColor = true;
+            this.btnAddItem.Click += new System.EventHandler(this.btnAddItem_Click);
             // 
             // OrderItems
             // 
