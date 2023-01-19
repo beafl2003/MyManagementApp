@@ -13,6 +13,7 @@ namespace TestandoComponentes.ChildForms
 {
     public partial class ItemPick : Form
     {
+        public Guid _currentId;
         private readonly OrdersAppService _orderAppService;
         private readonly ProductAppService _productsAppService;
         public ItemPick()
@@ -33,6 +34,71 @@ namespace TestandoComponentes.ChildForms
         {
             var productstable = _productsAppService.LoadFromDatabase();
             ItemsGrid.SetDataBinding(productstable, null, false);
+            ConfigureGrid();
+        }
+
+        private void ConfigureGrid()
+        {
+            // zebra design
+            ItemsGrid.AlternatingRows = true;
+            ItemsGrid.OddRowStyle.BackColor = Color.WhiteSmoke;
+            ItemsGrid.EvenRowStyle.BackColor = Color.White;
+
+            foreach (C1.Win.C1TrueDBGrid.C1DisplayColumn item in ItemsGrid.Splits[0].DisplayColumns)
+            {
+
+                item.Locked = true;
+
+
+                if (item.DataColumn.DataField.ToLower() == "id".ToLower())
+                {
+                    item.Visible = false;
+                }
+                if (item.DataColumn.DataField.ToLower() == "code".ToLower())
+                {
+                    item.DataColumn.Caption = "Code";
+
+                }
+                if (item.DataColumn.DataField.ToLower() == "name".ToLower())
+                {
+                    item.DataColumn.Caption = "Description";
+                    item.Width = 320;
+                }
+                if (item.DataColumn.DataField.ToLower() == "brand".ToLower())
+                {
+                    item.DataColumn.Caption = "Brand";
+                }
+                if (item.DataColumn.DataField.ToLower() == "price".ToLower())
+                {
+                    item.DataColumn.Caption = "Price";
+
+                    if (item.DataColumn.DataField.ToLower() == "active".ToLower())
+                    {
+                        item.DataColumn.Caption = "Active";
+                    }
+
+                }
+            }
+        }
+
+        private void ItemsGrid_RowColChange(object sender, C1.Win.C1TrueDBGrid.RowColChangeEventArgs e)
+        {
+            var currentRow = ItemsGrid.Row;
+            if (e.LastRow == currentRow)
+                return;
+            var table = (DataTable)ItemsGrid.DataSource;
+            var row = table.Rows[currentRow];
+            FillFields(row);
+        }
+
+        private void FillFields(DataRow row)
+        {
+            _currentId = row.Field<Guid>("id");
+            var productCode = row.Field<string>("code");
+            var productName = row.Field<string>("name");
+
+            tbxProductCode.Text = productCode;
+            tbxProductName.Text = productName;
         }
     }
 }

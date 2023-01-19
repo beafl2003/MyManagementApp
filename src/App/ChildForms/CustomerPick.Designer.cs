@@ -43,7 +43,7 @@ namespace MyManagementApp.ChildForms
             this.CustomerGrid.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.CustomerGrid.GroupByCaption = "Drag a column header here to group by that column";
             this.CustomerGrid.Location = new System.Drawing.Point(0, 55);
-            this.CustomerGrid.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.CustomerGrid.Margin = new System.Windows.Forms.Padding(2);
             this.CustomerGrid.Name = "CustomerGrid";
             this.CustomerGrid.PreviewInfo.Location = new System.Drawing.Point(0, 0);
             this.CustomerGrid.PreviewInfo.Size = new System.Drawing.Size(0, 0);
@@ -73,7 +73,7 @@ namespace MyManagementApp.ChildForms
             this.tbxcustomerName.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.tbxcustomerName.BackColor = System.Drawing.SystemColors.Info;
             this.tbxcustomerName.Location = new System.Drawing.Point(215, 34);
-            this.tbxcustomerName.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tbxcustomerName.Margin = new System.Windows.Forms.Padding(2);
             this.tbxcustomerName.Name = "tbxcustomerName";
             this.tbxcustomerName.Size = new System.Drawing.Size(397, 20);
             this.tbxcustomerName.TabIndex = 18;
@@ -83,7 +83,7 @@ namespace MyManagementApp.ChildForms
             this.tbxcustomerID.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.tbxcustomerID.BackColor = System.Drawing.SystemColors.Info;
             this.tbxcustomerID.Location = new System.Drawing.Point(158, 34);
-            this.tbxcustomerID.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tbxcustomerID.Margin = new System.Windows.Forms.Padding(2);
             this.tbxcustomerID.Name = "tbxcustomerID";
             this.tbxcustomerID.Size = new System.Drawing.Size(54, 20);
             this.tbxcustomerID.TabIndex = 17;

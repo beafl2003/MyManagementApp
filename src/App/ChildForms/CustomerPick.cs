@@ -90,7 +90,7 @@ namespace MyManagementApp.ChildForms
                 if (item.DataColumn.DataField.ToLower() == "name".ToLower())
                 {
                     item.DataColumn.Caption = "Name";
-                    item.Width = 300;
+                    item.Width = 410;
                 }
                 if (item.DataColumn.DataField.ToLower() == "active".ToLower())
                 {

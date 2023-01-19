@@ -56,6 +56,7 @@
             this.ItemsGrid.Size = new System.Drawing.Size(632, 287);
             this.ItemsGrid.TabIndex = 6;
             this.ItemsGrid.UseCompatibleTextRendering = false;
+            this.ItemsGrid.RowColChange += new C1.Win.C1TrueDBGrid.RowColChangeEventHandler(this.ItemsGrid_RowColChange);
             // 
             // ChooseOrder
             // 
@@ -71,7 +72,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(211, 36);
+            this.label1.Location = new System.Drawing.Point(12, 36);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(52, 15);
             this.label1.TabIndex = 28;
@@ -81,20 +82,20 @@
             // 
             this.tbxProductCode.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.tbxProductCode.BackColor = System.Drawing.SystemColors.Info;
-            this.tbxProductCode.Location = new System.Drawing.Point(279, 35);
+            this.tbxProductCode.Location = new System.Drawing.Point(69, 35);
             this.tbxProductCode.Margin = new System.Windows.Forms.Padding(2);
             this.tbxProductCode.Name = "tbxProductCode";
-            this.tbxProductCode.Size = new System.Drawing.Size(54, 20);
+            this.tbxProductCode.Size = new System.Drawing.Size(86, 20);
             this.tbxProductCode.TabIndex = 26;
             // 
             // tbxProductName
             // 
             this.tbxProductName.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.tbxProductName.BackColor = System.Drawing.SystemColors.Info;
-            this.tbxProductName.Location = new System.Drawing.Point(337, 35);
+            this.tbxProductName.Location = new System.Drawing.Point(159, 35);
             this.tbxProductName.Margin = new System.Windows.Forms.Padding(2);
             this.tbxProductName.Name = "tbxProductName";
-            this.tbxProductName.Size = new System.Drawing.Size(284, 20);
+            this.tbxProductName.Size = new System.Drawing.Size(462, 20);
             this.tbxProductName.TabIndex = 27;
             // 
             // ItemPick

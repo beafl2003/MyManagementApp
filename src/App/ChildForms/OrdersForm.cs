@@ -350,6 +350,8 @@ namespace MyManagementApp.ChildForms
         private void btnAddItem_Click(object sender, EventArgs e)
         {
             _newItem = true;
+            ShowItemsPick();
+
         }
     }
 
