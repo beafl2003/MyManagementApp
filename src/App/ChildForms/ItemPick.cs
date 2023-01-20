@@ -100,5 +100,13 @@ namespace TestandoComponentes.ChildForms
             tbxProductCode.Text = productCode;
             tbxProductName.Text = productName;
         }
+
+        private void ItemsGrid_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                var currentid = this._currentId;
+            }
+        }
     }
 }

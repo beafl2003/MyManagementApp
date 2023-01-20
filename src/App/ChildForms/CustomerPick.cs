@@ -108,9 +108,7 @@ namespace MyManagementApp.ChildForms
 
             _currentId = row.Field<Guid>("id");
             var customerCode = row.Field<string>("code");
-            var customerName = row.Field<string>("name");
-
-            tbxcustomerID.Text = customerCode;
+            var customerName = row.Field<string>("name");            tbxcustomerID.Text = customerCode;
             tbxcustomerName.Text = customerName;
 
 

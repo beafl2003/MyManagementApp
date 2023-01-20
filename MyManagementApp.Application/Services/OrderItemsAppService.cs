@@ -1,4 +1,5 @@
 ﻿using MyManagementApp.Data.Repositories;
+using MyManagementApp.Domain;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -27,9 +28,16 @@ namespace MyManagementApp.Application.Services
         {
             return _orderItemsRepository.LoadFromDatabase(orderNumber);
 
+        }
+
+        public OrderItems GetOrderItem(int orderNumber, int orderitemsq)
+        {
+            return _orderItemsRepository.GetOrderItemByNumber(orderNumber, orderitemsq);
+        }
+
+        #endregion
+
     }
-    #endregion
-}
 
 
 }

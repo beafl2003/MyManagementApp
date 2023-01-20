@@ -57,6 +57,7 @@
             this.ItemsGrid.TabIndex = 6;
             this.ItemsGrid.UseCompatibleTextRendering = false;
             this.ItemsGrid.RowColChange += new C1.Win.C1TrueDBGrid.RowColChangeEventHandler(this.ItemsGrid_RowColChange);
+            this.ItemsGrid.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ItemsGrid_KeyDown);
             // 
             // ChooseOrder
             // 
