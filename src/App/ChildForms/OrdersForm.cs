@@ -35,6 +35,7 @@ namespace MyManagementApp.ChildForms
         private int _currentOrderNum;
         public bool _refreshOrders;
         private Guid _currentCustomerId;
+        private Guid _currentOrderItemId;
 
         private readonly OrdersAppService _orderAppService;
         private readonly OrderItemsAppService _orderItemsAppService;
@@ -298,8 +299,21 @@ namespace MyManagementApp.ChildForms
         {
             ItemPick itempickDialog = new ItemPick();
             if (itempickDialog.ShowDialog(this) == DialogResult.OK)
-            { 
-            
+            {
+                this._currentOrderItemId = itempickDialog._currentitemId;
+                var r = _orderItemsAppService.InsertItem(_currentOrderNum, _currentOrderItemId);
+                if (!r.Success)
+                {
+                    this.NotifyError(r);
+
+                }
+                else
+                {
+                    this.Close();
+
+
+
+                }
             }
         }
 

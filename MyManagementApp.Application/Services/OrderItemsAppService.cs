@@ -1,5 +1,6 @@
 ﻿using MyManagementApp.Data.Repositories;
 using MyManagementApp.Domain;
+using MyManagementApp.Domain.Core;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -35,9 +36,26 @@ namespace MyManagementApp.Application.Services
             return _orderItemsRepository.GetOrderItemByNumber(orderNumber, orderitemsq);
         }
 
-        #endregion
+        public Result InsertItem(int OrderNumber, Guid ProductId)
+        {
+
+            var orderitem = new OrderItems()
+            {
+                OrderNumber = OrderNumber,
+                ProductId = ProductId,
+                ItemStatus = Domain.Enums.OrderItemStatusEnum.Ordered
+            };
+
+            var r = orderitem.IsValid();
+            if (!r.Success)
+                return r;
+            _orderItemsRepository.InsertItem(orderitem);
+
+            return Result.Factory.True();
+            #endregion
+
+        }
+
 
     }
-
-
 }

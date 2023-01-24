@@ -128,33 +128,27 @@ namespace MyManagementApp.Data.Repositories
             return OrderItem;
         }
 
-        public bool InsertItem(OrderItems item) 
+        public bool InsertItem(OrderItems orderitem) 
         
         {
             var dbConnection = ConnectionProvider.GetConnection();
             dbConnection.Open();
 
-            string StatusOfTheItem = item.ItemStatus.ToDataValue();
-            var sql = $@" INSERT INTO orderitems
-                    (ordernumber, productid, customerid, addressid, qtyordered, totalprice, itemstatus)
-                    VALUES
-                    (@OrderNumber, @ProductId, @CustomerID, @AddressID,@QtyOrdered, @TotalPrice, @ItemStatus)";
+            var sql = $@"  INSERT INTO orderitems (ordernumber, customerid, productid, ItemStatus)
+                VALUES (@OrderNumber, (SELECT customerid FROM orders WHERE ordernumber = @OrderNumber), @productid, 'Ordered') 
+                SELECT SCOPE_IDENTITY()";
 
             var command = new System.Data.SqlClient.SqlCommand(sql, dbConnection);
-            command.Parameters.Add(new System.Data.SqlClient.SqlParameter("@OrderNumber", item.OrderNumber));
-            command.Parameters.Add(new System.Data.SqlClient.SqlParameter("@ProductId", item.ProductId));
-            command.Parameters.Add(new System.Data.SqlClient.SqlParameter("@CustomerID", item.CustomerID));
-            command.Parameters.Add(new System.Data.SqlClient.SqlParameter("@AddressID", item.AddressID));
-            command.Parameters.Add(new System.Data.SqlClient.SqlParameter("@QtyOrdered", item.QtyOrdered));
-            command.Parameters.Add(new System.Data.SqlClient.SqlParameter("@TotalPrice", item.TotalPrice));
-            command.Parameters.Add(new System.Data.SqlClient.SqlParameter("@ItemStatus", StatusOfTheItem));
+            command.Parameters.Add(new System.Data.SqlClient.SqlParameter("@OrderNumber", orderitem.OrderNumber));
+            command.Parameters.Add(new System.Data.SqlClient.SqlParameter("@ProductId", orderitem.ProductId));
+
 
             var returnValue = command.ExecuteScalar();
             var rowsAffected = 0;
             // try convert
-            if (int.TryParse(returnValue.ToString(), out int orderNumber))
+            if (int.TryParse(returnValue.ToString(), out int orderitemNumber))
             {
-                item.OrderNumber = orderNumber;
+                orderitem.Line = orderitemNumber;
                 rowsAffected = 1;
             }
 

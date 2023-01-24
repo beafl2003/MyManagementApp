@@ -13,9 +13,10 @@ namespace TestandoComponentes.ChildForms
 {
     public partial class ItemPick : Form
     {
-        public Guid _currentId;
+        public Guid _currentitemId;
         private readonly OrdersAppService _orderAppService;
         private readonly ProductAppService _productsAppService;
+        public readonly int _currentOrderid;
         public ItemPick()
         {
             InitializeComponent();
@@ -93,7 +94,7 @@ namespace TestandoComponentes.ChildForms
 
         private void FillFields(DataRow row)
         {
-            _currentId = row.Field<Guid>("id");
+            _currentitemId = row.Field<Guid>("id");
             var productCode = row.Field<string>("code");
             var productName = row.Field<string>("name");
 
@@ -105,7 +106,12 @@ namespace TestandoComponentes.ChildForms
         {
             if (e.KeyCode == Keys.Enter)
             {
-                var currentid = this._currentId;
+                var currentid = this._currentitemId;
+                if (currentid == Guid.Empty)
+                    MessageBox.Show("Could not pick this item, please try again.");
+                else
+                    this.Close();
+                   
             }
         }
     }
