@@ -346,14 +346,15 @@ namespace MyManagementApp.ChildForms
             if (ordersPickDialog.ShowDialog(this) == DialogResult.OK)
             {
                 this._currentOrderNum = ordersPickDialog._currentOrderNum;
-                tbxOrderID.Text = ordersPickDialog._currentOrder.OrderNumber.ToString();
-                tbxCustomer.Text = ordersPickDialog._currentOrder.CustomerCode.ToString();
-                tbxCustomerDescription.Text = ordersPickDialog._currentOrder.CustomerName.ToString();
-                cbxOrderStatus.SelectedItem = ordersPickDialog._currentOrder.OrderStatus;
+                var order = _orderAppService.GetOrderByNumber(this._currentOrderNum);
+                tbxOrderID.Text = order.OrderNumber.ToString();
+                tbxCustomer.Text = order.CustomerCode.ToString();
+                tbxCustomerDescription.Text = order.CustomerName.ToString();
+                cbxOrderStatus.SelectedItem = order.OrderStatus;
             }
     
 
-            ordersPickDialog.Dispose();
+            ordersPickDialog.Close();
 
         }
 

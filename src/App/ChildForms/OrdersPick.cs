@@ -151,8 +151,7 @@ namespace TestandoComponentes.ChildForms
         {
 
                 var orderId = this._currentOrderNum;
-                this._currentOrder = _orderAppService.GetOrderByNumber(orderId);
-
+                        
         }
 
        private void OrdersGrid_KeyDown(object sender, KeyEventArgs e)
@@ -160,6 +159,8 @@ namespace TestandoComponentes.ChildForms
             if (e.KeyCode == Keys.Enter)
             {
                 var orderId = this._currentOrderNum;
+                DialogResult = DialogResult.OK;
+                this.Close();
 
             }
         }

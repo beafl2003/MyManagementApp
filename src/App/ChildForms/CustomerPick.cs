@@ -176,6 +176,7 @@ namespace MyManagementApp.ChildForms
                 }
                 else
                 {
+                    DialogResult = DialogResult.OK;
                     this.Close();
 
 

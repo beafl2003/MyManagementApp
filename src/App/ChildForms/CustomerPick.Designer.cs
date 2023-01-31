@@ -92,7 +92,7 @@ namespace MyManagementApp.ChildForms
             // 
             this.lbPreview.AutoSize = true;
             this.lbPreview.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbPreview.Location = new System.Drawing.Point(96, 34);
+            this.lbPreview.Location = new System.Drawing.Point(12, 34);
             this.lbPreview.Name = "lbPreview";
             this.lbPreview.Size = new System.Drawing.Size(53, 15);
             this.lbPreview.TabIndex = 19;
