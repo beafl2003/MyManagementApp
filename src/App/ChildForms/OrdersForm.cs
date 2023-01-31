@@ -134,7 +134,21 @@ namespace MyManagementApp.ChildForms
         }
 
 
+        public void LoadOnlyItems()
+        {
 
+            var orderItemsTable = _orderItemsAppService.LoadFromDatabase(_currentOrderNum);
+            OrderItems.SetDataBinding(orderItemsTable, null, false);
+
+            var Itemrows = orderItemsTable.Rows.Count;
+
+            if (Itemrows == 0)
+
+            {
+                ClearActions();
+            }
+
+        }
 
         // fill control
 
@@ -313,7 +327,9 @@ namespace MyManagementApp.ChildForms
                 }
                 else
                 {
-                    LoadData();
+                    LoadOnlyItems();
+
+
 
 
 
