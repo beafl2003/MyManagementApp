@@ -36,6 +36,7 @@ namespace TestandoComponentes.ChildForms
             var productstable = _productsAppService.LoadFromDatabase();
             ItemsGrid.SetDataBinding(productstable, null, false);
             ConfigureGrid();
+
         }
 
         private void ConfigureGrid()
@@ -105,13 +106,14 @@ namespace TestandoComponentes.ChildForms
         private void ItemsGrid_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
+            
             {
                 var currentid = this._currentitemId;
                 if (currentid == Guid.Empty)
                     MessageBox.Show("Could not pick this item, please try again.");
                 else
+                    DialogResult = DialogResult.OK;
                     this.Close();
-                   
             }
         }
     }

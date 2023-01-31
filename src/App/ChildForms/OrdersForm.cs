@@ -39,6 +39,7 @@ namespace MyManagementApp.ChildForms
 
         private readonly OrdersAppService _orderAppService;
         private readonly OrderItemsAppService _orderItemsAppService;
+      
 
         public OrdersForm()
         {
@@ -309,7 +310,7 @@ namespace MyManagementApp.ChildForms
                 }
                 else
                 {
-                    this.Close();
+                    LoadData();
 
 
 
@@ -331,8 +332,7 @@ namespace MyManagementApp.ChildForms
                 tbxCustomerDescription.Text = ordersPickDialog._currentOrder.CustomerName.ToString();
                 cbxOrderStatus.SelectedItem = ordersPickDialog._currentOrder.OrderStatus;
             }
-            else
-                MessageBox.Show("Oi");
+    
 
             ordersPickDialog.Dispose();
 
@@ -365,6 +365,7 @@ namespace MyManagementApp.ChildForms
         {
             _newItem = true;
             ShowItemsPick();
+            _newItem= false;    
 
         }
     }

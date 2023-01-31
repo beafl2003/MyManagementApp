@@ -27,8 +27,8 @@ namespace MyManagementApp.Domain
             var messages = new List<string>();
 
 
-            if (CustomerID == Guid.Empty)
-                messages.Add("CustomerId is empty");
+            if (OrderNumber == null)
+                messages.Add("Order Number is empty");
 
 
             return Result.Factory.New(messages);
