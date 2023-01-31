@@ -70,6 +70,7 @@ namespace MyManagementApp.ChildForms
             var row = table.Rows[currentRow];
             FillFields(row);
 
+
             var orderItemsTable = _orderItemsAppService.LoadFromDatabase(_currentOrderNum);
             OrderItems.SetDataBinding(orderItemsTable, null, false);
 
@@ -212,6 +213,8 @@ namespace MyManagementApp.ChildForms
             LoadData();
 
             _newItem = false;
+
+            OrderItemsGrid.MoveLast();
         }
 
 
