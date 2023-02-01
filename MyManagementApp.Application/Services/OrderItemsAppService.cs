@@ -32,10 +32,10 @@ namespace MyManagementApp.Application.Services
         }
 
         //public DataTable 
-        //public OrderItems GetOrderItem(int orderNumber, int orderitemsq)
-        //{
-        //    return _orderItemsRepository.GetOrderItemByNumber(orderNumber, orderitemsq);
-        //}
+        public OrderItems GetOrderItem(int orderNumber, int orderitemsq)
+        {
+            return _orderItemsRepository.GetOrderItemByNumber(orderNumber, orderitemsq);
+        }
 
         public Result InsertItem(int OrderNumber, Guid ProductId)
         {
