@@ -36,6 +36,7 @@ namespace MyManagementApp.ChildForms
         public bool _refreshOrders;
         private Guid _currentCustomerId;
         private Guid _currentOrderItemId;
+        private Order _order;
 
         private readonly OrdersAppService _orderAppService;
         private readonly OrderItemsAppService _orderItemsAppService;
@@ -346,14 +347,18 @@ namespace MyManagementApp.ChildForms
             if (ordersPickDialog.ShowDialog(this) == DialogResult.OK)
             {
                 this._currentOrderNum = ordersPickDialog._currentOrderNum;
-                var order = _orderAppService.GetOrderByNumber(this._currentOrderNum);
-                tbxOrderID.Text = order.OrderNumber.ToString();
-                tbxCustomer.Text = order.CustomerCode.ToString();
-                tbxCustomerDescription.Text = order.CustomerName.ToString();
-                cbxOrderStatus.SelectedItem = order.OrderStatus;
+                _order = _orderAppService.GetOrderByNumber(this._currentOrderNum);
             }
-    
 
+            var OrderNumber = _order.OrderNumber.ToString();
+            var statusOrder = _order.OrderStatus;
+            var CustomerCode = _order.CustomerCode.ToString();
+            var CustomerName = _order.CustomerName.ToString();
+
+            tbxOrderID.Text = OrderNumber;
+            tbxCustomer.Text = CustomerCode;
+            tbxCustomerDescription.Text = CustomerName;
+            cbxOrderStatus.SelectedItem = statusOrder;
             ordersPickDialog.Close();
 
         }
@@ -376,7 +381,6 @@ namespace MyManagementApp.ChildForms
                // var teste = tbxOrderID.Text;
                // MessageBox.Show(teste);
                 ShowOrdersPick();
-                LoadData();
             }
 
         }
