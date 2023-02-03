@@ -18,6 +18,7 @@ using TestandoComponentes.ChildForms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using System.Runtime.InteropServices;
 using System.Threading;
+using MyManagementApp.Domain;
 
 namespace MyManagementApp.ChildForms
 {
@@ -46,6 +47,7 @@ namespace MyManagementApp.ChildForms
         public OrdersForm()
         {
             InitializeComponent();
+            ConfigureGrid();
 
             this.cbxOrderStatus.DataSource = Enum.GetValues(typeof(OrderStatusEnum));
             this.cbxOrderItemStatus.DataSource = Enum.GetValues(typeof(OrderItemStatusEnum));
@@ -74,7 +76,7 @@ namespace MyManagementApp.ChildForms
 
 
             var orderItemsTable = _orderItemsAppService.LoadFromDatabase(_currentOrderNum);
-            OrderItems.SetDataBinding(orderItemsTable, null, false);
+            OrderItemsTheGrid.SetDataBinding(orderItemsTable, null, false);
 
             // orders Grid
 
@@ -82,10 +84,10 @@ namespace MyManagementApp.ChildForms
         private void OrderItems_RowColChange(object sender, RowColChangeEventArgs e)
         {
 
-            var currentRow = OrderItems.Row;
+            var currentRow = OrderItemsTheGrid.Row;
             if (e.LastRow == currentRow)
                 return;
-            var table = (DataTable)OrderItems.DataSource;
+            var table = (DataTable)OrderItemsTheGrid.DataSource;
             var row = table.Rows[currentRow];
             FillItemFields(row);
         }
@@ -104,6 +106,8 @@ namespace MyManagementApp.ChildForms
 
         public void LoadData()
         {
+
+            ConfigureGrid();
 
             var ordersTable = _orderAppService.LoadFromDatabase();
             OrderItemsGrid.SetDataBinding(ordersTable, null, false);
@@ -124,7 +128,7 @@ namespace MyManagementApp.ChildForms
 
 
             var orderItemsTable = _orderItemsAppService.LoadFromDatabase(_currentOrderNum);
-            OrderItems.SetDataBinding(orderItemsTable, null, false);
+            OrderItemsTheGrid.SetDataBinding(orderItemsTable, null, false);
 
             var Itemrows = orderItemsTable.Rows.Count;
 
@@ -140,7 +144,7 @@ namespace MyManagementApp.ChildForms
         {
 
             var orderItemsTable = _orderItemsAppService.LoadFromDatabase(_currentOrderNum);
-            OrderItems.SetDataBinding(orderItemsTable, null, false);
+            OrderItemsTheGrid.SetDataBinding(orderItemsTable, null, false);
 
             var Itemrows = orderItemsTable.Rows.Count;
 
@@ -349,6 +353,12 @@ namespace MyManagementApp.ChildForms
             {
                 this._currentOrderNum = ordersPickDialog._currentOrderNum;
                 _order = _orderAppService.GetOrderByNumber(this._currentOrderNum);
+                if (_order == null)
+                {
+                    MessageBox.Show("Could not find the selected order. Please try again.");
+                    return;
+                }
+                LoadOnlyItems();
             }
 
             var OrderNumber = _order.OrderNumber.ToString();
@@ -379,9 +389,48 @@ namespace MyManagementApp.ChildForms
             if (e.KeyCode == Keys.Enter)
 
             {
-               // var teste = tbxOrderID.Text;
-               // MessageBox.Show(teste);
-                ShowOrdersPick();
+                var a = "";
+                var ordervalue = tbxOrderID.Text.Trim();
+               if(ordervalue == null)
+                    ShowOrdersPick();
+               else if (ordervalue.Equals(a))
+                    ShowOrdersPick();
+           
+
+              var ordervalueint = 0;
+              int.TryParse(tbxOrderID.Text, out ordervalueint);
+
+                if (ordervalueint == 0)
+                {
+                    MessageBox.Show("Could not find the informed order, please choose from our OrderPick options.");
+                    ShowOrdersPick();
+                    LoadOnlyItems();
+                }
+                else
+                {
+                    _currentOrderNum = ordervalueint;
+                    _order = _orderAppService.GetOrderByNumber(ordervalueint);
+
+                    if (_order == null)
+                    {
+                        MessageBox.Show("Could not find the informed order, please choose from our OrderPick options.");
+                        ShowOrdersPick();
+                    }
+                    else 
+                    {
+                        LoadOnlyItems();
+                    }
+
+                    var OrderNumber = _order.OrderNumber.ToString();
+                    var statusOrder = _order.OrderStatus;
+                    var CustomerCode = _order.CustomerCode.ToString();
+                    var CustomerName = _order.CustomerName.ToString();
+
+                    tbxOrderID.Text = OrderNumber;
+                    tbxCustomer.Text = CustomerCode;
+                    tbxCustomerDescription.Text = CustomerName;
+                    cbxOrderStatus.SelectedItem = statusOrder;
+                }
                 //int milliseconds = 2000;
                 //Thread.Sleep(milliseconds);
             }
@@ -393,6 +442,29 @@ namespace MyManagementApp.ChildForms
             _newItem = true;
             ShowItemsPick();
             _newItem= false;    
+
+        }
+
+        private void ConfigureGrid()
+        {
+            OrderItemsTheGrid.AlternatingRows = true;
+            OrderItemsTheGrid.OddRowStyle.BackColor = Color.WhiteSmoke;
+            OrderItemsTheGrid.EvenRowStyle.BackColor = Color.White;
+            foreach (C1DisplayColumn item in OrderItemsTheGrid.Splits[0].DisplayColumns)
+            {
+                    // Block Item Editing 
+             item.Locked = true;
+
+              if (item.DataColumn.DataField.ToLower() == "customerid".ToLower())
+              {
+                  item.Visible = false;
+              }
+              if (item.DataColumn.DataField.ToLower() == "customername".ToLower())
+              {
+                  item.Visible = false;
+              }
+                }
+            }
 
         }
     }
@@ -423,5 +495,5 @@ namespace MyManagementApp.ChildForms
     }
 
 
+
     #endregion
-}
