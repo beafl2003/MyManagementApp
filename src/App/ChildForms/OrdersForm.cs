@@ -17,6 +17,7 @@ using MyManagmentApp;
 using TestandoComponentes.ChildForms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using System.Runtime.InteropServices;
+using System.Threading;
 
 namespace MyManagementApp.ChildForms
 {
@@ -381,6 +382,8 @@ namespace MyManagementApp.ChildForms
                // var teste = tbxOrderID.Text;
                // MessageBox.Show(teste);
                 ShowOrdersPick();
+                //int milliseconds = 2000;
+                //Thread.Sleep(milliseconds);
             }
 
         }

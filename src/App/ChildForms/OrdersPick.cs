@@ -156,19 +156,28 @@ namespace TestandoComponentes.ChildForms
 
        private void OrdersGrid_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Enter)
-            {
-                var orderId = this._currentOrderNum;
-                DialogResult = DialogResult.OK;
-                this.Close();
+            //if (e.KeyCode == Keys.Enter)
+            //{
+            //    var orderId = this._currentOrderNum;
+            //    DialogResult = DialogResult.OK;
+            //    this.Close();
 
-            }
+            //}
         }
 
         private void OrdersPick_Load(object sender, EventArgs e)
         {
 
         }
+
+        private void c1Button1_Click(object sender, EventArgs e)
+        {
+            var orderId = this._currentOrderNum;
+            DialogResult = DialogResult.OK;
+            this.Close();
+        }
+
+
     } 
 
 }
