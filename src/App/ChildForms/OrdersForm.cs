@@ -19,6 +19,7 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using System.Runtime.InteropServices;
 using System.Threading;
 using MyManagementApp.Domain;
+using C1.Win.C1Input;
 
 namespace MyManagementApp.ChildForms
 {
@@ -94,13 +95,14 @@ namespace MyManagementApp.ChildForms
 
         private void OrdersForm_Shown(object sender, EventArgs e)
         {
-            LoadData();
+            //LoadData();
             //EnabledDisabledBtn();
+            _currentOrderNum = 0;
         }
 
         private void OrdersForm_Load(object sender, EventArgs e)
         {
-            LoadData();
+            //LoadData();
             //EnabledDisabledBtn();
         }
 
@@ -166,12 +168,27 @@ namespace MyManagementApp.ChildForms
             tbxCustomer.Clear();
             tbxCustomerDescription.Clear();
             cbxOrderItemStatus.SelectedItem = OrderStatusEnum.Open;
+            tbxLine.Clear();
+            tbxItem.Clear();
+            tbxItemDescription.Clear();
+            tbxBrand.Clear();
+            tbxQty.Clear();
+            tbxUnitPrice.Clear();
+            cbxOrderItemStatus.SelectedItem = OrderItemStatusEnum.Ordered;
+            tbxTotalPrice.Clear();
+
+
         }
 
 
         private void FillItemFields(DataRow row)
         {
             _filling = true;
+
+            //if (_currentOrderNum == 0)
+            //{
+            //    return;
+            //}
 
             _currentOrderNum = row.Field<int>("OrderNumber");
 
@@ -222,6 +239,7 @@ namespace MyManagementApp.ChildForms
         #region order tools
         private void BtnAdd_Click(object sender, EventArgs e)
         {
+            ClearActions();
             _newItem = true;
             //if (MessageBox.Show("Please choose the customer for the new order: ", "New Order", MessageBoxButtons.OK) == DialogResult.OK)
             //{
@@ -231,6 +249,15 @@ namespace MyManagementApp.ChildForms
 
             ShowCustomerPick();
             LoadData();
+
+            tbxLine.Clear();
+            tbxItem.Clear();
+            tbxItemDescription.Clear();
+            tbxBrand.Clear();
+            tbxQty.Clear();
+            tbxUnitPrice.Clear();
+            cbxOrderItemStatus.SelectedItem = OrderItemStatusEnum.Ordered;
+            tbxTotalPrice.Clear();
 
             _newItem = false;
 
@@ -361,6 +388,11 @@ namespace MyManagementApp.ChildForms
                 LoadOnlyItems();
             }
 
+            if (_order == null)
+            {
+                return;
+            }
+
             var OrderNumber = _order.OrderNumber.ToString();
             var statusOrder = _order.OrderStatus;
             var CustomerCode = _order.CustomerCode.ToString();
@@ -440,6 +472,12 @@ namespace MyManagementApp.ChildForms
         private void btnAddItem_Click(object sender, EventArgs e)
         {
             _newItem = true;
+            ClearActions();
+            if (_currentOrderNum == 0)
+            { 
+                return;
+            }
+
             ShowItemsPick();
             _newItem= false;    
 

@@ -74,12 +74,12 @@ namespace MyManagementApp.ChildForms
             this.tbxOrderPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tbxOrderPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 75F));
             this.tbxOrderPanel.Controls.Add(this.lbOrderStatus, 3, 0);
-            this.tbxOrderPanel.Controls.Add(this.tbxOrderID, 0, 1);
             this.tbxOrderPanel.Controls.Add(this.cbxOrderStatus, 3, 1);
             this.tbxOrderPanel.Controls.Add(this.OrderID, 0, 0);
             this.tbxOrderPanel.Controls.Add(this.lbCustomer, 1, 0);
             this.tbxOrderPanel.Controls.Add(this.tbxCustomerDescription, 2, 1);
             this.tbxOrderPanel.Controls.Add(this.tbxCustomer, 1, 1);
+            this.tbxOrderPanel.Controls.Add(this.tbxOrderID, 0, 1);
             this.tbxOrderPanel.Location = new System.Drawing.Point(7, 9);
             this.tbxOrderPanel.Margin = new System.Windows.Forms.Padding(0, 2, 0, 2);
             this.tbxOrderPanel.Name = "tbxOrderPanel";
