@@ -5,6 +5,7 @@ using System.Windows.Forms;
 using MyManagementApp.Application.Services;
 using TestandoComponentes.Extensions;
 using MyManagementApp.ChildForms;
+using MyManagementApp.Domain.Core;
 
 namespace MyManagementApp.ChildForms
 {
@@ -16,6 +17,8 @@ namespace MyManagementApp.ChildForms
         private readonly CustomerAppService _customerAppService;
         private readonly OrdersAppService _orderAppService;
         private readonly OrderRepository _orderRepository;
+        public bool _newOrder;
+        public Order _order;
 
 
         public CustomerPick()
@@ -108,7 +111,8 @@ namespace MyManagementApp.ChildForms
 
             _currentId = row.Field<Guid>("id");
             var customerCode = row.Field<string>("code");
-            var customerName = row.Field<string>("name");            tbxcustomerID.Text = customerCode;
+            var customerName = row.Field<string>("name");            
+            tbxcustomerID.Text = customerCode;
             tbxcustomerName.Text = customerName;
 
 
@@ -121,18 +125,26 @@ namespace MyManagementApp.ChildForms
             // aqui coloco a ação gerada pelo enter
 
             var customerId = this._currentId;
-            var r = _orderAppService.NewOrder(customerId);
-            if (!r.Success)
+            if (_newOrder = true)
             {
-                this.NotifyError(r);
+                var r = _orderAppService.NewOrder(customerId);
+                if (!r.Success)
+                {
+                    this.NotifyError(r);
 
+                }
+                else
+                {
+                    this.Close();
+
+
+
+                }
             }
             else
             {
-                this.Close();
-
-
-
+                _order = _orderAppService.GetOrdersByCustomer(customerId);
+                return;
             }
         }
 

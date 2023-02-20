@@ -32,12 +32,12 @@ namespace MyManagementApp.ChildForms
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(OrdersForm));
             this.tbxOrderPanel = new System.Windows.Forms.TableLayoutPanel();
             this.lbOrderStatus = new System.Windows.Forms.Label();
-            this.tbxOrderID = new System.Windows.Forms.TextBox();
             this.cbxOrderStatus = new System.Windows.Forms.ComboBox();
             this.OrderID = new System.Windows.Forms.Label();
             this.lbCustomer = new System.Windows.Forms.Label();
             this.tbxCustomerDescription = new System.Windows.Forms.TextBox();
             this.tbxCustomer = new System.Windows.Forms.TextBox();
+            this.tbxOrderID = new System.Windows.Forms.TextBox();
             this.tbxItemDescription = new System.Windows.Forms.TextBox();
             this.tbxItem = new System.Windows.Forms.TextBox();
             this.tbxLine = new System.Windows.Forms.TextBox();
@@ -99,19 +99,6 @@ namespace MyManagementApp.ChildForms
             this.lbOrderStatus.TabIndex = 7;
             this.lbOrderStatus.Text = "Status";
             // 
-            // tbxOrderID
-            // 
-            this.tbxOrderID.AccessibleDescription = "";
-            this.tbxOrderID.BackColor = System.Drawing.SystemColors.Info;
-            this.tbxOrderID.Location = new System.Drawing.Point(2, 18);
-            this.tbxOrderID.Margin = new System.Windows.Forms.Padding(2);
-            this.tbxOrderID.Name = "tbxOrderID";
-            this.tbxOrderID.Size = new System.Drawing.Size(71, 20);
-            this.tbxOrderID.TabIndex = 0;
-            this.tbxOrderID.Tag = "";
-            this.tbxOrderID.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbxOrderID_KeyDown);
-            this.tbxOrderID.KeyUp += new System.Windows.Forms.KeyEventHandler(this.tbxOrderID_KeyUp);
-            // 
             // cbxOrderStatus
             // 
             this.cbxOrderStatus.BackColor = System.Drawing.SystemColors.Info;
@@ -160,6 +147,20 @@ namespace MyManagementApp.ChildForms
             this.tbxCustomer.Size = new System.Drawing.Size(71, 20);
             this.tbxCustomer.TabIndex = 1;
             this.tbxCustomer.Tag = "";
+            this.tbxCustomer.KeyUp += new System.Windows.Forms.KeyEventHandler(this.tbxCustomer_KeyUp);
+            // 
+            // tbxOrderID
+            // 
+            this.tbxOrderID.AccessibleDescription = "";
+            this.tbxOrderID.BackColor = System.Drawing.SystemColors.Info;
+            this.tbxOrderID.Location = new System.Drawing.Point(2, 18);
+            this.tbxOrderID.Margin = new System.Windows.Forms.Padding(2);
+            this.tbxOrderID.Name = "tbxOrderID";
+            this.tbxOrderID.Size = new System.Drawing.Size(71, 20);
+            this.tbxOrderID.TabIndex = 0;
+            this.tbxOrderID.Tag = "";
+            this.tbxOrderID.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbxOrderID_KeyDown);
+            this.tbxOrderID.KeyUp += new System.Windows.Forms.KeyEventHandler(this.tbxOrderID_KeyUp);
             // 
             // tbxItemDescription
             // 

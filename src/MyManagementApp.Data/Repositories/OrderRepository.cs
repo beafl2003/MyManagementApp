@@ -73,7 +73,7 @@ public class OrderRepository
 
     }
 
-    public Order GetOrdersByCustomer(int customerid)
+    public Order GetOrdersByCustomer(Guid customerid)
     {
         var dbConnection = ConnectionProvider.GetConnection();
         var sql = $@"
@@ -92,6 +92,64 @@ public class OrderRepository
 
         var command = new SqlCommand(sql, dbConnection);
         command.Parameters.Add(new SqlParameter("@Customerid", customerid));
+
+        var adapter = new SqlDataAdapter(command);
+        // dataTable
+        var table = new DataTable();
+        adapter.Fill(table);
+
+
+        if (table.Rows.Count == 0)
+            return default;
+
+        // datarow
+        var row = table.Rows[0];
+
+        var StatusOfTheOrder = row.Field<string>("OrderStatus");
+
+        var Order = new Order()
+        {
+            OrderNumber = row.Field<int>("OrderNumber"),
+            CustomerID = row.Field<Guid>("Customerid"),
+            OrderStatus = (OrderStatusEnum)StatusOfTheOrder.ToOrderStatusEnum(),
+            //OrderStatus = row.Field<OrderStatusEnum>((int)("OrderStatus").ToOrderStatusEnum())
+            //cbxCustomerStatus.SelectedItem.ToString()));
+
+            CustomerCode = row.Field<string>("Customers.code"),
+            CustomerName = row.Field<string>("Customers.name"),
+
+        };
+
+        if (dbConnection.State == ConnectionState.Open)
+            dbConnection.Close();
+
+        // Clean RAM 
+        dbConnection.Dispose();
+        dbConnection = null;
+
+        return Order;
+    }
+
+
+    public Order GetOrdersByCustomerCode(int customercode)
+    {
+        var dbConnection = ConnectionProvider.GetConnection();
+        var sql = $@"
+                SELECT  OrderNumber,
+		                OrderStatus,
+		                Customerid,
+		                Customers.code as 'Customers.code',
+		                Customers.name as 'Customers.name',
+		                Customers.active as 'CustomerStatus'
+		        FROM Orders
+                INNER JOIN Customers ON 
+	                     Customers.id = Orders.Customerid 
+	                AND  Customers.id = Orders.Customerid
+	               WHERE Customers.code = @Customercode";
+
+
+        var command = new SqlCommand(sql, dbConnection);
+        command.Parameters.Add(new SqlParameter("@Customercode", customercode));
 
         var adapter = new SqlDataAdapter(command);
         // dataTable

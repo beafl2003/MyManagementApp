@@ -36,6 +36,16 @@ namespace MyManagementApp.Application.Services
 
         }
 
+        public Order GetOrdersByCustomer(Guid customerid)
+        {
+            return _orderRepository.GetOrdersByCustomer(customerid);
+        }
+
+        public Order GetOrdersByCustomerCode(int customercode)
+        {
+            return _orderRepository.GetOrdersByCustomerCode(customercode);
+        }
+
 
         // new order
         public Result NewOrder(Guid customerId)

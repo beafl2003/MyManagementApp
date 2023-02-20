@@ -20,6 +20,7 @@ using System.Runtime.InteropServices;
 using System.Threading;
 using MyManagementApp.Domain;
 using C1.Win.C1Input;
+using System.Xml.Schema;
 
 namespace MyManagementApp.ChildForms
 {
@@ -36,14 +37,21 @@ namespace MyManagementApp.ChildForms
         private bool _loading;
         private bool _filling;
         private int _currentOrderNum;
+        private int _currentCustomerCode;
         public bool _refreshOrders;
         private Guid _currentCustomerId;
         private Guid _currentOrderItemId;
         private Order _order;
+        private bool _newCustomer;
 
         private readonly OrdersAppService _orderAppService;
         private readonly OrderItemsAppService _orderItemsAppService;
-      
+
+        const string SearchByOrderNum = "SearchByOrderNum";
+        const string SearchByCustomer = "SearchByCustomer";
+        const string SearchByCustomerCode = "SearchByCustomerCode";
+
+
 
         public OrdersForm()
         {
@@ -55,7 +63,7 @@ namespace MyManagementApp.ChildForms
             this.OrderItemsGrid.RowColChange += OrderItemsGrid_RowColChange;
             this.Shown += OrdersForm_Shown;
 
- 
+
 
             btnAdd.Click += BtnAdd_Click;
 
@@ -90,6 +98,12 @@ namespace MyManagementApp.ChildForms
                 return;
             var table = (DataTable)OrderItemsTheGrid.DataSource;
             var row = table.Rows[currentRow];
+            if (_currentOrderNum == 0)
+            {
+                ClearActions();
+                return;
+            }
+
             FillItemFields(row);
         }
 
@@ -185,10 +199,11 @@ namespace MyManagementApp.ChildForms
         {
             _filling = true;
 
-            //if (_currentOrderNum == 0)
-            //{
-            //    return;
-            //}
+            if (_currentOrderNum == 0)
+            {
+                ClearActions();
+                return;
+            }
 
             _currentOrderNum = row.Field<int>("OrderNumber");
 
@@ -247,7 +262,7 @@ namespace MyManagementApp.ChildForms
             //    LoadData();
             //}
 
-            ShowCustomerPick();
+            ShowCustomerPick(_newItem);
             LoadData();
 
             tbxLine.Clear();
@@ -288,8 +303,7 @@ namespace MyManagementApp.ChildForms
         {
 
             var customerId = _currentCustomerId;
-            // Here I'm using this specific Guid, cause it will be defined in another selection form.
-            // So temporaily, it's this fixed value
+
 
             if (_newItem)
             {
@@ -331,15 +345,17 @@ namespace MyManagementApp.ChildForms
 
 
 
-        public void ShowCustomerPick()
+        public void ShowCustomerPick(bool newOrder)
         {
             CustomerPick customerpickDialog = new CustomerPick();
+            customerpickDialog._newOrder = newOrder;
 
             // Show testDialog as a modal dialog and determine if DialogResult = OK.
             if (customerpickDialog.ShowDialog(this) == DialogResult.OK)
             {
                 // Read the contents of testDialog's TextBox.
                 this._currentCustomerId = customerpickDialog._currentId;
+                this._order = customerpickDialog._order;
             }
 
 
@@ -370,7 +386,7 @@ namespace MyManagementApp.ChildForms
             }
         }
 
-        public void ShowOrdersPick()
+        public void ShowOrdersPick(string parameter)
         {
 
             OrdersPick ordersPickDialog = new OrdersPick();
@@ -379,13 +395,23 @@ namespace MyManagementApp.ChildForms
             if (ordersPickDialog.ShowDialog(this) == DialogResult.OK)
             {
                 this._currentOrderNum = ordersPickDialog._currentOrderNum;
-                _order = _orderAppService.GetOrderByNumber(this._currentOrderNum);
+                if (parameter == SearchByOrderNum)
+                {
+                    _order = _orderAppService.GetOrderByNumber(this._currentOrderNum);
+                }
+                else if (parameter == SearchByCustomer)
+                {
+                    _order = _orderAppService.GetOrdersByCustomer(this._currentCustomerId);
+                }
                 if (_order == null)
                 {
                     MessageBox.Show("Could not find the selected order. Please try again.");
                     return;
                 }
-                LoadOnlyItems();
+                else
+                {
+                    LoadOnlyItems();
+                }
             }
 
             if (_order == null)
@@ -409,7 +435,7 @@ namespace MyManagementApp.ChildForms
         private void tbxOrderID_KeyDown(object sender, KeyEventArgs e)
         {
 
-           // ShowOrdersPick();
+            // ShowOrdersPick();
             // LoadData();
         }
 
@@ -423,20 +449,19 @@ namespace MyManagementApp.ChildForms
             {
                 var a = "";
                 var ordervalue = tbxOrderID.Text.Trim();
-               if(ordervalue == null)
-                    ShowOrdersPick();
-               else if (ordervalue.Equals(a))
-                    ShowOrdersPick();
-           
+                if (ordervalue == null)
+                    ShowOrdersPick(SearchByOrderNum);
+                else if (ordervalue.Equals(a))
+                    ShowOrdersPick(SearchByOrderNum);
 
-              var ordervalueint = 0;
-              int.TryParse(tbxOrderID.Text, out ordervalueint);
+
+                var ordervalueint = 0;
+                int.TryParse(tbxOrderID.Text, out ordervalueint);
 
                 if (ordervalueint == 0)
                 {
                     MessageBox.Show("Could not find the informed order, please choose from our OrderPick options.");
-                    ShowOrdersPick();
-                    LoadOnlyItems();
+                    ShowOrdersPick(SearchByOrderNum);
                 }
                 else
                 {
@@ -446,9 +471,9 @@ namespace MyManagementApp.ChildForms
                     if (_order == null)
                     {
                         MessageBox.Show("Could not find the informed order, please choose from our OrderPick options.");
-                        ShowOrdersPick();
+                        ShowOrdersPick(SearchByOrderNum);
                     }
-                    else 
+                    else
                     {
                         LoadOnlyItems();
                     }
@@ -474,12 +499,12 @@ namespace MyManagementApp.ChildForms
             _newItem = true;
             ClearActions();
             if (_currentOrderNum == 0)
-            { 
+            {
                 return;
             }
 
             ShowItemsPick();
-            _newItem= false;    
+            _newItem = false;
 
         }
 
@@ -490,22 +515,74 @@ namespace MyManagementApp.ChildForms
             OrderItemsTheGrid.EvenRowStyle.BackColor = Color.White;
             foreach (C1DisplayColumn item in OrderItemsTheGrid.Splits[0].DisplayColumns)
             {
-                    // Block Item Editing 
-             item.Locked = true;
+                // Block Item Editing 
+                item.Locked = true;
 
-              if (item.DataColumn.DataField.ToLower() == "customerid".ToLower())
-              {
-                  item.Visible = false;
-              }
-              if (item.DataColumn.DataField.ToLower() == "customername".ToLower())
-              {
-                  item.Visible = false;
-              }
+                if (item.DataColumn.DataField.ToLower() == "customerid".ToLower())
+                {
+                    item.Visible = false;
+                }
+                if (item.DataColumn.DataField.ToLower() == "customername".ToLower())
+                {
+                    item.Visible = false;
                 }
             }
-
         }
-    }
+
+        private void tbxCustomer_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                var a = "";
+                var customervalue = tbxCustomer.Text.Trim();
+                if (customervalue == null)
+                {
+                    ShowCustomerPick(_newItem);
+
+                }
+
+                else if (customervalue.Equals(a))
+                {
+                    ShowCustomerPick(_newItem);
+                   
+                }
+                else
+                {
+                    int customercode = 0;
+                    int.TryParse(tbxOrderID.Text, out customercode);
+
+                    if (customercode == 0)
+                    {
+                        MessageBox.Show("Could not find the informed order by customer, please choose from our Customer options.");
+                        ShowCustomerPick(_newItem);
+
+                    }
+                    else
+                    {
+                        _currentCustomerCode = customercode;
+                        _order = _orderAppService.GetOrdersByCustomerCode(customercode);
+                    }
+                }
+
+                if (_order != null)
+                {
+
+
+                    var OrderNumber = _order.OrderNumber.ToString();
+                    var statusOrder = _order.OrderStatus;
+                    var CustomerCode = _order.CustomerCode.ToString();
+                    var CustomerName = _order.CustomerName.ToString();
+
+                    tbxOrderID.Text = OrderNumber;
+                    tbxCustomer.Text = CustomerCode;
+                    tbxCustomerDescription.Text = CustomerName;
+                    cbxOrderStatus.SelectedItem = statusOrder;
+                }
+
+            }
+            }
+        }
+    } 
 
 
     #region Extension Tests
