@@ -199,9 +199,17 @@ namespace MyManagementApp.ChildForms
                 else
                 {
                     var customerId = this._currentId;
-                    _orders = _orderAppService.GetOrdersByCustomer(customerId);
-                    DialogResult = DialogResult.OK;
-                    this.Close();
+                    if (customerId == null)
+                    {
+                        this.NotifyError();
+                    }
+                    else
+                    {
+                        DialogResult = DialogResult.OK;
+                        this.Close();
+                    }
+                    //_orders = _orderAppService.GetOrdersByCustomer(customerId);
+
                 }
 
             }

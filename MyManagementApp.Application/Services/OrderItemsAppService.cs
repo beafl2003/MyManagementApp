@@ -31,6 +31,11 @@ namespace MyManagementApp.Application.Services
 
         }
 
+        public DataTable GetOrderItemsByCustomerCode(int customerCode)
+        {
+            return _orderItemsRepository.GetOrderItemsByCustomerCode(customerCode);
+        }
+
         //public DataTable 
         public OrderItems GetOrderItem(int orderNumber, int orderitemsq)
         {

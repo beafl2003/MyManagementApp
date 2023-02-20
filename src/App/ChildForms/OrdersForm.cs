@@ -356,7 +356,6 @@ namespace MyManagementApp.ChildForms
             {
                 // Read the contents of testDialog's TextBox.
                 this._currentCustomerId = customerpickDialog._currentId;
-                this._orderstable = customerpickDialog._orders;
             }
 
 
@@ -387,10 +386,10 @@ namespace MyManagementApp.ChildForms
             }
         }
 
-        public void ShowOrdersPick(string parameter)
+        public void ShowOrdersPick(string parameter, int customerCode = 0, Guid customerGuid = default)
         {
 
-            OrdersPick ordersPickDialog = new OrdersPick(SearchAllOrders);
+            OrdersPick ordersPickDialog = new OrdersPick(SearchAllOrders, customerCode);
 
 
             if (ordersPickDialog.ShowDialog(this) == DialogResult.OK)
@@ -401,7 +400,7 @@ namespace MyManagementApp.ChildForms
                     _order = _orderAppService.GetOrderByNumber(this._currentOrderNum);
                 }
                 else if (parameter == SearchByCustomer)
-                {                 
+                {
                     ConfigureGrid();
 
                     var ordersTable = _orderAppService.GetOrdersByCustomer(this._currentCustomerId);
@@ -421,6 +420,27 @@ namespace MyManagementApp.ChildForms
                         ClearActions();
                     };
 
+                }
+                else if (parameter == SearchByCustomerCode)
+                { 
+                    ConfigureGrid();
+
+                    var ordersTable = _orderAppService.GetOrdersByCustomerCode(this._currentCustomerCode);
+                    OrderItemsGrid.SetDataBinding(ordersTable, null, false);
+
+                    var currentRow = OrderItemsGrid.Row;
+                    var table = (DataTable)OrderItemsGrid.DataSource;
+                    var row = table.Rows[currentRow];
+
+                    _currentOrderNum = row.Field<int>("OrderNumber");
+
+                    var rows = ordersTable.Rows.Count;
+
+                    if (rows == 0)
+
+                    {
+                        ClearActions();
+                    };
                 }
                 if (_order == null)
                 {
@@ -553,17 +573,29 @@ namespace MyManagementApp.ChildForms
             if (e.KeyCode == Keys.Enter)
             {
                 var a = "";
+
                 var customervalue = tbxCustomer.Text.Trim();
+
+                if (customervalue.Length < 0)
+                {
+                    ShowCustomerPick(_newItem);
+                    ShowOrdersPick(SearchByCustomer,0, this._currentCustomerId);
+
+
+                }
+                            
                 if (customervalue == null)
                 {
                     ShowCustomerPick(_newItem);
-
+                    ShowOrdersPick(SearchByCustomer, 0, this._currentCustomerId);
                 }
 
                 else if (customervalue.Equals(a))
                 {
+
                     ShowCustomerPick(_newItem);
-                   
+                    ShowOrdersPick(SearchByCustomer, 0, this._currentCustomerId);
+
                 }
                 else
                 {
@@ -579,7 +611,7 @@ namespace MyManagementApp.ChildForms
                     else
                     {
                         _currentCustomerCode = customercode;
-                        //_order = _orderAppService.GetOrdersByCustomerCode(customercode);
+                        ShowOrdersPick(SearchByCustomerCode, customercode, default);
                     }
                 }
 

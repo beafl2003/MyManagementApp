@@ -63,6 +63,55 @@ namespace MyManagementApp.Data.Repositories
 
         }
 
+        public DataTable GetOrderItemsByCustomerCode(int customerCode)
+        {
+            var dbConnection = ConnectionProvider.GetConnection();
+            dbConnection.Open();
+
+
+            var sql = $@"SELECT 
+                    ROW_NUMBER() OVER (ORDER BY orderitems.line) AS 'line',
+                    orderitems.line AS 'sq',
+                    orders.OrderNumber, customers.name AS 'customername',
+                    address.address, address.StateOrProvinceCode AS 'state',
+                    address.city, address.countrycode AS 'country',
+                    products.code AS 'productcode', products.name AS 'product',
+                    Products.brand, Products.price AS 'unitprice', ISNULL(orderitems.Qtyordered, 00) AS 'Qtyordered', 
+                    ISNULL((Products.price  * orderitems.Qtyordered),00) AS 'TotalPrice',
+                    orderitems.ItemStatus
+                    FROM orderitems 
+                    
+                    LEFT JOIN customers ON orderitems.customerid = customers.id
+                    LEFT JOIN orders ON orderitems.OrderNumber = orders.OrderNumber
+                    LEFT JOIN products ON orderitems.Productid = Products.id
+                    LEFT JOIN address ON orderitems.AddressID = Address.AddressID
+                    WHERE Customers.code = @CustomerCode";
+
+            var command = new SqlCommand(sql, dbConnection);
+            command.Parameters.Add(new SqlParameter("@CustomerCode", customerCode));
+
+            // adapter
+            var adapter = new SqlDataAdapter(command);
+            // dataTable
+            var table = new DataTable();
+            adapter.Fill(table);
+
+
+
+            if (dbConnection.State == ConnectionState.Open)
+                dbConnection.Close();
+
+
+            // liberação memória RAM da app..
+            dbConnection.Dispose();
+            dbConnection = null;
+
+
+            return table;
+
+
+        }
+
         public OrderItems GetOrderItemByNumber(int OrderNumber, int orderitemsq)
         {
             var dbConnection = ConnectionProvider.GetConnection();
