@@ -18,7 +18,7 @@ namespace MyManagementApp.ChildForms
         private readonly OrdersAppService _orderAppService;
         private readonly OrderRepository _orderRepository;
         public bool _newOrder;
-        public DataTable _order;
+        public DataTable _orders;
 
 
         public CustomerPick()
@@ -111,7 +111,7 @@ namespace MyManagementApp.ChildForms
 
             _currentId = row.Field<Guid>("id");
             var customerCode = row.Field<string>("code");
-            var customerName = row.Field<string>("name");            
+            var customerName = row.Field<string>("name");
             tbxcustomerID.Text = customerCode;
             tbxcustomerName.Text = customerName;
 
@@ -143,7 +143,7 @@ namespace MyManagementApp.ChildForms
             }
             else
             {
-                _order = _orderAppService.GetOrdersByCustomer(customerId);
+                _orders = _orderAppService.GetOrdersByCustomer(customerId);
                 return;
             }
         }
@@ -178,32 +178,39 @@ namespace MyManagementApp.ChildForms
             {
                 //Do something
                 //e.Handled = true;
-
-                var customerId = this._currentId;
-                var r = _orderAppService.NewOrder(customerId);
-                if (!r.Success)
+                if (_newOrder == true)
                 {
-                    this.NotifyError(r);
+                    var customerId = this._currentId;
+                    var r = _orderAppService.NewOrder(customerId);
+                    if (!r.Success)
+                    {
+                        this.NotifyError(r);
 
+                    }
+                    else
+                    {
+                        DialogResult = DialogResult.OK;
+                        this.Close();
+
+
+
+                    }
                 }
                 else
                 {
+                    var customerId = this._currentId;
+                    _orders = _orderAppService.GetOrdersByCustomer(customerId);
                     DialogResult = DialogResult.OK;
                     this.Close();
-
-
-
                 }
+
             }
-        }
-
-        private void CustomerPick_FormClosing(object sender, FormClosingEventArgs e)
-        {
 
         }
-
     }
 }
+
+
 
 
 

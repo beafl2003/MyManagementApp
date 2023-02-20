@@ -112,7 +112,6 @@ namespace MyManagementApp.ChildForms
             this.MinimumSize = new System.Drawing.Size(648, 385);
             this.Name = "CustomerPick";
             this.Text = "CustomerPick";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.CustomerPick_FormClosing);
             this.Shown += new System.EventHandler(this.CustomerPick_Shown);
             ((System.ComponentModel.ISupportInitialize)(this.CustomerGrid)).EndInit();
             this.ResumeLayout(false);

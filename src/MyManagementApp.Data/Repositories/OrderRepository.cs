@@ -80,8 +80,8 @@ public class OrderRepository
                 SELECT  OrderNumber,
 		                OrderStatus,
 		                Customerid,
-		                Customers.code as 'Customers.code',
-		                Customers.name as 'Customers.name',
+		                Customers.code as 'code',
+		                Customers.name as 'name',
 		                Customers.active as 'CustomerStatus'
 		        FROM Orders
                 INNER JOIN Customers ON 

@@ -48,7 +48,7 @@ namespace MyManagementApp.ChildForms
         private readonly OrdersAppService _orderAppService;
         private readonly OrderItemsAppService _orderItemsAppService;
 
-        const string SearchByOrderNum = "SearchByOrderNum";
+        const string SearchAllOrders = "SearchAllOrders";
         const string SearchByCustomer = "SearchByCustomer";
         const string SearchByCustomerCode = "SearchByCustomerCode";
 
@@ -356,7 +356,7 @@ namespace MyManagementApp.ChildForms
             {
                 // Read the contents of testDialog's TextBox.
                 this._currentCustomerId = customerpickDialog._currentId;
-                this._orderstable = customerpickDialog._order;
+                this._orderstable = customerpickDialog._orders;
             }
 
 
@@ -390,13 +390,13 @@ namespace MyManagementApp.ChildForms
         public void ShowOrdersPick(string parameter)
         {
 
-            OrdersPick ordersPickDialog = new OrdersPick();
+            OrdersPick ordersPickDialog = new OrdersPick(SearchAllOrders);
 
 
             if (ordersPickDialog.ShowDialog(this) == DialogResult.OK)
             {
                 this._currentOrderNum = ordersPickDialog._currentOrderNum;
-                if (parameter == SearchByOrderNum)
+                if (parameter == SearchAllOrders)
                 {
                     _order = _orderAppService.GetOrderByNumber(this._currentOrderNum);
                 }
@@ -469,9 +469,9 @@ namespace MyManagementApp.ChildForms
                 var a = "";
                 var ordervalue = tbxOrderID.Text.Trim();
                 if (ordervalue == null)
-                    ShowOrdersPick(SearchByOrderNum);
+                    ShowOrdersPick(SearchAllOrders);
                 else if (ordervalue.Equals(a))
-                    ShowOrdersPick(SearchByOrderNum);
+                    ShowOrdersPick(SearchAllOrders);
 
 
                 var ordervalueint = 0;
@@ -480,7 +480,7 @@ namespace MyManagementApp.ChildForms
                 if (ordervalueint == 0)
                 {
                     MessageBox.Show("Could not find the informed order, please choose from our OrderPick options.");
-                    ShowOrdersPick(SearchByOrderNum);
+                    ShowOrdersPick(SearchAllOrders);
                 }
                 else
                 {
@@ -490,7 +490,7 @@ namespace MyManagementApp.ChildForms
                     if (_order == null)
                     {
                         MessageBox.Show("Could not find the informed order, please choose from our OrderPick options.");
-                        ShowOrdersPick(SearchByOrderNum);
+                        ShowOrdersPick(SearchAllOrders);
                     }
                     else
                     {
@@ -583,19 +583,29 @@ namespace MyManagementApp.ChildForms
                     }
                 }
 
-                if (_order != null)
+                if (_orderstable != null)
                 {
 
+                    var ordersTable = _orderstable;
+                    // Here, my current orders table _orderstable should come as the options for a OrderPick Style dialog modal form.
 
-                    var OrderNumber = _order.OrderNumber.ToString();
-                    var statusOrder = _order.OrderStatus;
-                    var CustomerCode = _order.CustomerCode.ToString();
-                    var CustomerName = _order.CustomerName.ToString();
 
-                    tbxOrderID.Text = OrderNumber;
-                    tbxCustomer.Text = CustomerCode;
-                    tbxCustomerDescription.Text = CustomerName;
-                    cbxOrderStatus.SelectedItem = statusOrder;
+                    //OrderItemsGrid.SetDataBinding(ordersTable, null, false);
+
+                    //var currentRow = OrderItemsGrid.Row;
+                    //var table = (DataTable)OrderItemsGrid.DataSource;
+                    //var row = table.Rows[currentRow];
+
+                    //_currentOrderNum = row.Field<int>("OrderNumber");
+
+                    //var rows = ordersTable.Rows.Count;
+
+                    //if (rows == 0)
+
+                    //{
+                    //    ClearActions();
+                    //};
+
                 }
 
             }

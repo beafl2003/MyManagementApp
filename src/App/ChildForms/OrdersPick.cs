@@ -23,14 +23,20 @@ namespace TestandoComponentes.ChildForms
         public Order _currentOrder;
         private readonly OrdersAppService _orderAppService;
         private bool _filling;
+        private string  _searchType;
+        const string SearchAllOrders = "SearchAllOrders";
+        const string SearchByCustomer = "SearchByCustomer";
+        const string SearchByCustomerCode = "SearchByCustomerCode";
 
-        public OrdersPick()
+
+        public OrdersPick(string searchType)
         {
             InitializeComponent();
 
             this.Shown += OrdersPick_Shown;
             this.OrdersGrid.RowColChange += OrdersGrid_RowColChange;
             _orderAppService = new OrdersAppService();
+            _searchType = searchType;
 
         }
 
@@ -46,19 +52,22 @@ namespace TestandoComponentes.ChildForms
 
         private void LoadData()
         {
-            var orderspickTable = _orderAppService.LoadFromDatabase();
-            OrdersGrid.SetDataBinding(orderspickTable, null, false);
-            ConfigureGrid();
 
-            var rows = orderspickTable.Rows.Count;
-
-            if (rows == 0)
-
+            if (_searchType == SearchAllOrders)
             {
-                ClearActions();
-            };
+                var orderspickTable = _orderAppService.LoadFromDatabase();
+                OrdersGrid.SetDataBinding(orderspickTable, null, false);
+                ConfigureGrid();
 
+                var rows = orderspickTable.Rows.Count;
 
+                if (rows == 0)
+
+                {
+                    ClearActions();
+                };
+
+            }
         }
 
         // grid
