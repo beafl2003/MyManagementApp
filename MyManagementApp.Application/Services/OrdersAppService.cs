@@ -36,12 +36,12 @@ namespace MyManagementApp.Application.Services
 
         }
 
-        public Order GetOrdersByCustomer(Guid customerid)
+        public DataTable GetOrdersByCustomer(Guid customerid)
         {
             return _orderRepository.GetOrdersByCustomer(customerid);
         }
 
-        public Order GetOrdersByCustomerCode(int customercode)
+        public DataTable GetOrdersByCustomerCode(int customercode)
         {
             return _orderRepository.GetOrdersByCustomerCode(customercode);
         }

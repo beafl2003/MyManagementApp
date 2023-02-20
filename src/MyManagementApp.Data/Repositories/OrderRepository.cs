@@ -73,7 +73,7 @@ public class OrderRepository
 
     }
 
-    public Order GetOrdersByCustomer(Guid customerid)
+    public DataTable GetOrdersByCustomer(Guid customerid)
     {
         var dbConnection = ConnectionProvider.GetConnection();
         var sql = $@"
@@ -99,39 +99,20 @@ public class OrderRepository
         adapter.Fill(table);
 
 
-        if (table.Rows.Count == 0)
-            return default;
-
-        // datarow
-        var row = table.Rows[0];
-
-        var StatusOfTheOrder = row.Field<string>("OrderStatus");
-
-        var Order = new Order()
-        {
-            OrderNumber = row.Field<int>("OrderNumber"),
-            CustomerID = row.Field<Guid>("Customerid"),
-            OrderStatus = (OrderStatusEnum)StatusOfTheOrder.ToOrderStatusEnum(),
-            //OrderStatus = row.Field<OrderStatusEnum>((int)("OrderStatus").ToOrderStatusEnum())
-            //cbxCustomerStatus.SelectedItem.ToString()));
-
-            CustomerCode = row.Field<string>("Customers.code"),
-            CustomerName = row.Field<string>("Customers.name"),
-
-        };
-
         if (dbConnection.State == ConnectionState.Open)
             dbConnection.Close();
 
-        // Clean RAM 
+
+        // liberação memória RAM da app..
         dbConnection.Dispose();
         dbConnection = null;
 
-        return Order;
+
+        return table;
     }
 
 
-    public Order GetOrdersByCustomerCode(int customercode)
+    public DataTable GetOrdersByCustomerCode(int customercode)
     {
         var dbConnection = ConnectionProvider.GetConnection();
         var sql = $@"
@@ -157,35 +138,16 @@ public class OrderRepository
         adapter.Fill(table);
 
 
-        if (table.Rows.Count == 0)
-            return default;
-
-        // datarow
-        var row = table.Rows[0];
-
-        var StatusOfTheOrder = row.Field<string>("OrderStatus");
-
-        var Order = new Order()
-        {
-            OrderNumber = row.Field<int>("OrderNumber"),
-            CustomerID = row.Field<Guid>("Customerid"),
-            OrderStatus = (OrderStatusEnum)StatusOfTheOrder.ToOrderStatusEnum(),
-            //OrderStatus = row.Field<OrderStatusEnum>((int)("OrderStatus").ToOrderStatusEnum())
-            //cbxCustomerStatus.SelectedItem.ToString()));
-
-            CustomerCode = row.Field<string>("Customers.code"),
-            CustomerName = row.Field<string>("Customers.name"),
-
-        };
-
         if (dbConnection.State == ConnectionState.Open)
             dbConnection.Close();
 
-        // Clean RAM 
+
+        // liberação memória RAM da app..
         dbConnection.Dispose();
         dbConnection = null;
 
-        return Order;
+
+        return table;
     }
     public bool InsertDatabase(Order order)
     {

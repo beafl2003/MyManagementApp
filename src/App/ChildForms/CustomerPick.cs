@@ -18,7 +18,7 @@ namespace MyManagementApp.ChildForms
         private readonly OrdersAppService _orderAppService;
         private readonly OrderRepository _orderRepository;
         public bool _newOrder;
-        public Order _order;
+        public DataTable _order;
 
 
         public CustomerPick()

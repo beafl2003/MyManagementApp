@@ -42,6 +42,7 @@ namespace MyManagementApp.ChildForms
         private Guid _currentCustomerId;
         private Guid _currentOrderItemId;
         private Order _order;
+        private DataTable _orderstable;
         private bool _newCustomer;
 
         private readonly OrdersAppService _orderAppService;
@@ -355,7 +356,7 @@ namespace MyManagementApp.ChildForms
             {
                 // Read the contents of testDialog's TextBox.
                 this._currentCustomerId = customerpickDialog._currentId;
-                this._order = customerpickDialog._order;
+                this._orderstable = customerpickDialog._order;
             }
 
 
@@ -400,8 +401,26 @@ namespace MyManagementApp.ChildForms
                     _order = _orderAppService.GetOrderByNumber(this._currentOrderNum);
                 }
                 else if (parameter == SearchByCustomer)
-                {
-                    _order = _orderAppService.GetOrdersByCustomer(this._currentCustomerId);
+                {                 
+                    ConfigureGrid();
+
+                    var ordersTable = _orderAppService.GetOrdersByCustomer(this._currentCustomerId);
+                    OrderItemsGrid.SetDataBinding(ordersTable, null, false);
+
+                    var currentRow = OrderItemsGrid.Row;
+                    var table = (DataTable)OrderItemsGrid.DataSource;
+                    var row = table.Rows[currentRow];
+
+                    _currentOrderNum = row.Field<int>("OrderNumber");
+
+                    var rows = ordersTable.Rows.Count;
+
+                    if (rows == 0)
+
+                    {
+                        ClearActions();
+                    };
+
                 }
                 if (_order == null)
                 {
@@ -549,7 +568,7 @@ namespace MyManagementApp.ChildForms
                 else
                 {
                     int customercode = 0;
-                    int.TryParse(tbxOrderID.Text, out customercode);
+                    int.TryParse(tbxCustomer.Text, out customercode);
 
                     if (customercode == 0)
                     {
@@ -560,7 +579,7 @@ namespace MyManagementApp.ChildForms
                     else
                     {
                         _currentCustomerCode = customercode;
-                        _order = _orderAppService.GetOrdersByCustomerCode(customercode);
+                        //_order = _orderAppService.GetOrdersByCustomerCode(customercode);
                     }
                 }
 
