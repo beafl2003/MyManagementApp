@@ -389,7 +389,7 @@ namespace MyManagementApp.ChildForms
         public void ShowOrdersPick(string parameter, int customerCode = 0, Guid customerGuid = default)
         {
 
-            OrdersPick ordersPickDialog = new OrdersPick(SearchAllOrders, customerCode);
+            OrdersPick ordersPickDialog = new OrdersPick(parameter, customerCode);
 
 
             if (ordersPickDialog.ShowDialog(this) == DialogResult.OK)

@@ -22,8 +22,8 @@ public class OrderRepository
                 SELECT  OrderNumber,
 		                OrderStatus,
 		                Customerid,
-		                Customers.code as 'Customers.code',
-		                Customers.name as 'Customers.name',
+		                Customers.code as 'code',
+		                Customers.name as 'name',
 		                Customers.active as 'CustomerStatus'
 		        FROM Orders
                 INNER JOIN Customers ON 
@@ -57,8 +57,8 @@ public class OrderRepository
             //OrderStatus = row.Field<OrderStatusEnum>((int)("OrderStatus").ToOrderStatusEnum())
             //cbxCustomerStatus.SelectedItem.ToString()));
 
-            CustomerCode = row.Field<string>("Customers.code"),
-            CustomerName = row.Field<string>("Customers.name"),
+            CustomerCode = row.Field<string>("code"),
+            CustomerName = row.Field<string>("name"),
 
         };
 
@@ -119,8 +119,8 @@ public class OrderRepository
                 SELECT  OrderNumber,
 		                OrderStatus,
 		                Customerid,
-		                Customers.code as 'Customers.code',
-		                Customers.name as 'Customers.name',
+		                Customers.code as 'code',
+		                Customers.name as 'name',
 		                Customers.active as 'CustomerStatus'
 		        FROM Orders
                 INNER JOIN Customers ON 
