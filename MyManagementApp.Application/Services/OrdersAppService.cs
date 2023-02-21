@@ -10,14 +10,15 @@ namespace MyManagementApp.Application.Services
     {
         #region fields
         private readonly OrderRepository _orderRepository;
+        private readonly OrderItemsRepository _orderItemsRepository;
         #endregion
 
         #region constructor
         public OrdersAppService()
         {
             _orderRepository = new OrderRepository();
+            _orderItemsRepository = new OrderItemsRepository();
         }
-
     
         #endregion
 
@@ -100,10 +101,22 @@ namespace MyManagementApp.Application.Services
             //Read
             var order = _orderRepository.GetOrderByNumber(orderNumber);
 
+            var orderitems = _orderItemsRepository.GetOrderItemsByOrder(orderNumber);
+
             if (order == null)
                 return Result.Factory.False("Order not found");
+            else if (orderitems == null)
+            {
+                _orderRepository.DeleteFromDataBase(order);
+            }
+            else
+            {
+                _orderItemsRepository.DeleteAllItemsFromOrder(order);
+                _orderRepository.DeleteFromDataBase(order);
+            }
 
-            _orderRepository.DeleteFromDataBase(order);
+               
+
 
             return Result.Factory.True();
 

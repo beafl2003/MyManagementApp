@@ -389,7 +389,7 @@ namespace MyManagementApp.ChildForms
         public void ShowOrdersPick(string parameter, int customerCode = 0, Guid customerGuid = default)
         {
 
-            OrdersPick ordersPickDialog = new OrdersPick(parameter, customerCode);
+            OrdersPick ordersPickDialog = new OrdersPick(parameter, customerCode, customerGuid);
 
 
             if (ordersPickDialog.ShowDialog(this) == DialogResult.OK)
@@ -401,46 +401,43 @@ namespace MyManagementApp.ChildForms
                 }
                 else if (parameter == SearchByCustomer)
                 {
+                    
                     ConfigureGrid();
 
-                    var ordersTable = _orderAppService.GetOrdersByCustomer(this._currentCustomerId);
-                    OrderItemsGrid.SetDataBinding(ordersTable, null, false);
+                    _order = _orderAppService.GetOrderByNumber(this._currentOrderNum);
+                   
 
-                    var currentRow = OrderItemsGrid.Row;
-                    var table = (DataTable)OrderItemsGrid.DataSource;
-                    var row = table.Rows[currentRow];
+                    var orderItemsTable = _orderItemsAppService.LoadFromDatabase(_currentOrderNum);
+                    OrderItemsTheGrid.SetDataBinding(orderItemsTable, null, false);
 
-                    _currentOrderNum = row.Field<int>("OrderNumber");
+                    var Itemrows = orderItemsTable.Rows.Count;
 
-                    var rows = ordersTable.Rows.Count;
-
-                    if (rows == 0)
+                    if (Itemrows == 0)
 
                     {
                         ClearActions();
-                    };
+                    }
 
                 }
                 else if (parameter == SearchByCustomerCode)
                 { 
+
                     ConfigureGrid();
+                    _order = _orderAppService.GetOrderByNumber(this._currentOrderNum);
 
-                    var ordersTable = _orderAppService.GetOrdersByCustomerCode(this._currentCustomerCode);
-                    OrderItemsGrid.SetDataBinding(ordersTable, null, false);
 
-                    var currentRow = OrderItemsGrid.Row;
-                    var table = (DataTable)OrderItemsGrid.DataSource;
-                    var row = table.Rows[currentRow];
+                    var orderItemsTable = _orderItemsAppService.LoadFromDatabase(_currentOrderNum);
+                    OrderItemsTheGrid.SetDataBinding(orderItemsTable, null, false);
 
-                    _currentOrderNum = row.Field<int>("OrderNumber");
+                    var Itemrows = orderItemsTable.Rows.Count;
 
-                    var rows = ordersTable.Rows.Count;
-
-                    if (rows == 0)
+                    if (Itemrows == 0)
 
                     {
                         ClearActions();
-                    };
+                    }
+
+
                 }
                 if (_order == null)
                 {
@@ -453,10 +450,6 @@ namespace MyManagementApp.ChildForms
                 }
             }
 
-            if (_order == null)
-            {
-                return;
-            }
 
             var OrderNumber = _order.OrderNumber.ToString();
             var statusOrder = _order.OrderStatus;

@@ -132,10 +132,10 @@ namespace MyManagementApp.Data.Repositories
                     orderitems.ItemStatus
                     FROM orderitems 
                     
-                    INNER JOIN customers ON orderitems.customerid = customers.id
-                    INNER JOIN orders ON orderitems.OrderNumber = orders.OrderNumber
-                    INNER JOIN products ON orderitems.Productid = Products.id
-                    INNER JOIN address ON orderitems.AddressID = Address.AddressID
+                    LEFT JOIN customers ON orderitems.customerid = customers.id
+                    LEFT JOIN orders ON orderitems.OrderNumber = orders.OrderNumber
+                    LEFT JOIN products ON orderitems.Productid = Products.id
+                    LEFT JOIN address ON orderitems.AddressID = Address.AddressID
                     WHERE orderitems.OrderNumber = @OrderNumber AND orderitems.line = @sq";
 
             var command = new SqlCommand(sql, dbConnection);
@@ -196,10 +196,10 @@ namespace MyManagementApp.Data.Repositories
                     orderitems.ItemStatus
                     FROM orderitems 
                     
-                    INNER JOIN customers ON orderitems.customerid = customers.id
-                    INNER JOIN orders ON orderitems.OrderNumber = orders.OrderNumber
-                    INNER JOIN products ON orderitems.Productid = Products.id
-                    INNER JOIN address ON orderitems.AddressID = Address.AddressID
+                    LEFT JOIN customers ON orderitems.customerid = customers.id
+                    LEFT JOIN orders ON orderitems.OrderNumber = orders.OrderNumber
+                    LEFT JOIN products ON orderitems.Productid = Products.id
+                    LEFT JOIN address ON orderitems.AddressID = Address.AddressID
                     WHERE orderitems.OrderNumber = @OrderNumber";
 
             var command = new SqlCommand(sql, dbConnection);
@@ -224,6 +224,34 @@ namespace MyManagementApp.Data.Repositories
 
         }
 
+        public bool DeleteAllItemsFromOrder(Order order)
+        {
+
+            var dbConnection = ConnectionProvider.GetConnection();
+            dbConnection.Open();
+
+            var sql = $@"
+                    DELETE FROM orderitems 
+                    WHERE OrderNumber = @OrderNumber";
+
+            var command = new SqlCommand(sql, dbConnection);
+            command.Parameters.Add(new SqlParameter("@OrderNumber", order.OrderNumber));
+            var rowsAffected = command.ExecuteNonQuery();
+
+
+            if (dbConnection.State == ConnectionState.Open)
+                dbConnection.Close();
+
+
+            // liberação memória RAM da app..
+            dbConnection.Dispose();
+
+
+            if (rowsAffected > 0)
+                return true;
+            else
+                return false;
+        }
 
         public bool InsertItem(OrderItems orderitem) 
         

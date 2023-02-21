@@ -31,7 +31,7 @@ namespace TestandoComponentes.ChildForms
         const string SearchByCustomerCode = "SearchByCustomerCode";
 
 
-        public OrdersPick(string searchType, int customerCode = 0)
+        public OrdersPick(string searchType, int customerCode = 0, Guid customerGUID = default)
         {
             InitializeComponent();
 
@@ -40,6 +40,7 @@ namespace TestandoComponentes.ChildForms
             _orderAppService = new OrdersAppService();
             _searchType = searchType;
             _currentCustomerCode = customerCode;
+            _currentCustomerGUID = customerGUID;
 
         }
 
