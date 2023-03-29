@@ -230,6 +230,7 @@
             this.MaximumSize = new System.Drawing.Size(648, 385);
             this.MinimumSize = new System.Drawing.Size(648, 385);
             this.Name = "OrdersPick";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "OrdersPick";
             this.Load += new System.EventHandler(this.OrdersPick_Load);
             ((System.ComponentModel.ISupportInitialize)(this.OrdersGrid)).EndInit();
