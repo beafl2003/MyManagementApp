@@ -43,6 +43,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ItemsGrid.GroupByCaption = "Drag a column header here to group by that column";
+            this.ItemsGrid.Images.Add(((System.Drawing.Image)(resources.GetObject("ItemsGrid.Images"))));
             this.ItemsGrid.Location = new System.Drawing.Point(1, 59);
             this.ItemsGrid.Margin = new System.Windows.Forms.Padding(2);
             this.ItemsGrid.Name = "ItemsGrid";
@@ -52,12 +53,12 @@
             this.ItemsGrid.PrintInfo.MeasurementDevice = C1.Win.C1TrueDBGrid.PrintInfo.MeasurementDeviceEnum.Screen;
             this.ItemsGrid.PrintInfo.MeasurementPrinterName = null;
             this.ItemsGrid.PrintInfo.PageSettings = ((System.Drawing.Printing.PageSettings)(resources.GetObject("ItemsGrid.PrintInfo.PageSettings")));
-            this.ItemsGrid.PropBag = resources.GetString("ItemsGrid.PropBag");
             this.ItemsGrid.Size = new System.Drawing.Size(632, 287);
             this.ItemsGrid.TabIndex = 6;
             this.ItemsGrid.UseCompatibleTextRendering = false;
             this.ItemsGrid.RowColChange += new C1.Win.C1TrueDBGrid.RowColChangeEventHandler(this.ItemsGrid_RowColChange);
             this.ItemsGrid.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ItemsGrid_KeyDown);
+            this.ItemsGrid.PropBag = resources.GetString("ItemsGrid.PropBag");
             // 
             // ChooseOrder
             // 
@@ -112,6 +113,7 @@
             this.MaximumSize = new System.Drawing.Size(648, 385);
             this.MinimumSize = new System.Drawing.Size(648, 385);
             this.Name = "ItemPick";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "ItemPick";
             ((System.ComponentModel.ISupportInitialize)(this.ItemsGrid)).EndInit();
             this.ResumeLayout(false);

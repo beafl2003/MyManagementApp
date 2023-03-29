@@ -42,6 +42,7 @@ namespace MyManagementApp.ChildForms
             // 
             this.CustomerGrid.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.CustomerGrid.GroupByCaption = "Drag a column header here to group by that column";
+            this.CustomerGrid.Images.Add(((System.Drawing.Image)(resources.GetObject("CustomerGrid.Images"))));
             this.CustomerGrid.Location = new System.Drawing.Point(0, 55);
             this.CustomerGrid.Margin = new System.Windows.Forms.Padding(2);
             this.CustomerGrid.Name = "CustomerGrid";
@@ -51,12 +52,12 @@ namespace MyManagementApp.ChildForms
             this.CustomerGrid.PrintInfo.MeasurementDevice = C1.Win.C1TrueDBGrid.PrintInfo.MeasurementDeviceEnum.Screen;
             this.CustomerGrid.PrintInfo.MeasurementPrinterName = null;
             this.CustomerGrid.PrintInfo.PageSettings = ((System.Drawing.Printing.PageSettings)(resources.GetObject("CustomerGrid.PrintInfo.PageSettings")));
-            this.CustomerGrid.PropBag = resources.GetString("CustomerGrid.PropBag");
             this.CustomerGrid.Size = new System.Drawing.Size(632, 291);
             this.CustomerGrid.TabIndex = 15;
             this.CustomerGrid.UseCompatibleTextRendering = false;
             this.CustomerGrid.DoubleClick += new System.EventHandler(this.CustomerGrid_DoubleClick);
             this.CustomerGrid.KeyUp += new System.Windows.Forms.KeyEventHandler(this.CustomerGrid_KeyUp);
+            this.CustomerGrid.PropBag = resources.GetString("CustomerGrid.PropBag");
             // 
             // ChooseCustomer
             // 
@@ -111,6 +112,7 @@ namespace MyManagementApp.ChildForms
             this.MaximumSize = new System.Drawing.Size(648, 385);
             this.MinimumSize = new System.Drawing.Size(648, 385);
             this.Name = "CustomerPick";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "CustomerPick";
             this.Shown += new System.EventHandler(this.CustomerPick_Shown);
             ((System.ComponentModel.ISupportInitialize)(this.CustomerGrid)).EndInit();
