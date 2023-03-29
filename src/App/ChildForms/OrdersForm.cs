@@ -450,17 +450,21 @@ namespace MyManagementApp.ChildForms
                 }
             }
 
+            if (_order != null)
+            {
+                var OrderNumber = _order.OrderNumber.ToString();
+                var statusOrder = _order.OrderStatus;
+                var CustomerCode = _order.CustomerCode.ToString();
+                var CustomerName = _order.CustomerName.ToString();
 
-            var OrderNumber = _order.OrderNumber.ToString();
-            var statusOrder = _order.OrderStatus;
-            var CustomerCode = _order.CustomerCode.ToString();
-            var CustomerName = _order.CustomerName.ToString();
+                tbxOrderID.Text = OrderNumber;
+                tbxCustomer.Text = CustomerCode;
+                tbxCustomerDescription.Text = CustomerName;
+                cbxOrderStatus.SelectedItem = statusOrder;
+                ordersPickDialog.Close();
 
-            tbxOrderID.Text = OrderNumber;
-            tbxCustomer.Text = CustomerCode;
-            tbxCustomerDescription.Text = CustomerName;
-            cbxOrderStatus.SelectedItem = statusOrder;
-            ordersPickDialog.Close();
+            }
+
 
         }
 
